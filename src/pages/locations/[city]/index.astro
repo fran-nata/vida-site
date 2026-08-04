@@ -4,7 +4,7 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import LocationCard from '../../../components/LocationCard.astro';
 import ContactCta from '../../../components/ContactCta.astro';
 import { services } from '../../../data/services';
-import { cities, nearbyCities } from '../../../data/cities';
+import { cities, nearbyCities, regionProfiles } from '../../../data/cities';
 import { site } from '../../../lib/site';
 
 export function getStaticPaths() {
@@ -16,12 +16,37 @@ export function getStaticPaths() {
 
 const { city } = Astro.props;
 const near = nearbyCities(city.slug, 6);
+const profile = regionProfiles[city.region];
+const nearNames = near.slice(0, 3).map((c) => c.name);
 
 const whyUs = [
   { title: 'Installation locale', description: `Techniciens qui se déplacent dans ${city.name}.` },
   { title: 'Estimation gratuite', description: 'Un devis clair avant chaque installation.' },
   { title: 'Pellicules Tekton', description: 'Produits haut de gamme, garantis fabricant.' },
   { title: 'Résidentiel & commercial', description: 'Maisons, condos, bureaux et commerces.' },
+];
+
+const solaire = services.find((s) => s.slug === 'pellicule-solaire')!;
+const intimite = services.find((s) => s.slug === 'pellicule-intimite')!;
+const securite = services.find((s) => s.slug === 'pellicule-securite')!;
+const decorative = services.find((s) => s.slug === 'pellicule-decorative')!;
+
+const localFaqs = [
+  {
+    question: `Quelle pellicule pour fenêtres est la plus demandée à ${city.name} ?`,
+    answerText: `À ${city.name}, où l'on retrouve ${profile.buildingContext}, ${profile.exposureNote}. La pellicule solaire et la pellicule d'intimité sont donc les deux services les plus fréquemment demandés, souvent installées ensemble sur les mêmes fenêtres.`,
+    answerHtml: `À ${city.name}, où l'on retrouve ${profile.buildingContext}, ${profile.exposureNote}. La <a href="/services/${solaire.slug}/${city.slug}/" class="text-accent font-semibold">pellicule solaire</a> et la <a href="/services/${intimite.slug}/${city.slug}/" class="text-accent font-semibold">pellicule d'intimité</a> sont donc les deux services les plus fréquemment demandés, souvent installées ensemble sur les mêmes fenêtres.`,
+  },
+  {
+    question: `Vos techniciens se déplacent-ils directement chez moi à ${city.name} ?`,
+    answerText: `Oui — l'évaluation sur place et l'installation se font toutes deux à votre adresse à ${city.name}, que ce soit pour ${profile.propertyTypes}. Aucun déplacement de votre part n'est requis, et l'estimation initiale est gratuite et sans engagement.`,
+    answerHtml: `Oui — l'évaluation sur place et l'installation se font toutes deux à votre adresse à ${city.name}, que ce soit pour ${profile.propertyTypes}. Aucun déplacement de votre part n'est requis, et l'estimation initiale est gratuite et sans engagement.`,
+  },
+  {
+    question: `Desservez-vous aussi les municipalités autour de ${city.name} ?`,
+    answerText: `Oui, en plus de ${city.name}, nous couvrons notamment ${nearNames.join(', ')} et le reste du Grand Montréal. Nos techniciens planifient souvent plusieurs installations dans un même secteur la même semaine.`,
+    answerHtml: `Oui, en plus de ${city.name}, nous couvrons notamment ${near.slice(0, 3).map((c) => `<a href="/locations/${c.slug}/" class="text-accent font-semibold">${c.name}</a>`).join(', ')} et le reste du Grand Montréal. Nos techniciens planifient souvent plusieurs installations dans un même secteur la même semaine.`,
+  },
 ];
 ---
 <Layout
@@ -35,7 +60,7 @@ const whyUs = [
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
     <h1 class="font-heading text-[42px] font-extrabold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
     <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
-      Vida Vitres installe la pellicule solaire pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour installer une pellicule solaire, d'intimité, de sécurité ou décorative, avec estimation gratuite avant chaque projet.
+      Vida Vitres installe la pellicule solaire, d'intimité, de sécurité et décorative pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour évaluer vos fenêtres et installer la pellicule adaptée à votre projet, avec une estimation gratuite avant chaque intervention.
     </p>
     <div class="grid grid-cols-4 gap-5 mb-14">
       {services.map((s) => (
@@ -48,6 +73,19 @@ const whyUs = [
     </div>
   </section>
 
+  <section class="max-w-[900px] mx-auto px-8 pb-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-4">Pellicule pour fenêtres à {city.name} : ce qui distingue votre secteur</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Le secteur de {city.name}, dans {city.region}, se caractérise surtout par {profile.buildingContext}. Dans ce contexte, {profile.exposureNote}. C'est pourquoi nos techniciens recommandent généralement une évaluation sur place plutôt qu'une estimation générique en ligne : le type de vitrage, l'orientation des fenêtres et l'usage de la pièce influencent directement le choix entre une <a href={`/services/${solaire.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule solaire</a>, une <a href={`/services/${intimite.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule d'intimité</a>, une <a href={`/services/${securite.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule de sécurité</a> ou une <a href={`/services/${decorative.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule décorative</a>.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Pour {profile.propertyTypes} à {city.name}, la pellicule solaire reste le point de départ le plus courant : elle réduit la chaleur qui s'accumule en après-midi et bloque jusqu'à 99% des rayons UV responsables de la décoloration des planchers et des meubles, sans changer l'apparence des fenêtres ni en réduire la clarté.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted">
+      Lorsque l'intimité ou la sécurité sont la priorité — salle de bain donnant sur la rue, porte-fenêtre de rez-de-chaussée, vitrine commerciale — nos techniciens évaluent directement sur place à {city.name} pour recommander un fini givré, une pellicule de sécurité, ou une combinaison des deux selon la fenêtre concernée. Chaque installation est accompagnée d'une estimation gratuite et d'un devis clair avant tout engagement.
+    </p>
+  </section>
+
   <section class="bg-bg-light px-8 py-14">
     <div class="max-w-[1240px] mx-auto">
       <h2 class="font-heading text-[26px] font-extrabold tracking-tight mb-6">Pourquoi les résidents de {city.name} nous font confiance</h2>
@@ -57,6 +95,21 @@ const whyUs = [
         ))}
       </div>
     </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-8 py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Questions fréquentes à {city.name}</h2>
+    {localFaqs.map((f) => (
+      <details class="border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer">{f.question}</summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]" set:html={f.answerHtml} />
+      </details>
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: localFaqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answerText } })),
+    })} />
   </section>
 
   <section class="max-w-[1240px] mx-auto px-8 py-22">

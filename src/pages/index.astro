@@ -25,13 +25,69 @@ const steps = [
   { n: '04', title: 'Installation', description: 'Nos techniciens installent avec précision et propreté.' },
 ];
 
-const faqs = [
+const generalFaqs = [
   { question: "Combien coûte l'installation de pellicule pour fenêtres ?", answer: 'Le prix varie selon la superficie, le type de pellicule et le nombre de fenêtres. Nos estimations sont gratuites et personnalisées selon votre projet.' },
   { question: 'Est-ce que la pellicule rend la pièce plus sombre ?', answer: "Non. La plupart de nos pellicules solaires et d'intimité laissent passer la lumière naturelle tout en filtrant la chaleur et l'éblouissement." },
-  { question: "Combien de temps dure l'installation ?", answer: 'La majorité des projets résidentiels sont complétés en une seule journée, selon le nombre de fenêtres.' },
+  { question: "Combien de temps dure l'installation d'une pellicule pour fenêtres ?", answer: 'La majorité des projets résidentiels sont complétés en une seule journée, selon le nombre de fenêtres. Les projets commerciaux à grande surface vitrée peuvent être planifiés sur plusieurs jours pour minimiser l\'impact sur vos opérations.' },
   { question: 'La pellicule peut-elle être retirée plus tard ?', answer: "Oui, nos pellicules sont conçues pour un retrait propre sans dommage à la vitre lorsqu'installées par un professionnel." },
-  { question: 'Sur quels types de fenêtres peut-on installer de la pellicule ?', answer: "Nos pellicules s'appliquent sur la plupart des fenêtres plates résidentielles et commerciales, simples ou double vitrage." },
-  { question: 'Travaillez-vous avec les résidences et les entreprises ?', answer: 'Oui, nous desservons les propriétaires résidentiels ainsi que les gestionnaires commerciaux dans plus de 17 régions du Grand Montréal.' },
+  { question: 'Sur quels types de fenêtres peut-on installer de la pellicule ?', answer: "Nos pellicules s'appliquent sur la plupart des fenêtres plates résidentielles et commerciales, simples ou double vitrage, incluant les portes-fenêtres, les murs-rideaux commerciaux et les cloisons vitrées de bureau." },
+  { question: 'Travaillez-vous avec les résidences et les entreprises ?', answer: 'Oui, nous desservons les propriétaires résidentiels ainsi que les gestionnaires commerciaux dans plus de 17 régions du Grand Montréal, de la simple maison unifamiliale à l\'immeuble de bureaux multi-étages.' },
+  { question: 'Quelle est la différence entre pellicule solaire, d\'intimité, de sécurité et décorative ?', answer: 'La pellicule solaire réduit la chaleur et les UV, la pellicule d\'intimité bloque la vue tout en laissant passer la lumière, la pellicule de sécurité renforce le vitrage contre les chocs et l\'effraction, et la pellicule décorative offre une finition givrée esthétique. Plusieurs clients combinent deux fonctions sur une même pellicule.' },
+];
+
+// Local, keyword-rich FAQs that also interlink each city's dedicated service page.
+const localFaqs = [
+  {
+    service: services[0],
+    city: cities.find((c) => c.slug === 'montreal')!,
+    answerSuffix: "Nos techniciens couvrent l'ensemble de l'île, des condos du centre-ville aux maisons unifamiliales des quartiers résidentiels.",
+  },
+  {
+    service: services[1],
+    city: cities.find((c) => c.slug === 'laval')!,
+    answerSuffix: "C'est l'une de nos applications les plus demandées à Laval pour les salles de bain et les portes d'entrée vitrées donnant sur la rue.",
+  },
+  {
+    service: services[2],
+    city: cities.find((c) => c.slug === 'longueuil')!,
+    answerSuffix: 'Plusieurs commerces et copropriétés de Longueuil optent pour cette protection additionnelle contre le bris et les tentatives d\'effraction.',
+  },
+  {
+    service: services[3],
+    city: cities.find((c) => c.slug === 'pointe-claire')!,
+    answerSuffix: "Nous découpons des motifs et logos sur mesure pour les bureaux et commerces de Pointe-Claire.",
+  },
+  {
+    service: services[0],
+    city: cities.find((c) => c.slug === 'terrebonne')!,
+    answerSuffix: "Les maisons orientées sud et ouest à Terrebonne bénéficient particulièrement d'une réduction de chaleur et d'éblouissement.",
+  },
+  {
+    service: services[1],
+    city: cities.find((c) => c.slug === 'blainville')!,
+    answerSuffix: "Idéale pour les nouvelles constructions de Blainville où les grandes fenêtres donnent directement sur le voisinage.",
+  },
+  {
+    service: services[2],
+    city: cities.find((c) => c.slug === 'vaudreuil-dorion')!,
+    answerSuffix: 'Une solution abordable pour renforcer le vitrage résidentiel et commercial existant à Vaudreuil-Dorion sans remplacer les fenêtres.',
+  },
+  {
+    service: services[3],
+    city: cities.find((c) => c.slug === 'kirkland')!,
+    answerSuffix: 'Un choix populaire pour moderniser les cloisons de bureau et les entrées commerciales à Kirkland.',
+  },
+];
+
+const faqs = [
+  ...generalFaqs.map((f) => ({ question: f.question, answerHtml: f.answer, answerText: f.answer })),
+  ...localFaqs.map((f) => {
+    const href = `/services/${f.service.slug}/${f.city.slug}/`;
+    const question = `Installez-vous la ${f.service.name.toLowerCase()} à ${f.city.name} ?`;
+    const answerText = `Oui, Vida Vitres installe la ${f.service.name.toLowerCase()} à ${f.city.name} pour les projets résidentiels et commerciaux. ${f.answerSuffix}`;
+    const answerHtml = `Oui, Vida Vitres installe la <a href="${href}" class="text-accent font-semibold">${f.service.name.toLowerCase()} à ${f.city.name}</a> pour les projets résidentiels et commerciaux. ${f.answerSuffix}`;
+    return { question, answerHtml, answerText };
+  }),
 ];
 ---
 <Layout
@@ -67,6 +123,19 @@ const faqs = [
     </div>
   </section>
 
+  <section class="max-w-[900px] mx-auto px-8 pt-18 pb-4">
+    <h2 class="font-heading text-[28px] font-extrabold tracking-tight mb-5">Pellicule pour fenêtres résidentielles et commerciales dans le Grand Montréal</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Vida Vitres est un installateur spécialisé en pellicules architecturales pour fenêtres plates, actif à Montréal et dans 17 municipalités environnantes. Que vous cherchiez une <a href="/services/pellicule-solaire/" class="text-accent font-semibold">pellicule solaire</a> pour réduire la chaleur et bloquer les rayons UV, une <a href="/services/pellicule-intimite/" class="text-accent font-semibold">pellicule d'intimité</a> pour protéger votre vie privée sans sacrifier la lumière naturelle, une <a href="/services/pellicule-securite/" class="text-accent font-semibold">pellicule de sécurité</a> pour renforcer votre vitrage contre les chocs et l'effraction, ou une <a href="/services/pellicule-decorative/" class="text-accent font-semibold">pellicule décorative</a> givrée pour moderniser un bureau ou un commerce, notre équipe installe des pellicules de fenêtre avec précision, propreté et une garantie fabricant.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Nous desservons les propriétaires résidentiels et les gestionnaires commerciaux à travers l'île de Montréal, Laval, la Montérégie, Lanaudière, les Laurentides, l'Ouest-de-l'Île et Vaudreuil-Soulanges. Chaque estimation de pellicule pour fenêtres est gratuite, personnalisée selon la superficie vitrée de votre propriété, et sans engagement — vous recevez un devis clair avant toute installation.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted">
+      Fabriquées par Tekton Performance Films, nos pellicules pour fenêtres résidentielles et commerciales sont conçues pour durer de nombreuses années sans jaunir ni se décoller, avec une clarté optique qui préserve l'apparence de vos fenêtres. Que votre projet concerne une seule fenêtre de salle de bain ou l'ensemble du vitrage d'un immeuble de bureaux, notre approche reste la même : une évaluation sur place, une recommandation adaptée à votre budget, et une installation soignée par des techniciens formés spécifiquement pour la pose de pellicule architecturale.
+    </p>
+  </section>
+
   <section id="services" class="max-w-[1240px] mx-auto px-8 py-22">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Nos services</p>
     <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Des solutions de pellicule adaptées à chaque besoin</h2>
@@ -78,7 +147,10 @@ const faqs = [
   <section class="bg-bg-light px-8 py-22">
     <div class="max-w-[1240px] mx-auto">
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Pourquoi Vida Vitres</p>
-      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Confort, intimité et sécurité — sans changer vos fenêtres</h2>
+      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Confort, intimité et sécurité — sans changer vos fenêtres</h2>
+      <p class="text-base leading-relaxed text-muted mb-11 max-w-[720px]">
+        Installer une pellicule pour fenêtres coûte une fraction du prix d'un remplacement de fenêtres, tout en réglant les mêmes problèmes de confort, de chaleur, d'intimité et de sécurité. Voici ce que nos clients résidentiels et commerciaux du Grand Montréal constatent après l'installation.
+      </p>
       <div class="grid grid-cols-4 gap-7">
         {whyUs.map((item) => (
           <div><h4 class="text-base font-bold mb-2">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
@@ -90,7 +162,10 @@ const faqs = [
   <section id="regions" class="max-w-[1240px] mx-auto px-8 py-22">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Zone de service</p>
     <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Nous desservons Montréal et 17 régions environnantes</h2>
-    <p class="text-base leading-relaxed text-muted mb-10 max-w-[640px]">Cliquez sur votre région pour voir nos services disponibles près de chez vous.</p>
+    <p class="text-base leading-relaxed text-muted mb-4 max-w-[720px]">
+      De Montréal à Laval, en passant par Longueuil, Repentigny et Terrebonne dans Lanaudière, Saint-Eustache, Blainville, Mirabel et Boisbriand dans les Laurentides, Beaconsfield, Pointe-Claire, Dollard-Des Ormeaux et Kirkland dans l'Ouest-de-l'Île, ainsi que Vaudreuil-Dorion, Saint-Lazare, L'Île-Perrot et Pincourt dans Vaudreuil-Soulanges — nos techniciens se déplacent directement chez vous pour l'installation de pellicule pour fenêtres.
+    </p>
+    <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px]">Cliquez sur votre région pour voir nos services de pellicule solaire, d'intimité, de sécurité et décorative disponibles près de chez vous.</p>
     <div class="grid grid-cols-4 gap-2.5">
       {cities.map((c) => <LocationCard city={c} />)}
     </div>
@@ -100,7 +175,10 @@ const faqs = [
   <section class="bg-ink-dark px-8 py-22 text-white">
     <div class="max-w-[1240px] mx-auto">
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Notre processus</p>
-      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Simple et efficace, en 4 étapes</h2>
+      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Simple et efficace, en 4 étapes</h2>
+      <p class="text-base leading-relaxed text-white/75 mb-11 max-w-[720px]">
+        Du premier appel à l'installation finale, nous gardons le processus simple pour nos clients résidentiels et commerciaux, où que vous soyez dans le Grand Montréal.
+      </p>
       <div class="grid grid-cols-4 gap-7">
         {steps.map((s) => (
           <div>
@@ -115,17 +193,20 @@ const faqs = [
 
   <section class="max-w-[900px] mx-auto px-8 py-22">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">FAQ</p>
-    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-10">Questions fréquentes</h2>
+    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-4">Questions fréquentes</h2>
+    <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px]">
+      Des questions générales sur la pellicule pour fenêtres aux questions propres à votre municipalité, voici les réponses les plus demandées par nos clients du Grand Montréal.
+    </p>
     {faqs.map((f) => (
       <details class="border-b border-border py-5">
         <summary class="text-base font-bold cursor-pointer">{f.question}</summary>
-        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]" set:html={f.answerHtml} />
       </details>
     ))}
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answerText } })),
     })} />
   </section>
 

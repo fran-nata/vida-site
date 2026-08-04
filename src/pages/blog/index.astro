@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import ContactCta from '../../components/ContactCta.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+);
+---
+<Layout
+  title="Blogue | Conseils sur la Pellicule pour Fenêtres | Vida Vitres"
+  description="Guides et conseils sur la pellicule solaire, d'intimité, de sécurité et décorative pour fenêtres résidentielles et commerciales."
+  canonicalPath="/blog/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blogue' }]} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-22">
+    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mt-4 mb-5">Blogue</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-11 max-w-[680px]">Conseils, comparatifs et guides sur la pellicule solaire, d'intimité, de sécurité et décorative pour fenêtres.</p>
+    <div class="grid grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <a href={`/blog/${post.id}/`} class="block border border-border rounded-lg overflow-hidden bg-white">
+          <ImagePlaceholder caption="illustration de l'article" aspect="aspect-video" class="rounded-none" />
+          <div class="p-5">
+            <p class="text-xs font-bold tracking-wide uppercase text-accent mb-2.5">{post.data.category}</p>
+            <h3 class="font-heading text-[17px] font-bold mb-2 leading-snug">{post.data.title}</h3>
+            <p class="text-[13px] text-muted-2">{new Date(post.data.date).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <ContactCta />
+</Layout>

@@ -1,0 +1,14 @@
+---
+import type { Service } from '../data/services';
+interface Props {
+  service: Service;
+  href?: string;
+}
+const { service, href = `/services/${service.slug}/` } = Astro.props;
+---
+<a href={href} class="block border border-border rounded-lg p-6 bg-white">
+  <div class="w-10 h-10 rounded-lg mb-5" style={{ background: `oklch(0.93 0.03 ${service.hue})` }}></div>
+  <h3 class="font-heading text-lg font-bold mb-2.5">{service.name}</h3>
+  <p class="text-sm leading-relaxed text-muted mb-4">{service.cardDescription}</p>
+  <span class="text-[13px] font-bold text-accent">En savoir plus →</span>
+</a>

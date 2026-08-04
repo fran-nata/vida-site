@@ -1,0 +1,78 @@
+---
+import Layout from '../../../../components/Layout.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import LocationCard from '../../../../components/LocationCard.astro';
+import ContactCta from '../../../../components/ContactCta.astro';
+import { services } from '../../../../data/services';
+import { cities, nearbyCities } from '../../../../data/cities';
+import { site } from '../../../../lib/site';
+
+export function getStaticPaths() {
+  const paths: { params: { service: string; city: string }; props: { service: (typeof services)[number]; city: (typeof cities)[number] } }[] = [];
+  for (const service of services) {
+    for (const city of cities) {
+      paths.push({ params: { service: service.slug, city: city.slug }, props: { service, city } });
+    }
+  }
+  return paths;
+}
+
+const { service, city } = Astro.props;
+const otherServices = services.filter((s) => s.slug !== service.slug);
+const near = nearbyCities(city.slug, 3);
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.name,
+  name: `${service.name} à ${city.name} | ${site.name}`,
+  description: `${service.cardDescription} Disponible à ${city.name}.`,
+  areaServed: city.name,
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+---
+<Layout
+  title={`${service.name} à ${city.name} | ${site.name}`}
+  description={`Installation de ${service.name.toLowerCase()} pour fenêtres à ${city.name} (${city.region}). ${service.tagline}. Estimation gratuite, résidentiel et commercial.`}
+  canonicalPath={`/services/${service.slug}/${city.slug}/`}
+>
+  <Breadcrumb items={[
+    { label: 'Accueil', href: '/' },
+    { label: service.name, href: `/services/${service.slug}/` },
+    { label: city.name },
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
+    <h1 class="font-heading text-[40px] font-extrabold tracking-tight mb-5 max-w-[760px]">{service.name} à {city.name}</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
+      À {city.name}, notre équipe installe la {service.name.toLowerCase()} avec précision, pour les projets résidentiels et commerciaux. {service.cardDescription}
+    </p>
+    <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
+      Résidentiel ou commercial, nous adaptons l'installation de {service.name.toLowerCase()} à votre propriété à {city.name}.
+    </p>
+    <div class="flex gap-3.5 flex-wrap mb-14">
+      <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[4px] text-[15px] font-bold">Obtenir mon estimation →</a>
+      <a href={site.phoneHref} class="border border-[oklch(0.8_0.01_80)] px-7 py-4 rounded-[4px] text-[15px] font-bold">Appeler maintenant</a>
+    </div>
+    <div class="grid grid-cols-4 gap-5">
+      {service.benefits.slice(0, 4).map((b) => (
+        <div><h4 class="text-[15px] font-bold mb-1.5">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-8 py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Autres services disponibles à {city.name}</h2>
+      <div class="grid grid-cols-3 gap-2.5 mb-5">
+        {otherServices.map((s) => <LocationCard city={{ slug: s.slug, name: s.name, region: '' }} href={`/services/${s.slug}/${city.slug}/`} />)}
+      </div>
+      <a href={`/locations/${city.slug}/`} class="text-sm font-bold text-accent">Voir tous nos services à {city.name} →</a>
+    </div>
+  </section>
+
+  <ContactCta />
+</Layout>

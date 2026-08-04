@@ -1,0 +1,9 @@
+---
+import type { City } from '../data/cities';
+interface Props {
+  city: City;
+  href?: string;
+}
+const { city, href = `/locations/${city.slug}/` } = Astro.props;
+---
+<a href={href} class="border border-border rounded-md px-4 py-3.5 text-sm font-semibold bg-white">{city.name}</a>

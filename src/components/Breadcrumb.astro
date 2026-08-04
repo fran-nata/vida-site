@@ -1,0 +1,32 @@
+---
+import { site } from '../lib/site';
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    ...(item.href ? { item: `${site.domain}${item.href}` } : {}),
+  })),
+};
+---
+<nav aria-label="Fil d'Ariane" class="max-w-[1240px] mx-auto px-8 pt-5 text-[13px] text-muted-2">
+  {items.map((item, i) => (
+    <>
+      {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+      {i < items.length - 1 && <span> / </span>}
+    </>
+  ))}
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />

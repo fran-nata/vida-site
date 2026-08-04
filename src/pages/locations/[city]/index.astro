@@ -1,0 +1,70 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import LocationCard from '../../../components/LocationCard.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import { services } from '../../../data/services';
+import { cities, nearbyCities } from '../../../data/cities';
+import { site } from '../../../lib/site';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const near = nearbyCities(city.slug, 6);
+
+const whyUs = [
+  { title: 'Installation locale', description: `Techniciens qui se déplacent dans ${city.name}.` },
+  { title: 'Estimation gratuite', description: 'Un devis clair avant chaque installation.' },
+  { title: 'Pellicules Tekton', description: 'Produits haut de gamme, garantis fabricant.' },
+  { title: 'Résidentiel & commercial', description: 'Maisons, condos, bureaux et commerces.' },
+];
+---
+<Layout
+  title={`Pellicule pour Fenêtres à ${city.name} | Solaire, Intimité, Sécurité | ${site.name}`}
+  description={`Installation de pellicule solaire, d'intimité et de sécurité pour fenêtres à ${city.name} (${city.region}). Estimation gratuite. Résidentiel et commercial.`}
+  canonicalPath={`/locations/${city.slug}/`}
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Régions', href: '/locations/' }, { label: city.name }]} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
+    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
+      Vida Vitres installe la pellicule solaire pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour installer une pellicule solaire, d'intimité, de sécurité ou décorative, avec estimation gratuite avant chaque projet.
+    </p>
+    <div class="grid grid-cols-4 gap-5 mb-14">
+      {services.map((s) => (
+        <a href={`/services/${s.slug}/${city.slug}/`} class="block border border-border rounded-lg p-6 bg-white">
+          <h3 class="font-heading text-[17px] font-bold mb-2">{s.name}</h3>
+          <p class="text-sm leading-relaxed text-muted mb-3.5">{s.tagline}</p>
+          <span class="text-[13px] font-bold text-accent">Voir le service à {city.name} →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-8 py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-[26px] font-extrabold tracking-tight mb-6">Pourquoi les résidents de {city.name} nous font confiance</h2>
+      <div class="grid grid-cols-4 gap-6">
+        {whyUs.map((item) => (
+          <div><h4 class="text-[15px] font-bold mb-1.5">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-8 py-22">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Autres régions desservies près de {city.name}</h2>
+    <div class="grid grid-cols-3 gap-2.5">
+      {near.map((c) => <LocationCard city={c} />)}
+    </div>
+  </section>
+
+  <ContactCta />
+</Layout>

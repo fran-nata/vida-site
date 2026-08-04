@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vidavitres.com/sitemap-index.xml

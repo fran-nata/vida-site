@@ -1,0 +1,17 @@
+---
+import { site } from '../lib/site';
+---
+<header class="sticky top-0 z-50 bg-bg/92 backdrop-blur-sm border-b border-border">
+  <div class="max-w-[1240px] mx-auto px-8 py-4 flex items-center justify-between gap-6">
+    <a href="/" class="font-heading font-extrabold text-xl tracking-tight">{site.name}</a>
+    <nav class="flex gap-7 items-center">
+      <a href="/services/" class="text-[15px] font-medium">Services</a>
+      <a href="/locations/" class="text-[15px] font-medium">Régions</a>
+      <a href="/blog/" class="text-[15px] font-medium">Blogue</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <a href={site.phoneHref} class="text-sm font-semibold text-accent">{site.phone}</a>
+      <a href="#contact" class="bg-accent text-white px-5 py-2.5 rounded-[4px] text-sm font-semibold">Estimation gratuite</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,133 @@
+---
+import Layout from '../components/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import LocationCard from '../components/LocationCard.astro';
+import ContactCta from '../components/ContactCta.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+
+const whyUs = [
+  { title: 'Réduction de chaleur', description: 'Moins de chaleur solaire pénètre dans votre espace.' },
+  { title: "Moins d'éblouissement", description: 'Confort visuel amélioré tout au long de la journée.' },
+  { title: 'Blocage des UV', description: "Jusqu'à 99% des rayons UV nocifs bloqués." },
+  { title: 'Meilleure intimité', description: 'Protégez votre vie privée sans obscurcir vos pièces.' },
+  { title: 'Sécurité renforcée', description: "Le vitrage résiste mieux aux chocs et à l'effraction." },
+  { title: 'Confort accru', description: 'Température stable, espace plus agréable à vivre.' },
+  { title: 'Espace modernisé', description: 'Finitions décoratives pour un look contemporain.' },
+  { title: 'Intérieurs protégés', description: 'Planchers, meubles et tissus préservés de la décoloration.' },
+];
+
+const steps = [
+  { n: '01', title: 'Estimation gratuite', description: 'Obtenez une estimation instantanée et planifiez votre évaluation.' },
+  { n: '02', title: 'Évaluation sur place', description: 'Nous évaluons vos fenêtres et discutons de vos besoins.' },
+  { n: '03', title: 'Recommandation', description: 'Nous proposons la solution idéale avec un devis clair.' },
+  { n: '04', title: 'Installation', description: 'Nos techniciens installent avec précision et propreté.' },
+];
+
+const faqs = [
+  { question: "Combien coûte l'installation de pellicule pour fenêtres ?", answer: 'Le prix varie selon la superficie, le type de pellicule et le nombre de fenêtres. Nos estimations sont gratuites et personnalisées selon votre projet.' },
+  { question: 'Est-ce que la pellicule rend la pièce plus sombre ?', answer: "Non. La plupart de nos pellicules solaires et d'intimité laissent passer la lumière naturelle tout en filtrant la chaleur et l'éblouissement." },
+  { question: "Combien de temps dure l'installation ?", answer: 'La majorité des projets résidentiels sont complétés en une seule journée, selon le nombre de fenêtres.' },
+  { question: 'La pellicule peut-elle être retirée plus tard ?', answer: "Oui, nos pellicules sont conçues pour un retrait propre sans dommage à la vitre lorsqu'installées par un professionnel." },
+  { question: 'Sur quels types de fenêtres peut-on installer de la pellicule ?', answer: "Nos pellicules s'appliquent sur la plupart des fenêtres plates résidentielles et commerciales, simples ou double vitrage." },
+  { question: 'Travaillez-vous avec les résidences et les entreprises ?', answer: 'Oui, nous desservons les propriétaires résidentiels ainsi que les gestionnaires commerciaux dans plus de 17 régions du Grand Montréal.' },
+];
+---
+<Layout
+  title="Pellicule Solaire pour Fenêtres à Montréal | Vida Vitres"
+  description="Installation professionnelle de pellicule solaire, d'intimité et de sécurité pour fenêtres à Montréal et environs. Estimation gratuite. Plus de 17 régions desservies."
+  canonicalPath="/"
+>
+  <section class="max-w-[1240px] mx-auto px-8 pt-18 pb-14 grid grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-4">Résidentiel &amp; Commercial · Grand Montréal</p>
+      <h1 class="font-heading text-[52px] leading-[1.06] font-extrabold tracking-tight mb-5">
+        Pellicule solaire &amp; d'intimité pour fenêtres, installée avec précision
+      </h1>
+      <p class="text-lg leading-relaxed text-muted max-w-[520px] mb-8">
+        Réduisez la chaleur et l'éblouissement, protégez votre intimité et sécurisez votre vitrage — sans changer vos fenêtres. Service professionnel à Montréal et dans 17 régions environnantes.
+      </p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[4px] text-[15px] font-bold">Obtenir mon estimation →</a>
+        <a href="tel:+14387019800" class="border border-[oklch(0.8_0.01_80)] px-7 py-4 rounded-[4px] text-[15px] font-bold">Appeler maintenant</a>
+      </div>
+      <div class="flex gap-8 mt-10 flex-wrap">
+        <div><div class="font-heading font-extrabold text-[22px]">17+</div><div class="text-[13px] text-muted-2">régions desservies</div></div>
+        <div><div class="font-heading font-extrabold text-[22px]">99%</div><div class="text-[13px] text-muted-2">des rayons UV bloqués</div></div>
+        <div><div class="font-heading font-extrabold text-[22px]">100%</div><div class="text-[13px] text-muted-2">satisfaction client</div></div>
+      </div>
+    </div>
+    <ImagePlaceholder caption="installation de pellicule solaire sur fenêtre résidentielle" hue={230} />
+  </section>
+
+  <section class="bg-ink-dark px-8 py-5">
+    <div class="max-w-[1240px] mx-auto flex justify-between gap-6 flex-wrap text-white/90 text-sm font-semibold">
+      <span>Installation professionnelle</span><span>Estimations gratuites</span><span>Garantie fabricant</span><span>Pellicules Tekton Performance Films</span>
+    </div>
+  </section>
+
+  <section id="services" class="max-w-[1240px] mx-auto px-8 py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Nos services</p>
+    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Des solutions de pellicule adaptées à chaque besoin</h2>
+    <div class="grid grid-cols-4 gap-5">
+      {services.map((s) => <ServiceCard service={s} />)}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-8 py-22">
+    <div class="max-w-[1240px] mx-auto">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Pourquoi Vida Vitres</p>
+      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Confort, intimité et sécurité — sans changer vos fenêtres</h2>
+      <div class="grid grid-cols-4 gap-7">
+        {whyUs.map((item) => (
+          <div><h4 class="text-base font-bold mb-2">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="regions" class="max-w-[1240px] mx-auto px-8 py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Zone de service</p>
+    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Nous desservons Montréal et 17 régions environnantes</h2>
+    <p class="text-base leading-relaxed text-muted mb-10 max-w-[640px]">Cliquez sur votre région pour voir nos services disponibles près de chez vous.</p>
+    <div class="grid grid-cols-4 gap-2.5">
+      {cities.map((c) => <LocationCard city={c} />)}
+    </div>
+    <a href="/locations/" class="inline-block mt-6 text-sm font-bold text-accent">Voir toutes les régions →</a>
+  </section>
+
+  <section class="bg-ink-dark px-8 py-22 text-white">
+    <div class="max-w-[1240px] mx-auto">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Notre processus</p>
+      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Simple et efficace, en 4 étapes</h2>
+      <div class="grid grid-cols-4 gap-7">
+        {steps.map((s) => (
+          <div>
+            <div class="font-heading font-extrabold text-[28px] text-accent-light mb-3">{s.n}</div>
+            <h4 class="text-base font-bold mb-2">{s.title}</h4>
+            <p class="text-sm leading-relaxed text-white/75">{s.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-8 py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">FAQ</p>
+    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-10">Questions fréquentes</h2>
+    {faqs.map((f) => (
+      <details class="border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer">{f.question}</summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+      </details>
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+    })} />
+  </section>
+
+  <ContactCta title="Prêt à améliorer vos fenêtres ?" description="Obtenez votre estimation gratuite dès aujourd'hui. Réponse rapide, sans engagement." />
+</Layout>

@@ -1,0 +1,30 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { cities, regionOrder } from '../../data/cities';
+---
+<Layout
+  title="Régions Desservies | Pellicule pour Fenêtres au Québec | Vida Vitres"
+  description="Vida Vitres installe la pellicule pour fenêtres à Montréal, Laval, Longueuil et 14 autres municipalités du Grand Montréal."
+  canonicalPath="/locations/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Régions' }]} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-22">
+    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mt-4 mb-5">Régions desservies</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-11 max-w-[680px]">Vida Vitres installe la pellicule pour fenêtres à Montréal et dans 17 municipalités environnantes.</p>
+
+    {regionOrder.map((region) => (
+      <div class="mb-8">
+        <h3 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h3>
+        <div class="grid grid-cols-4 gap-2.5">
+          {cities.filter((c) => c.region === region).map((c) => <LocationCard city={c} />)}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <ContactCta />
+</Layout>

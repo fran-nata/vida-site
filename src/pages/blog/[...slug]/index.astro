@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import { site } from '../../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formattedDate = new Date(post.data.date).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<Layout
+  title={`${post.data.title} | Blogue ${site.name}`}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.id}/`}
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blogue', href: '/blog/' }, { label: post.data.title }]} />
+
+  <article class="max-w-[760px] mx-auto px-8 pt-10 pb-20">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">{post.data.category} · {formattedDate}</p>
+    <h1 class="font-heading text-[38px] font-extrabold tracking-tight leading-snug mb-7">{post.data.title}</h1>
+    <ImagePlaceholder caption="illustration de l'article" hue={230} aspect="aspect-[16/7]" class="mb-9" />
+    <div class="prose-article text-base leading-relaxed text-ink">
+      <Content />
+    </div>
+  </article>
+
+  <ContactCta />
+</Layout>
+
+<style>
+  .prose-article :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 36px 0 16px;
+  }
+  .prose-article :global(p) {
+    margin: 0 0 20px;
+  }
+  .prose-article :global(ul) {
+    margin: 0 0 20px;
+    padding-left: 22px;
+  }
+  .prose-article :global(li) {
+    margin-bottom: 8px;
+  }
+  .prose-article :global(a) {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>

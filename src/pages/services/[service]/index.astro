@@ -1,0 +1,88 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
+import LocationCard from '../../../components/LocationCard.astro';
+import FaqAccordion from '../../../components/FaqAccordion.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import { services } from '../../../data/services';
+import { cities } from '../../../data/cities';
+import { site } from '../../../lib/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { service: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const featuredCities = cities.slice(0, 4);
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.name,
+  name: `${service.name} | ${site.name}`,
+  description: service.heroDescription,
+  areaServed: 'Grand Montréal',
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+---
+<Layout
+  title={`${service.heroTitle} | ${service.tagline} | ${site.name}`}
+  description={`Installation de ${service.name.toLowerCase()} pour fenêtres résidentielles et commerciales à Montréal. ${service.cardDescription} Estimation gratuite.`}
+  canonicalPath={`/services/${service.slug}/`}
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Services', href: '/services/' }, { label: service.name }]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-4">{service.tagline}</p>
+      <h1 class="font-heading text-[46px] leading-[1.08] font-extrabold tracking-tight mb-5">{service.heroTitle}</h1>
+      <p class="text-lg leading-relaxed text-muted max-w-[520px] mb-8">{service.heroDescription}</p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[4px] text-[15px] font-bold">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="border border-[oklch(0.8_0.01_80)] px-7 py-4 rounded-[4px] text-[15px] font-bold">Appeler maintenant</a>
+      </div>
+    </div>
+    <ImagePlaceholder caption={service.photoCaption} hue={service.hue} />
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-8 pb-22">
+    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-9">Les avantages de la {service.name.toLowerCase()}</h2>
+    <div class="grid grid-cols-4 gap-6">
+      {service.benefits.map((b) => (
+        <div><h4 class="text-base font-bold mb-2">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      ))}
+    </div>
+  </section>
+
+  {service.useCases && (
+    <section class="bg-bg-light px-8 py-18">
+      <div class="max-w-[1240px] mx-auto">
+        <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-5">Idéale pour maisons, condos et bureaux</h2>
+        <div class="grid grid-cols-3 gap-4">
+          {service.useCases.map((c) => (
+            <div class="bg-white rounded-lg p-5 text-sm font-semibold">{c}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="max-w-[1240px] mx-auto px-8 py-22">
+    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-3">{service.name} disponible dans votre région</h2>
+    <p class="text-base leading-relaxed text-muted mb-9">Nous installons la {service.name.toLowerCase()} à Montréal et dans les régions suivantes.</p>
+    <div class="grid grid-cols-4 gap-2.5">
+      {featuredCities.map((c) => <LocationCard city={c} href={`/services/${service.slug}/${c.slug}/`} />)}
+    </div>
+    <a href="/locations/" class="inline-block mt-5 text-sm font-bold text-accent">Voir toutes les régions desservies →</a>
+  </section>
+
+  <FaqAccordion faqs={service.faqs} />
+
+  <ContactCta title="Réduisez la chaleur dès aujourd'hui" description={`Obtenez votre estimation gratuite pour la ${service.name.toLowerCase()}.`} />
+</Layout>

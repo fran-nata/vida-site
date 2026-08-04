@@ -1,0 +1,24 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { services } from '../../data/services';
+---
+<Layout
+  title="Tous nos Services de Pellicule pour Fenêtres | Vida Vitres"
+  description="Pellicule solaire, intimité, sécurité et décorative pour fenêtres résidentielles et commerciales à Montréal. Découvrez nos 4 services."
+  canonicalPath="/services/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Services' }]} />
+
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-22">
+    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mt-4 mb-5">Nos services de pellicule pour fenêtres</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-11 max-w-[680px]">Quatre solutions de pellicule architecturale, installées avec précision à Montréal et dans 17 régions environnantes.</p>
+    <div class="grid grid-cols-4 gap-5">
+      {services.map((s) => <ServiceCard service={s} />)}
+    </div>
+  </section>
+
+  <ContactCta />
+</Layout>

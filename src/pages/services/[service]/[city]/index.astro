@@ -3,6 +3,7 @@ import Layout from '../../../../components/Layout.astro';
 import Breadcrumb from '../../../../components/Breadcrumb.astro';
 import LocationCard from '../../../../components/LocationCard.astro';
 import ContactCta from '../../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../../components/ImagePlaceholder.astro';
 import { services } from '../../../../data/services';
 import { cities, nearbyCities } from '../../../../data/cities';
 import { site } from '../../../../lib/site';
@@ -44,19 +45,25 @@ const serviceLd = {
 
   <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
 
-  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14">
-    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
-    <h1 class="font-heading text-[40px] font-extrabold tracking-tight mb-5 max-w-[760px]">{service.name} à {city.name}</h1>
-    <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
-      À {city.name}, notre équipe installe la {service.name.toLowerCase()} avec précision, pour les projets résidentiels et commerciaux. {service.cardDescription}
-    </p>
-    <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
-      Résidentiel ou commercial, nous adaptons l'installation de {service.name.toLowerCase()} à votre propriété à {city.name}.
-    </p>
-    <div class="flex gap-3.5 flex-wrap mb-14">
-      <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
-      <a href={site.phoneHref} class="border border-border px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
+      <h1 class="font-heading text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">{service.name} à {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
+        À {city.name}, notre équipe installe la {service.name.toLowerCase()} avec précision, pour les projets résidentiels et commerciaux. {service.cardDescription}
+      </p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
+        Résidentiel ou commercial, nous adaptons l'installation de {service.name.toLowerCase()} à votre propriété à {city.name}, dans {city.region}.
+      </p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
+      </div>
     </div>
+    <ImagePlaceholder caption={`installation de ${service.name.toLowerCase()} à ${city.name}, ${city.region}`} hue={service.hue} />
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-8 pb-14">
     <div class="grid grid-cols-4 gap-5">
       {service.benefits.slice(0, 4).map((b) => (
         <div><h4 class="text-[15px] font-bold mb-1.5">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>

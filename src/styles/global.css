@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Fredoka", sans-serif;
+  --font-heading: "DM Sans", sans-serif;
   --font-body: "Public Sans", sans-serif;
 
   --color-bg: #faf7f0;

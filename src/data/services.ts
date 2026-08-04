@@ -33,7 +33,7 @@ export const services: Service[] = [
       "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles — tout en préservant la clarté de vos fenêtres et la lumière naturelle. Idéale pour les maisons, condos et bureaux exposés au soleil.",
     cardDescription:
       "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles, tout en laissant entrer la lumière naturelle.",
-    photoCaption: 'pellicule solaire installée sur grande fenêtre de salon',
+    photoCaption: 'pellicule solaire installée sur grande fenêtre de salon à Montréal',
     benefits: [
       { title: 'Réduction de chaleur', description: "Jusqu'à 80% de rejet de chaleur solaire, pour un intérieur plus frais en été." },
       { title: 'Protection UV', description: "Bloque jusqu'à 99% des rayons UV, protégeant planchers, meubles et tissus contre la décoloration." },
@@ -60,7 +60,7 @@ export const services: Service[] = [
       "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
     cardDescription:
       "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
-    photoCaption: "installation de pellicule d'intimité",
+    photoCaption: "installation de pellicule d'intimité givrée sur fenêtre de salle de bain à Montréal",
     benefits: [
       { title: 'Intimité totale', description: "Empêche la vue depuis l'extérieur, de jour comme le soir." },
       { title: 'Lumière préservée', description: 'Un fini dépoli qui garde vos pièces lumineuses.' },
@@ -86,7 +86,7 @@ export const services: Service[] = [
       "La pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres.",
     cardDescription:
       "La pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres.",
-    photoCaption: 'installation de pellicule de sécurité',
+    photoCaption: 'installation de pellicule de sécurité sur porte-fenêtre à Montréal',
     benefits: [
       { title: 'Résistance aux chocs', description: "Maintient les fragments de verre en place lors d'un bris." },
       { title: "Dissuasion d'effraction", description: "Ralentit l'accès, un frein efficace contre l'intrusion." },
@@ -112,7 +112,7 @@ export const services: Service[] = [
       'La pellicule décorative modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces.',
     cardDescription:
       'La pellicule décorative modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces.',
-    photoCaption: 'installation de pellicule décorative',
+    photoCaption: 'installation de pellicule décorative givrée sur cloison de bureau à Montréal',
     benefits: [
       { title: 'Finitions sur mesure', description: 'Motifs givrés, bandes ou logos selon vos besoins.' },
       { title: 'Image de marque', description: 'Intégrez votre logo directement sur le verre.' },

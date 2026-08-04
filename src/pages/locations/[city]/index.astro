@@ -3,6 +3,7 @@ import Layout from '../../../components/Layout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import LocationCard from '../../../components/LocationCard.astro';
 import ContactCta from '../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
 import { services } from '../../../data/services';
 import { cities, nearbyCities, regionProfiles } from '../../../data/cities';
 import { site } from '../../../lib/site';
@@ -56,13 +57,23 @@ const localFaqs = [
 >
   <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Régions', href: '/locations/' }, { label: city.name }]} />
 
-  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14">
-    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
-    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
-    <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
-      Vida Vitres installe la pellicule solaire, d'intimité, de sécurité et décorative pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour évaluer vos fenêtres et installer la pellicule adaptée à votre projet, avec une estimation gratuite avant chaque intervention.
-    </p>
-    <div class="grid grid-cols-4 gap-5 mb-14">
+  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
+      <h1 class="font-heading text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-8 max-w-[680px]">
+        Vida Vitres installe la pellicule solaire, d'intimité, de sécurité et décorative pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour évaluer vos fenêtres et installer la pellicule adaptée à votre projet, avec une estimation gratuite avant chaque intervention.
+      </p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
+      </div>
+    </div>
+    <ImagePlaceholder caption={`installation de pellicule pour fenêtres résidentielles à ${city.name}, ${city.region}`} hue={230} />
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-8 pb-14">
+    <div class="grid grid-cols-4 gap-5">
       {services.map((s) => (
         <a href={`/services/${s.slug}/${city.slug}/`} class="block border border-border rounded-lg p-6 bg-white">
           <h3 class="font-heading text-[17px] font-bold mb-2">{s.name}</h3>

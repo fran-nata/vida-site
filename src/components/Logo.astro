@@ -3,16 +3,18 @@ interface Props {
   variant?: 'light' | 'dark';
   class?: string;
 }
-const { variant = 'light', class: className = '' } = Astro.props;
-const subColor = variant === 'dark' ? 'rgba(255,255,255,0.6)' : 'var(--color-muted)';
+const { class: className = '' } = Astro.props;
+// Only a light-background version of the logo has been provided so far.
+// It's used as-is on the dark navy footer too (the "VITRES" text and one
+// stroke of the mark are dark, so contrast is weaker there) until a
+// reversed/light version is available.
 ---
-<a href="/" class={`flex items-center gap-2.5 ${className}`} aria-label="Vida Vitres — Accueil">
+<a href="/" class={`inline-flex items-center ${className}`} aria-label="Vida Vitres — Accueil">
   <img
     src="/logo.png"
     alt="Vida Vitres — pellicules pour fenêtres à Montréal et environs"
-    width="150"
-    height="48"
+    width="180"
+    height="41"
     class="h-9 w-auto"
   />
-  <span class="block text-[10px] font-semibold tracking-[0.2em] uppercase" style={{ color: subColor }}>Pellicules pour fenêtres</span>
 </a>

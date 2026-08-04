@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Manrope", sans-serif;
+  --font-heading: "Fredoka", sans-serif;
   --font-body: "Public Sans", sans-serif;
 
-  --color-bg: oklch(0.98 0.005 80);
-  --color-bg-light: oklch(0.95 0.008 80);
-  --color-ink: oklch(0.22 0.01 260);
-  --color-ink-dark: oklch(0.18 0.01 260);
-  --color-muted: oklch(0.45 0.01 260);
-  --color-muted-2: oklch(0.5 0.01 260);
-  --color-accent: oklch(0.55 0.12 230);
-  --color-accent-light: oklch(0.65 0.1 230);
-  --color-border: oklch(0.88 0.01 80);
-  --color-footer-muted: oklch(0.75 0.005 80);
+  --color-bg: #faf7f0;
+  --color-bg-light: #f2ece0;
+  --color-ink: #211c36;
+  --color-navy: #1e1738;
+  --color-navy-light: #2b2350;
+  --color-muted: #635d72;
+  --color-muted-2: #8a8496;
+  --color-accent: #c9895a;
+  --color-accent-light: #dba87c;
+  --color-border: #e6dfd0;
+  --color-footer-muted: #b6b0c6;
 
   --color-tint-solar: oklch(0.93 0.03 230);
   --color-tint-privacy: oklch(0.93 0.03 280);
   --color-tint-security: oklch(0.93 0.03 20);
   --color-tint-decorative: oklch(0.93 0.03 150);
 
-  --radius-btn: 4px;
-  --radius-card: 8px;
+  --radius-btn: 10px;
+  --radius-card: 18px;
 }
 
 body {
@@ -45,5 +46,5 @@ details > summary::-webkit-details-marker {
 }
 
 ::selection {
-  background: oklch(0.55 0.12 230 / 0.25);
+  background: color-mix(in oklab, var(--color-accent) 30%, transparent);
 }

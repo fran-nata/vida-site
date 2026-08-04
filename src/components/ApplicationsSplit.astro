@@ -1,0 +1,48 @@
+---
+const residential = [
+  'Maisons unifamiliales',
+  'Condominiums',
+  'Salles de bain',
+  "Portes d'entrée & vitres latérales",
+  'Bureaux à domicile',
+  'Fenêtres de sous-sol',
+  'Vérandas & solariums',
+  'Fenêtres donnant sur la rue',
+];
+
+const commercial = [
+  'Bureaux & espaces de travail',
+  'Cliniques médicales',
+  'Commerces & vitrines',
+  'Salles de conférence',
+  'Immeubles professionnels',
+  'Cloisons de verre',
+  'Hôtels & restaurants',
+  'Écoles & institutions',
+];
+---
+<section class="bg-bg-light px-8 py-22">
+  <div class="max-w-[1240px] mx-auto">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center">Applications</p>
+    <h2 class="font-heading text-[32px] font-bold tracking-tight mb-4 text-center">Solutions pour maisons &amp; entreprises</h2>
+    <p class="text-base leading-relaxed text-muted mb-11 text-center max-w-[560px] mx-auto">De la maison unifamiliale aux grands espaces commerciaux, Vida Vitres intervient partout.</p>
+    <div class="grid grid-cols-2 gap-6 max-w-[900px] mx-auto">
+      <div class="bg-white rounded-2xl p-8 border border-border">
+        <div class="w-11 h-11 rounded-xl bg-bg-light flex items-center justify-center text-xl mb-4" aria-hidden="true">🏠</div>
+        <h3 class="font-heading text-lg font-bold mb-1">Résidentiel</h3>
+        <p class="text-[13px] text-muted-2 mb-5">Maisons &amp; condos</p>
+        <ul class="text-sm text-muted space-y-2.5">
+          {residential.map((item) => <li class="flex items-center gap-2"><span class="text-accent">•</span> {item}</li>)}
+        </ul>
+      </div>
+      <div class="bg-navy rounded-2xl p-8">
+        <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-xl mb-4" aria-hidden="true">🏢</div>
+        <h3 class="font-heading text-lg font-bold text-white mb-1">Commercial</h3>
+        <p class="text-[13px] text-footer-muted mb-5">Bureaux &amp; commerces</p>
+        <ul class="text-sm text-footer-muted space-y-2.5">
+          {commercial.map((item) => <li class="flex items-center gap-2"><span class="text-accent-light">•</span> {item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

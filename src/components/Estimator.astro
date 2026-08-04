@@ -1,0 +1,174 @@
+---
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+
+const totalSteps = 5;
+---
+<section id="estimateur" class="bg-navy px-8 py-22">
+  <div class="max-w-[720px] mx-auto text-center mb-10">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Outil d'estimation</p>
+    <h2 class="font-heading text-[32px] font-bold text-white tracking-tight mb-4">Calculez le coût de votre projet</h2>
+    <p class="text-base leading-relaxed text-footer-muted">Répondez à quelques questions rapides pour obtenir une fourchette de prix indicative et réserver votre évaluation gratuite.</p>
+  </div>
+
+  <div id="estimator-card" class="max-w-[560px] mx-auto bg-white rounded-2xl p-8 sm:p-10">
+    <p class="text-[12px] font-bold tracking-wide uppercase text-muted-2 mb-2">
+      <span data-el="step-label">Étape 1 sur {totalSteps}</span>
+    </p>
+
+    <div class="w-full h-1.5 bg-border rounded-full mb-7 overflow-hidden">
+      <div data-el="progress-bar" class="h-full bg-accent rounded-full transition-all" style="width: 20%"></div>
+    </div>
+
+    <form id="estimator-form">
+      <div data-step="1" class="estimator-step">
+        <h3 class="font-heading text-xl font-bold mb-5">Pour quel type de propriété est ce projet ?</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" class="estimator-choice text-left border-2 border-border rounded-xl p-4" data-field="propertyType" data-value="Résidentiel">
+            <span class="block font-bold text-sm mb-1">Résidentiel</span>
+            <span class="block text-[13px] text-muted-2">Maison, condo, appartement</span>
+          </button>
+          <button type="button" class="estimator-choice text-left border-2 border-border rounded-xl p-4" data-field="propertyType" data-value="Commercial">
+            <span class="block font-bold text-sm mb-1">Commercial</span>
+            <span class="block text-[13px] text-muted-2">Bureau, clinique, commerce, immeuble</span>
+          </button>
+        </div>
+      </div>
+
+      <div data-step="2" class="estimator-step hidden">
+        <h3 class="font-heading text-xl font-bold mb-5">Quel service vous intéresse ?</h3>
+        <div class="grid grid-cols-2 gap-3">
+          {services.map((s) => (
+            <button type="button" class="estimator-choice text-left border-2 border-border rounded-xl p-4" data-field="service" data-value={s.name}>
+              <span class="block text-lg mb-1" aria-hidden="true">{s.icon}</span>
+              <span class="block font-bold text-sm">{s.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div data-step="3" class="estimator-step hidden">
+        <h3 class="font-heading text-xl font-bold mb-5">Combien de fenêtres, environ ?</h3>
+        <div class="grid grid-cols-2 gap-3">
+          {['1 à 5', '6 à 10', '11 à 20', '20+'].map((v) => (
+            <button type="button" class="estimator-choice text-left border-2 border-border rounded-xl p-4" data-field="windowCount" data-value={v}>
+              <span class="block font-bold text-sm">{v} fenêtres</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div data-step="4" class="estimator-step hidden">
+        <h3 class="font-heading text-xl font-bold mb-5">Vos coordonnées</h3>
+        <div class="space-y-3 text-left">
+          <input required name="name" type="text" placeholder="Nom complet" class="w-full border-2 border-border rounded-xl px-4 py-3 text-sm" />
+          <input required name="phone" type="tel" placeholder="Téléphone" class="w-full border-2 border-border rounded-xl px-4 py-3 text-sm" />
+          <input required name="email" type="email" placeholder="Courriel" class="w-full border-2 border-border rounded-xl px-4 py-3 text-sm" />
+          <select name="city" class="w-full border-2 border-border rounded-xl px-4 py-3 text-sm text-muted">
+            <option value="">Votre municipalité (optionnel)</option>
+            {cities.map((c) => <option value={c.name}>{c.name}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div data-step="5" class="estimator-step hidden text-center py-4">
+        <div class="text-4xl mb-4" aria-hidden="true">✅</div>
+        <h3 class="font-heading text-xl font-bold mb-2">Demande envoyée !</h3>
+        <p class="text-sm text-muted leading-relaxed">Merci — un membre de notre équipe vous contactera sous peu avec votre estimation et pour planifier votre évaluation gratuite.</p>
+      </div>
+
+      <div data-el="nav-row" class="flex items-center justify-between gap-3 mt-8">
+        <button type="button" data-el="back-btn" class="text-sm font-bold text-muted-2 px-2 py-2 hidden">← Retour</button>
+        <span class="flex-1"></span>
+        <button type="button" data-el="next-btn" disabled class="bg-navy disabled:opacity-40 text-white px-6 py-3 rounded-[10px] text-sm font-bold">Continuer →</button>
+        <button type="submit" data-el="submit-btn" class="hidden bg-accent text-white px-6 py-3 rounded-[10px] text-sm font-bold">Envoyer ma demande</button>
+      </div>
+    </form>
+
+    <p class="text-[12px] text-muted-2 mt-6 text-center">Aucun engagement requis. Les estimations sont indicatives et peuvent varier selon les détails du projet.</p>
+  </div>
+</section>
+
+<script define:vars={{ totalSteps }}>
+  const form = document.getElementById('estimator-form');
+  const card = document.getElementById('estimator-card');
+  if (form && card) {
+    const steps = Array.from(card.querySelectorAll('.estimator-step'));
+    const stepLabel = card.querySelector('[data-el="step-label"]');
+    const progressBar = card.querySelector('[data-el="progress-bar"]');
+    const backBtn = card.querySelector('[data-el="back-btn"]');
+    const nextBtn = card.querySelector('[data-el="next-btn"]');
+    const submitBtn = card.querySelector('[data-el="submit-btn"]');
+    const navRow = card.querySelector('[data-el="nav-row"]');
+
+    const answers = {};
+    let current = 1;
+
+    function showStep(n) {
+      steps.forEach((el) => el.classList.toggle('hidden', Number(el.dataset.step) !== n));
+      stepLabel.textContent = n <= totalSteps ? `Étape ${n} sur ${totalSteps}` : 'Terminé';
+      progressBar.style.width = `${Math.min(n, totalSteps) * (100 / totalSteps)}%`;
+      backBtn.classList.toggle('hidden', n === 1);
+      const isLastAnswerStep = n === 4;
+      const isConfirmation = n === 5;
+      nextBtn.classList.toggle('hidden', isLastAnswerStep || isConfirmation);
+      submitBtn.classList.toggle('hidden', !isLastAnswerStep);
+      navRow.classList.toggle('hidden', isConfirmation);
+      updateNextEnabled();
+    }
+
+    function updateNextEnabled() {
+      const step = steps.find((el) => Number(el.dataset.step) === current);
+      if (!step) return;
+      const field = step.querySelector('[data-field]');
+      if (!field) {
+        nextBtn.disabled = false;
+        return;
+      }
+      const fieldName = field.dataset.field;
+      nextBtn.disabled = !answers[fieldName];
+    }
+
+    card.querySelectorAll('.estimator-choice').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const field = btn.dataset.field;
+        const value = btn.dataset.value;
+        answers[field] = value;
+        btn.parentElement.querySelectorAll('.estimator-choice').forEach((sib) => {
+          sib.classList.remove('border-accent', 'bg-bg-light');
+        });
+        btn.classList.add('border-accent', 'bg-bg-light');
+        updateNextEnabled();
+      });
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (current > 1) {
+        current -= 1;
+        showStep(current);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (current < totalSteps) {
+        current += 1;
+        showStep(current);
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      answers.name = data.get('name');
+      answers.phone = data.get('phone');
+      answers.email = data.get('email');
+      answers.city = data.get('city');
+      // No backend is wired up yet — this just advances to the confirmation
+      // state. Before launch, POST `answers` to a real lead-capture endpoint.
+      current = 5;
+      showStep(current);
+    });
+
+    showStep(current);
+  }
+</script>

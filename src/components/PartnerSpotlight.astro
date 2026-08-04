@@ -1,0 +1,24 @@
+---
+const products = ['Clarion 70', 'Keramos', 'Nocturna', 'Visio', 'Silver Reflective', 'Bronze Reflective'];
+---
+<section class="bg-bg-light px-8 py-22">
+  <div class="max-w-[900px] mx-auto text-center">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Partenaire officiel</p>
+    <h2 class="font-heading text-[32px] font-bold tracking-tight mb-4">La qualité avant tout</h2>
+    <p class="text-base leading-relaxed text-muted mb-11 max-w-[560px] mx-auto">
+      Nous sommes fiers de nous associer à Tekton Performance Films pour vous offrir les pellicules architecturales les plus avancées et performantes sur le marché.
+    </p>
+    <div class="bg-navy rounded-2xl px-10 py-12">
+      <div class="font-heading text-2xl font-bold text-white tracking-tight mb-1">TEKTON<span class="text-accent-light"> Performance Films</span></div>
+      <h3 class="font-heading text-lg font-bold text-white mt-6 mb-3">Pellicules architecturales haut de gamme</h3>
+      <p class="text-[15px] leading-relaxed text-footer-muted max-w-[560px] mx-auto mb-8">
+        Reconnues pour leur clarté optique exceptionnelle, leur rejet de chaleur supérieur et leur durabilité éprouvée, les pellicules Tekton représentent la norme de l'industrie pour les applications résidentielles et commerciales.
+      </p>
+      <div class="flex flex-wrap justify-center gap-2.5">
+        {products.map((p) => (
+          <span class="border border-white/20 text-white text-[13px] font-semibold px-4 py-2 rounded-full">{p}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

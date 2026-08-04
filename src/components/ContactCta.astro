@@ -9,10 +9,14 @@ const {
   description = 'Réponse rapide, sans engagement.',
 } = Astro.props;
 ---
-<section id="contact" class="bg-accent px-8 py-18 text-center">
+<section id="contact" class="bg-navy px-8 py-18 text-center">
   <div class="max-w-[640px] mx-auto">
-    <h2 class="font-heading text-[30px] font-extrabold text-white mb-4">{title}</h2>
-    <p class="text-base leading-relaxed text-white/95 mb-7">{description}</p>
-    <a href={site.phoneHref} class="inline-block bg-white text-accent px-7 py-3.5 rounded-[4px] text-[15px] font-bold">Appeler {site.phone}</a>
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Passez à l'action</p>
+    <h2 class="font-heading text-[30px] font-bold text-white mb-4">{title}</h2>
+    <p class="text-base leading-relaxed text-footer-muted mb-7">{description}</p>
+    <div class="flex gap-3.5 justify-center flex-wrap">
+      <a href="/#estimateur" class="inline-block bg-accent text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation &amp; réserver →</a>
+      <a href={site.phoneHref} class="inline-block bg-white text-navy px-7 py-3.5 rounded-[10px] text-[15px] font-bold">Appeler {site.phone}</a>
+    </div>
   </div>
 </section>

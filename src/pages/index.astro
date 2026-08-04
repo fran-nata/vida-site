@@ -4,8 +4,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 import LocationCard from '../components/LocationCard.astro';
 import ContactCta from '../components/ContactCta.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Estimator from '../components/Estimator.astro';
+import Gallery from '../components/Gallery.astro';
+import ApplicationsSplit from '../components/ApplicationsSplit.astro';
+import PartnerSpotlight from '../components/PartnerSpotlight.astro';
 import { services } from '../data/services';
 import { cities } from '../data/cities';
+import { site } from '../lib/site';
 
 const whyUs = [
   { title: 'Réduction de chaleur', description: 'Moins de chaleur solaire pénètre dans votre espace.' },
@@ -19,10 +24,10 @@ const whyUs = [
 ];
 
 const steps = [
-  { n: '01', title: 'Estimation gratuite', description: 'Obtenez une estimation instantanée et planifiez votre évaluation.' },
-  { n: '02', title: 'Évaluation sur place', description: 'Nous évaluons vos fenêtres et discutons de vos besoins.' },
-  { n: '03', title: 'Recommandation', description: 'Nous proposons la solution idéale avec un devis clair.' },
-  { n: '04', title: 'Installation', description: 'Nos techniciens installent avec précision et propreté.' },
+  { n: '01', title: 'Estimation gratuite', description: 'Utilisez notre calculateur en ligne pour obtenir une estimation instantanée et planifier votre évaluation gratuite.' },
+  { n: '02', title: 'Évaluation de vos fenêtres', description: 'Nous évaluons vos fenêtres, prenons les mesures et discutons de vos besoins.' },
+  { n: '03', title: 'Recommandation de pellicule', description: 'Nous vous proposons la solution idéale avec un devis clair et transparent.' },
+  { n: '04', title: 'Installation professionnelle', description: 'Nos techniciens installent avec précision. Résultat net, propre et durable garanti.' },
 ];
 
 const generalFaqs = [
@@ -115,36 +120,31 @@ const faqs = [
   description="Installation professionnelle de pellicule solaire, d'intimité et de sécurité pour fenêtres à Montréal et environs. Estimation gratuite. Plus de 17 régions desservies."
   canonicalPath="/"
 >
-  <section class="max-w-[1240px] mx-auto px-8 pt-18 pb-14 grid grid-cols-2 gap-14 items-center">
-    <div>
-      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-4">Résidentiel &amp; Commercial · Grand Montréal</p>
-      <h1 class="font-heading text-[52px] leading-[1.06] font-extrabold tracking-tight mb-5">
-        Pellicule solaire &amp; d'intimité pour fenêtres, installée avec précision
-      </h1>
-      <p class="text-lg leading-relaxed text-muted max-w-[520px] mb-8">
-        Réduisez la chaleur et l'éblouissement, protégez votre intimité et sécurisez votre vitrage — sans changer vos fenêtres. Service professionnel à Montréal et dans 17 régions environnantes.
-      </p>
-      <div class="flex gap-3.5 flex-wrap">
-        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[4px] text-[15px] font-bold">Obtenir mon estimation →</a>
-        <a href="tel:+14387019800" class="border border-[oklch(0.8_0.01_80)] px-7 py-4 rounded-[4px] text-[15px] font-bold">Appeler maintenant</a>
-      </div>
-      <div class="flex gap-8 mt-10 flex-wrap">
-        <div><div class="font-heading font-extrabold text-[22px]">17+</div><div class="text-[13px] text-muted-2">régions desservies</div></div>
-        <div><div class="font-heading font-extrabold text-[22px]">99%</div><div class="text-[13px] text-muted-2">des rayons UV bloqués</div></div>
-        <div><div class="font-heading font-extrabold text-[22px]">100%</div><div class="text-[13px] text-muted-2">satisfaction client</div></div>
-      </div>
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <ImagePlaceholder caption="intérieur résidentiel avec grandes fenêtres" hue={230} aspect="aspect-auto" class="h-full rounded-none" />
+      <div class="absolute inset-0 bg-navy/60"></div>
     </div>
-    <ImagePlaceholder caption="installation de pellicule solaire sur fenêtre résidentielle" hue={230} />
-  </section>
-
-  <section class="bg-ink-dark px-8 py-5">
-    <div class="max-w-[1240px] mx-auto flex justify-between gap-6 flex-wrap text-white/90 text-sm font-semibold">
-      <span>Installation professionnelle</span><span>Estimations gratuites</span><span>Garantie fabricant</span><span>Pellicules Tekton Performance Films</span>
+    <div class="relative max-w-[1240px] mx-auto px-8 pt-24 pb-20">
+      <p class="inline-block text-[12px] font-bold tracking-wide uppercase text-white border border-white/30 rounded-full px-4 py-1.5 mb-6">Résidentiel &amp; commercial</p>
+      <h1 class="font-heading text-[54px] leading-[1.05] font-bold text-white tracking-tight mb-5 max-w-[720px]">
+        Installation professionnelle de pellicule pour fenêtres
+      </h1>
+      <p class="text-lg leading-relaxed text-white/85 max-w-[560px] mb-8">
+        Réduisez la chaleur, améliorez l'intimité et protégez vos intérieurs grâce à des pellicules architecturales installées avec précision.
+      </p>
+      <div class="flex gap-3.5 flex-wrap mb-10">
+        <a href="/#estimateur" class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation &amp; réserver →</a>
+        <a href={site.phoneHref} class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold flex items-center gap-2">📞 Appeler maintenant</a>
+      </div>
+      <div class="flex gap-6 flex-wrap text-white/85 text-sm font-semibold">
+        <span>• Installation professionnelle</span><span>• Estimations gratuites</span><span>• Résidentiel &amp; commercial</span>
+      </div>
     </div>
   </section>
 
   <section class="max-w-[900px] mx-auto px-8 pt-18 pb-4">
-    <h2 class="font-heading text-[28px] font-extrabold tracking-tight mb-5">Pellicule pour fenêtres résidentielles et commerciales dans le Grand Montréal</h2>
+    <h2 class="font-heading text-[28px] font-bold tracking-tight mb-5">Pellicule pour fenêtres résidentielles et commerciales dans le Grand Montréal</h2>
     <p class="text-[15px] leading-relaxed text-muted mb-5">
       Vida Vitres est un installateur spécialisé en pellicules architecturales pour fenêtres plates, actif à Montréal et dans 17 municipalités environnantes. Que vous cherchiez une <a href="/services/pellicule-solaire/" class="text-accent font-semibold">pellicule solaire</a> pour réduire la chaleur et bloquer les rayons UV, une <a href="/services/pellicule-intimite/" class="text-accent font-semibold">pellicule d'intimité</a> pour protéger votre vie privée sans sacrifier la lumière naturelle, une <a href="/services/pellicule-securite/" class="text-accent font-semibold">pellicule de sécurité</a> pour renforcer votre vitrage contre les chocs et l'effraction, ou une <a href="/services/pellicule-decorative/" class="text-accent font-semibold">pellicule décorative</a> givrée pour moderniser un bureau ou un commerce, notre équipe installe des pellicules de fenêtre avec précision, propreté et une garantie fabricant.
     </p>
@@ -156,16 +156,19 @@ const faqs = [
     </p>
   </section>
 
+  <Estimator />
+
   <section id="services" class="max-w-[1240px] mx-auto px-8 py-22">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Nos services</p>
-    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-11 max-w-[640px]">Des solutions de pellicule adaptées à chaque besoin</h2>
-    <div class="grid grid-cols-4 gap-5">
+    <h2 class="font-heading text-[36px] font-bold tracking-tight mb-4 max-w-[640px]">Des solutions adaptées à vos besoins</h2>
+    <p class="text-base leading-relaxed text-muted mb-11 max-w-[640px]">Que vous soyez propriétaire, gestionnaire d'immeuble ou entrepreneur commercial, nous avons la pellicule qu'il vous faut.</p>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
       {services.map((s) => <ServiceCard service={s} />)}
     </div>
   </section>
 
   <section class="max-w-[900px] mx-auto px-8 pb-22">
-    <h2 class="font-heading text-[28px] font-extrabold tracking-tight mb-5">Ce qu'une pellicule pour fenêtre plate change concrètement</h2>
+    <h2 class="font-heading text-[28px] font-bold tracking-tight mb-5">Ce qu'une pellicule pour fenêtre plate change concrètement</h2>
     <p class="text-[15px] leading-relaxed text-muted mb-7">
       La pellicule pour fenêtre plate est une couche mince appliquée sur la face intérieure du verre existant — pas un remplacement de fenêtres. Sur du verre plat résidentiel ou commercial, simple ou double vitrage, elle modifie durablement la façon dont une pièce se comporte, sans travaux de construction. Voici ce que ça change, concrètement, selon le problème que vous cherchez à régler.
     </p>
@@ -196,24 +199,41 @@ const faqs = [
     </p>
   </section>
 
-  <section class="bg-bg-light px-8 py-22">
-    <div class="max-w-[1240px] mx-auto">
-      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Pourquoi Vida Vitres</p>
-      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Confort, intimité et sécurité — sans changer vos fenêtres</h2>
-      <p class="text-base leading-relaxed text-muted mb-11 max-w-[720px]">
-        Installer une pellicule pour fenêtres coûte une fraction du prix d'un remplacement de fenêtres, tout en réglant les mêmes problèmes de confort, de chaleur, d'intimité et de sécurité. Voici ce que nos clients résidentiels et commerciaux du Grand Montréal constatent après l'installation.
-      </p>
-      <div class="grid grid-cols-4 gap-7">
-        {whyUs.map((item) => (
-          <div><h4 class="text-base font-bold mb-2">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
-        ))}
+  <section class="bg-navy px-8 py-22">
+    <div class="max-w-[1240px] mx-auto grid grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <ImagePlaceholder caption="technicien installant une pellicule sur fenêtre" hue={230} aspect="aspect-[4/3]" />
+        <div class="absolute -bottom-5 -right-5 bg-white rounded-xl px-5 py-3.5 shadow-lg">
+          <div class="font-heading text-lg font-bold text-accent">100%</div>
+          <div class="text-[11px] text-muted-2">Satisfaction client</div>
+        </div>
+      </div>
+      <div>
+        <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Pourquoi choisir Vida Vitres</p>
+        <h2 class="font-heading text-[32px] font-bold text-white tracking-tight mb-4">Pourquoi les propriétaires &amp; entreprises choisissent la pellicule pour fenêtres</h2>
+        <p class="text-base leading-relaxed text-footer-muted mb-8">
+          Une pellicule de qualité, installée par des professionnels, transforme votre espace. Confort, intimité, esthétique — tous les avantages, sans les inconvénients.
+        </p>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-5">
+          {whyUs.map((item) => (
+            <div class="flex items-start gap-2.5">
+              <span class="text-accent-light mt-0.5" aria-hidden="true">✓</span>
+              <div>
+                <div class="text-sm font-bold text-white mb-0.5">{item.title}</div>
+                <p class="text-[13px] leading-relaxed text-footer-muted">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
+  <Gallery />
+
   <section id="regions" class="max-w-[1240px] mx-auto px-8 py-22">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Zone de service</p>
-    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Nous desservons Montréal et 17 régions environnantes</h2>
+    <h2 class="font-heading text-[36px] font-bold tracking-tight mb-5 max-w-[640px]">Nous desservons Montréal et 17 régions environnantes</h2>
     <p class="text-base leading-relaxed text-muted mb-4 max-w-[720px]">
       De Montréal à Laval, en passant par Longueuil, Repentigny et Terrebonne dans Lanaudière, Saint-Eustache, Blainville, Mirabel et Boisbriand dans les Laurentides, Beaconsfield, Pointe-Claire, Dollard-Des Ormeaux et Kirkland dans l'Ouest-de-l'Île, ainsi que Vaudreuil-Dorion, Saint-Lazare, L'Île-Perrot et Pincourt dans Vaudreuil-Soulanges — nos techniciens se déplacent directement chez vous pour l'installation de pellicule pour fenêtres.
     </p>
@@ -224,43 +244,54 @@ const faqs = [
     <a href="/locations/" class="inline-block mt-6 text-sm font-bold text-accent">Voir toutes les régions →</a>
   </section>
 
-  <section class="bg-ink-dark px-8 py-22 text-white">
-    <div class="max-w-[1240px] mx-auto">
-      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Notre processus</p>
-      <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-5 max-w-[640px]">Simple et efficace, en 4 étapes</h2>
-      <p class="text-base leading-relaxed text-white/75 mb-11 max-w-[720px]">
-        Du premier appel à l'installation finale, nous gardons le processus simple pour nos clients résidentiels et commerciaux, où que vous soyez dans le Grand Montréal.
-      </p>
-      <div class="grid grid-cols-4 gap-7">
-        {steps.map((s) => (
-          <div>
-            <div class="font-heading font-extrabold text-[28px] text-accent-light mb-3">{s.n}</div>
-            <h4 class="text-base font-bold mb-2">{s.title}</h4>
-            <p class="text-sm leading-relaxed text-white/75">{s.description}</p>
-          </div>
+  <ApplicationsSplit />
+
+  <section id="processus" class="max-w-[1240px] mx-auto px-8 py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center">Notre processus</p>
+    <h2 class="font-heading text-[32px] font-bold tracking-tight mb-4 text-center">Simple et efficace</h2>
+    <p class="text-base leading-relaxed text-muted mb-14 text-center max-w-[560px] mx-auto">En 4 étapes, votre projet passe de l'idée à l'installation.</p>
+    <div class="grid grid-cols-4 gap-0 relative">
+      {steps.map((s, i) => (
+        <div class={`relative px-5 ${i > 0 ? 'border-l border-border' : ''}`}>
+          <div class="font-heading font-bold text-[26px] text-accent-light mb-3">{s.n}</div>
+          <h4 class="text-base font-bold mb-2">{s.title}</h4>
+          <p class="text-sm leading-relaxed text-muted">{s.description}</p>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-12">
+      <a href="/#estimateur" class="inline-block bg-navy text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation &amp; réserver →</a>
+    </div>
+  </section>
+
+  <PartnerSpotlight />
+
+  <section id="faq" class="max-w-[1240px] mx-auto px-8 py-22">
+    <div class="grid grid-cols-[320px_1fr] gap-16">
+      <div>
+        <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">FAQ</p>
+        <h2 class="font-heading text-[32px] font-bold tracking-tight mb-4">Vous avez des questions ?</h2>
+        <p class="text-base leading-relaxed text-muted mb-7">Voici les questions que nous recevons le plus souvent. Vous ne trouvez pas votre réponse ? Contactez-nous directement.</p>
+        <a href={site.phoneHref} class="inline-block bg-navy text-white px-6 py-3 rounded-[10px] text-sm font-bold">Nous contacter →</a>
+      </div>
+      <div>
+        {faqs.map((f) => (
+          <details class="border border-border rounded-xl px-5 py-1 mb-3">
+            <summary class="text-[15px] font-bold cursor-pointer py-4 flex items-center justify-between gap-3">
+              {f.question}
+              <span class="text-accent" aria-hidden="true">⌄</span>
+            </summary>
+            <p class="text-[15px] leading-relaxed text-muted pb-4 max-w-[700px]" set:html={f.answerHtml} />
+          </details>
         ))}
+        <script type="application/ld+json" set:html={JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answerText } })),
+        })} />
       </div>
     </div>
   </section>
 
-  <section class="max-w-[900px] mx-auto px-8 py-22">
-    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">FAQ</p>
-    <h2 class="font-heading text-[36px] font-extrabold tracking-tight mb-4">Questions fréquentes</h2>
-    <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px]">
-      Des questions générales sur la pellicule pour fenêtres aux questions propres à votre municipalité, voici les réponses les plus demandées par nos clients du Grand Montréal.
-    </p>
-    {faqs.map((f) => (
-      <details class="border-b border-border py-5">
-        <summary class="text-base font-bold cursor-pointer">{f.question}</summary>
-        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]" set:html={f.answerHtml} />
-      </details>
-    ))}
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answerText } })),
-    })} />
-  </section>
-
-  <ContactCta title="Prêt à améliorer vos fenêtres ?" description="Obtenez votre estimation gratuite dès aujourd'hui. Réponse rapide, sans engagement." />
+  <ContactCta title="Prêt à améliorer vos fenêtres ?" description="Obtenez votre estimation instantanée et réservez votre évaluation gratuite pour découvrir la solution idéale pour votre maison ou votre entreprise." />
 </Layout>

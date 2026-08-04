@@ -8,12 +8,14 @@ export interface Service {
   name: string;
   shortName: string;
   tagline: string;
+  icon: string;
   hue: number;
   heroTitle: string;
   heroDescription: string;
   cardDescription: string;
   photoCaption: string;
   benefits: { title: string; description: string }[];
+  tags: string;
   useCases?: string[];
   faqs: FAQ[];
 }
@@ -24,6 +26,7 @@ export const services: Service[] = [
     name: 'Pellicule Solaire',
     shortName: 'solaire',
     tagline: "Confort & efficacité énergétique",
+    icon: '☀️',
     hue: 230,
     heroTitle: 'Pellicule solaire pour fenêtres à Montréal',
     heroDescription:
@@ -37,6 +40,7 @@ export const services: Service[] = [
       { title: "Réduction d'éblouissement", description: 'Regardez vos écrans et profitez de vos pièces sans plisser les yeux.' },
       { title: "Économies d'énergie", description: "Moins de charge sur la climatisation, des factures d'énergie allégées." },
     ],
+    tags: 'Maisons · Condos · Bureaux · Commerces',
     useCases: ['Maisons unifamiliales', 'Condominiums', 'Vérandas & solariums', 'Bureaux & commerces', 'Cliniques médicales', 'Immeubles professionnels'],
     faqs: [
       { question: 'La pellicule solaire assombrit-elle la pièce ?', answer: 'Non — la plupart de nos pellicules solaires laissent passer 60 à 70% de la lumière visible tout en bloquant la chaleur et les UV.' },
@@ -49,6 +53,7 @@ export const services: Service[] = [
     name: "Pellicule d'Intimité",
     shortName: 'intimité',
     tagline: 'Discrétion & confort',
+    icon: '🌫️',
     hue: 280,
     heroTitle: "Pellicule d'Intimité pour fenêtres à Montréal",
     heroDescription:
@@ -62,6 +67,7 @@ export const services: Service[] = [
       { title: 'Moins de rideaux', description: 'Réduit le besoin de stores ou de rideaux fermés.' },
       { title: "Résistance à l'humidité", description: 'Parfaite pour les salles de bain et sous-sols.' },
     ],
+    tags: 'Salles de bain · Portes d\'entrée · Bureaux à domicile',
     faqs: [
       { question: 'La pellicule d\'intimité bloque-t-elle toute la lumière ?', answer: 'Non, elle diffuse la lumière naturelle tout en empêchant la vue directe.' },
       { question: 'Peut-on voir à travers le soir, lumière allumée ?', answer: 'Nos pellicules givrées réduisent fortement ce risque comparé au verre clair.' },
@@ -73,6 +79,7 @@ export const services: Service[] = [
     name: 'Pellicule de Sécurité',
     shortName: 'sécurité',
     tagline: 'Protection & tranquillité d’esprit',
+    icon: '🛡️',
     hue: 20,
     heroTitle: 'Pellicule de Sécurité pour fenêtres à Montréal',
     heroDescription:
@@ -86,6 +93,7 @@ export const services: Service[] = [
       { title: 'Protection des occupants', description: 'Réduit les risques de blessure par éclats de verre.' },
       { title: 'Compatible partout', description: "S'applique sur portes, fenêtres et cloisons vitrées." },
     ],
+    tags: 'Maisons · Commerces · Immeubles',
     faqs: [
       { question: 'La pellicule de sécurité remplace-t-elle le verre trempé ?', answer: 'Non, mais elle renforce significativement la résistance du verre existant à moindre coût.' },
       { question: 'Est-ce visible une fois installée ?', answer: 'Très discrète, elle est quasi invisible sur du verre clair.' },
@@ -97,6 +105,7 @@ export const services: Service[] = [
     name: 'Pellicule Décorative',
     shortName: 'décorative',
     tagline: 'Esthétique & branding',
+    icon: '✨',
     hue: 150,
     heroTitle: 'Pellicule Décorative pour fenêtres à Montréal',
     heroDescription:
@@ -110,6 +119,7 @@ export const services: Service[] = [
       { title: 'Cloisons de bureau', description: 'Idéale pour délimiter des espaces sans les fermer.' },
       { title: 'Usage polyvalent', description: 'Résidentiel comme commercial.' },
     ],
+    tags: 'Bureaux · Cliniques · Commerces · Salles de conf.',
     faqs: [
       { question: 'Peut-on ajouter un logo personnalisé ?', answer: 'Oui, nous découpons les motifs et logos sur mesure.' },
       { question: 'Cette pellicule convient-elle aux résidences ?', answer: "Oui, très populaire pour salles de bain et portes d'entrée au look moderne." },

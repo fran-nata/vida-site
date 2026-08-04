@@ -35,58 +35,78 @@ const generalFaqs = [
   { question: 'Quelle est la différence entre pellicule solaire, d\'intimité, de sécurité et décorative ?', answer: 'La pellicule solaire réduit la chaleur et les UV, la pellicule d\'intimité bloque la vue tout en laissant passer la lumière, la pellicule de sécurité renforce le vitrage contre les chocs et l\'effraction, et la pellicule décorative offre une finition givrée esthétique. Plusieurs clients combinent deux fonctions sur une même pellicule.' },
 ];
 
-// Local, keyword-rich FAQs that also interlink each city's dedicated service page.
+// Long-tail, naturally-phrased local FAQs — each links a city mention to its
+// dedicated /services/<service>/<city>/ page instead of repeating a "X à Y ?" template.
 const localFaqs = [
   {
+    question: 'Quelle pellicule choisir pour une maison orientée sud ou ouest qui surchauffe en après-midi ?',
     service: services[0],
-    city: cities.find((c) => c.slug === 'montreal')!,
-    answerSuffix: "Nos techniciens couvrent l'ensemble de l'île, des condos du centre-ville aux maisons unifamiliales des quartiers résidentiels.",
+    citySlug: 'terrebonne',
+    body: (link: string) =>
+      `Une pellicule solaire haute performance est la meilleure option : elle bloque jusqu'à 80% de la chaleur solaire avant qu'elle n'entre, sans assombrir la pièce. C'est le scénario le plus fréquent qu'on rencontre sur les maisons neuves à ${link}, où les grandes fenêtres orientées plein sud transforment le salon en serre dès le début de l'après-midi.`,
   },
   {
+    question: 'La pellicule givrée pour salle de bain empêche-t-elle vraiment de voir à travers la nuit, lumière allumée ?',
     service: services[1],
-    city: cities.find((c) => c.slug === 'laval')!,
-    answerSuffix: "C'est l'une de nos applications les plus demandées à Laval pour les salles de bain et les portes d'entrée vitrées donnant sur la rue.",
+    citySlug: 'laval',
+    body: (link: string) =>
+      `Oui — contrairement au verre clair, un fini givré diffuse la lumière plutôt que de la laisser passer directement, donc aucune silhouette nette n'est visible de l'extérieur, même lumière allumée après la tombée du jour. C'est l'application la plus demandée sur les fenêtres de salle de bain et les portes d'entrée vitrées à ${link}, deux endroits où les rideaux sont peu pratiques.`,
   },
   {
+    question: 'Combien coûte le renforcement d\'une vitrine commerciale contre le bris et les tentatives d\'effraction ?',
     service: services[2],
-    city: cities.find((c) => c.slug === 'longueuil')!,
-    answerSuffix: 'Plusieurs commerces et copropriétés de Longueuil optent pour cette protection additionnelle contre le bris et les tentatives d\'effraction.',
+    citySlug: 'vaudreuil-dorion',
+    body: (link: string) =>
+      `Beaucoup moins cher qu'un remplacement en verre trempé : la pellicule de sécurité s'applique directement sur le vitrage existant et maintient les fragments en place lors d'un choc, ce qui ralentit considérablement une intrusion. Le prix dépend surtout de la superficie vitrée — nos commerces clients à ${link} obtiennent généralement un devis en une seule visite sur place.`,
   },
   {
+    question: 'Peut-on découper un logo d\'entreprise dans une pellicule décorative pour une cloison de bureau vitrée ?',
     service: services[3],
-    city: cities.find((c) => c.slug === 'pointe-claire')!,
-    answerSuffix: "Nous découpons des motifs et logos sur mesure pour les bureaux et commerces de Pointe-Claire.",
+    citySlug: 'kirkland',
+    body: (link: string) =>
+      `Oui, la découpe sur mesure est l'un des usages les plus courants de la pellicule décorative givrée : logo, bandes horizontales ou motifs géométriques appliqués directement sur une cloison de verre existante, sans travaux de construction. Plusieurs bureaux et cliniques à ${link} l'utilisent aussi pour délimiter des salles de réunion sans bloquer complètement la lumière naturelle.`,
   },
   {
+    question: 'Comment réduire l\'éblouissement sur un écran d\'ordinateur sans fermer les stores toute la journée ?',
     service: services[0],
-    city: cities.find((c) => c.slug === 'terrebonne')!,
-    answerSuffix: "Les maisons orientées sud et ouest à Terrebonne bénéficient particulièrement d'une réduction de chaleur et d'éblouissement.",
+    citySlug: 'montreal',
+    body: (link: string) =>
+      `Une pellicule solaire filtre l'intensité lumineuse qui cause l'éblouissement tout en laissant entrer suffisamment de lumière naturelle pour ne pas avoir à garder les stores fermés. Pour les condos et bureaux du centre-ville de ${link}, orientés sur de grandes baies vitrées, c'est souvent la solution la plus simple, réglée en une seule installation plutôt qu'en gérant des stores matin et soir.`,
   },
   {
-    service: services[1],
-    city: cities.find((c) => c.slug === 'blainville')!,
-    answerSuffix: "Idéale pour les nouvelles constructions de Blainville où les grandes fenêtres donnent directement sur le voisinage.",
-  },
-  {
+    question: 'Une pellicule de sécurité est-elle une bonne option pour une porte-fenêtre de rez-de-chaussée ?',
     service: services[2],
-    city: cities.find((c) => c.slug === 'vaudreuil-dorion')!,
-    answerSuffix: 'Une solution abordable pour renforcer le vitrage résidentiel et commercial existant à Vaudreuil-Dorion sans remplacer les fenêtres.',
+    citySlug: 'longueuil',
+    body: (link: string) =>
+      `Absolument — les portes-fenêtres et fenêtres de rez-de-chaussée ou de sous-sol sont parmi les points d'accès les plus vulnérables d'une propriété. La pellicule de sécurité y renforce le vitrage sans en changer l'apparence, une raison pour laquelle plusieurs propriétaires et copropriétés à ${link} l'ajoutent en complément d'un système d'alarme plutôt qu'en remplacement.`,
   },
   {
+    question: 'Quelle pellicule bloque la vue depuis la rue sur une porte d\'entrée vitrée sans obscurcir l\'entrée ?',
+    service: services[1],
+    citySlug: 'blainville',
+    body: (link: string) =>
+      `Un fini d'intimité givré ou dépoli garde l'entrée lumineuse tout en empêchant une vue directe depuis le trottoir ou l'allée — une demande fréquente sur les nouvelles constructions à ${link}, où les portes d'entrée modernes intègrent de larges panneaux vitrés latéraux donnant directement sur la rue.`,
+  },
+  {
+    question: 'Une pellicule décorative givrée convient-elle à un usage résidentiel, ou seulement aux bureaux ?',
     service: services[3],
-    city: cities.find((c) => c.slug === 'kirkland')!,
-    answerSuffix: 'Un choix populaire pour moderniser les cloisons de bureau et les entrées commerciales à Kirkland.',
+    citySlug: 'pointe-claire',
+    body: (link: string) =>
+      `Elle convient très bien aux deux : en résidentiel, elle est populaire pour les salles de bain, portes d'entrée et fenêtres de sous-sol au look moderne givré, sans le côté "corporatif". On la retrouve autant dans des maisons que dans des commerces et bureaux à ${link}, appliquée sur des surfaces vitrées existantes en une seule visite.`,
   },
 ];
 
 const faqs = [
   ...generalFaqs.map((f) => ({ question: f.question, answerHtml: f.answer, answerText: f.answer })),
   ...localFaqs.map((f) => {
-    const href = `/services/${f.service.slug}/${f.city.slug}/`;
-    const question = `Installez-vous la ${f.service.name.toLowerCase()} à ${f.city.name} ?`;
-    const answerText = `Oui, Vida Vitres installe la ${f.service.name.toLowerCase()} à ${f.city.name} pour les projets résidentiels et commerciaux. ${f.answerSuffix}`;
-    const answerHtml = `Oui, Vida Vitres installe la <a href="${href}" class="text-accent font-semibold">${f.service.name.toLowerCase()} à ${f.city.name}</a> pour les projets résidentiels et commerciaux. ${f.answerSuffix}`;
-    return { question, answerHtml, answerText };
+    const city = cities.find((c) => c.slug === f.citySlug)!;
+    const href = `/services/${f.service.slug}/${city.slug}/`;
+    const link = `<a href="${href}" class="text-accent font-semibold">${city.name}</a>`;
+    return {
+      question: f.question,
+      answerHtml: f.body(link),
+      answerText: f.body(city.name),
+    };
   }),
 ];
 ---
@@ -142,6 +162,38 @@ const faqs = [
     <div class="grid grid-cols-4 gap-5">
       {services.map((s) => <ServiceCard service={s} />)}
     </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-8 pb-22">
+    <h2 class="font-heading text-[28px] font-extrabold tracking-tight mb-5">Ce qu'une pellicule pour fenêtre plate change concrètement</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-7">
+      La pellicule pour fenêtre plate est une couche mince appliquée sur la face intérieure du verre existant — pas un remplacement de fenêtres. Sur du verre plat résidentiel ou commercial, simple ou double vitrage, elle modifie durablement la façon dont une pièce se comporte, sans travaux de construction. Voici ce que ça change, concrètement, selon le problème que vous cherchez à régler.
+    </p>
+
+    <h3 class="font-heading text-lg font-bold mb-2">Une maison ou un bureau qui surchauffe l'après-midi</h3>
+    <p class="text-[15px] leading-relaxed text-muted mb-6">
+      Sur une façade orientée sud ou ouest, une pellicule solaire de qualité rejette une bonne partie de la chaleur avant qu'elle ne traverse le verre, ce qui réduit directement la charge sur le climatiseur et lisse les pointes de température en fin de journée. C'est un problème récurrent sur les maisons à grandes fenêtres de <a href="/locations/repentigny/" class="text-accent font-semibold">Repentigny</a> et de <a href="/locations/saint-eustache/" class="text-accent font-semibold">Saint-Eustache</a>, où les pièces à vivre orientées plein soleil deviennent difficiles à occuper en après-midi sans climatisation à plein régime.
+    </p>
+
+    <h3 class="font-heading text-lg font-bold mb-2">Des planchers et des meubles qui perdent leur couleur avec le temps</h3>
+    <p class="text-[15px] leading-relaxed text-muted mb-6">
+      Le verre clair ne filtre pratiquement pas les rayons UV — c'est ce qui décolore lentement un plancher de bois franc ou un divan en cuir placé près d'une fenêtre. Une pellicule bloquant jusqu'à 99% des UV règle ce problème sans changer l'apparence de la fenêtre. On le voit souvent dans les maisons récentes de <a href="/locations/mirabel/" class="text-accent font-semibold">Mirabel</a> et de <a href="/locations/boisbriand/" class="text-accent font-semibold">Boisbriand</a>, où de grandes baies vitrées éclairent le salon toute la journée au prix d'une usure prématurée des finitions intérieures.
+    </p>
+
+    <h3 class="font-heading text-lg font-bold mb-2">Trop de vis-à-vis avec le voisinage ou la rue</h3>
+    <p class="text-[15px] leading-relaxed text-muted mb-6">
+      Plutôt que de garder les rideaux fermés en permanence, un fini givré ou dépoli diffuse la lumière tout en empêchant une vue directe de l'extérieur — de jour comme de soir, lumière allumée. C'est une demande fréquente pour les fenêtres de salle de bain et les portes-fenêtres rapprochées du voisin à <a href="/locations/beaconsfield/" class="text-accent font-semibold">Beaconsfield</a> et à <a href="/locations/dollard-des-ormeaux/" class="text-accent font-semibold">Dollard-Des Ormeaux</a>, deux secteurs où les résidences sont souvent construites proches les unes des autres.
+    </p>
+
+    <h3 class="font-heading text-lg font-bold mb-2">Un vitrage vulnérable au rez-de-chaussée ou en façade commerciale</h3>
+    <p class="text-[15px] leading-relaxed text-muted mb-6">
+      Une pellicule de sécurité maintient les fragments de verre ensemble lors d'un impact, ce qui ralentit une tentative d'entrée par la force sans nécessiter un remplacement en verre trempé. Les propriétaires et commerçants de <a href="/locations/saint-lazare/" class="text-accent font-semibold">Saint-Lazare</a> et de <a href="/locations/ile-perrot/" class="text-accent font-semibold">L'Île-Perrot</a> l'installent souvent sur les portes-fenêtres et vitrines au rez-de-chaussée, en complément d'un système d'alarme plutôt qu'en remplacement.
+    </p>
+
+    <h3 class="font-heading text-lg font-bold mb-2">Une cloison de bureau ou une entrée commerciale qui manque de cachet</h3>
+    <p class="text-[15px] leading-relaxed text-muted">
+      Une pellicule décorative givrée, appliquée sur une cloison ou une porte vitrée existante, donne un fini professionnel en une seule visite — sans rénovation. Découpes de logo, bandes ou motifs personnalisés sont courants pour les commerces et bureaux de <a href="/locations/pincourt/" class="text-accent font-semibold">Pincourt</a>, tout comme pour les copropriétés cherchant à moderniser une entrée sans en changer la structure.
+    </p>
   </section>
 
   <section class="bg-bg-light px-8 py-22">

@@ -4,21 +4,15 @@ interface Props {
   class?: string;
 }
 const { variant = 'light', class: className = '' } = Astro.props;
-const wordColor = variant === 'dark' ? '#ffffff' : 'var(--color-ink)';
 const subColor = variant === 'dark' ? 'rgba(255,255,255,0.6)' : 'var(--color-muted)';
 ---
 <a href="/" class={`flex items-center gap-2.5 ${className}`} aria-label="Vida Vitres — Accueil">
-  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M2 3 L11 27 L15 16 L19 27 L28 3" stroke="url(#logo-gradient)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-    <defs>
-      <linearGradient id="logo-gradient" x1="2" y1="3" x2="28" y2="27" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="var(--color-accent-light)" />
-        <stop offset="1" stop-color="var(--color-accent)" />
-      </linearGradient>
-    </defs>
-  </svg>
-  <span class="leading-tight">
-    <span class="block font-heading font-bold text-lg tracking-tight" style={{ color: wordColor }}>Vida Vitres</span>
-    <span class="block text-[10px] font-semibold tracking-[0.2em] uppercase" style={{ color: subColor }}>Pellicules pour fenêtres</span>
-  </span>
+  <img
+    src="/logo.png"
+    alt="Vida Vitres — pellicules pour fenêtres à Montréal et environs"
+    width="150"
+    height="48"
+    class="h-9 w-auto"
+  />
+  <span class="block text-[10px] font-semibold tracking-[0.2em] uppercase" style={{ color: subColor }}>Pellicules pour fenêtres</span>
 </a>

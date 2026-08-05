@@ -1,0 +1,27 @@
+---
+import { site } from '../lib/site';
+---
+<a
+  id="call-now-btn"
+  href={site.phoneHref}
+  class="fixed bottom-6 right-6 z-40 bg-accent text-white pl-4 pr-5 py-3.5 rounded-full shadow-lg font-bold text-sm flex items-center gap-2"
+  style="opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 300ms ease, transform 300ms ease;"
+  aria-label={`Appeler Vida Vitres au ${site.phone}`}
+>
+  <span aria-hidden="true">📞</span>
+  <span>Appeler maintenant</span>
+</a>
+
+<script>
+  const btn = document.getElementById('call-now-btn');
+  if (btn) {
+    const onScroll = () => {
+      const visible = window.scrollY > 400;
+      btn.style.opacity = visible ? '1' : '0';
+      btn.style.transform = visible ? 'translateY(0)' : 'translateY(12px)';
+      btn.style.pointerEvents = visible ? 'auto' : 'none';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

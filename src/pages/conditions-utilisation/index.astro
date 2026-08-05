@@ -1,0 +1,89 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { site } from '../../lib/site';
+---
+<Layout
+  title={`Conditions d'utilisation | ${site.name}`}
+  description="Conditions d'utilisation du site web de Vida Vitres et modalités générales relatives à nos services d'installation de pellicule pour fenêtres."
+  canonicalPath="/conditions-utilisation/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: "Conditions d'utilisation" }]} />
+
+  <article class="max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">Dernière mise à jour : 5 août 2026</p>
+    <h1 class="font-heading text-[26px] sm:text-[38px] font-extrabold tracking-tight leading-snug mb-7">Conditions d'utilisation</h1>
+
+    <div class="prose-legal text-base leading-relaxed text-ink">
+      <p>
+        Les présentes conditions d'utilisation régissent votre accès et votre utilisation du site web de {site.name} (« nous », « notre » ou « nos »), ainsi que les modalités générales applicables à nos services d'installation de pellicule pour fenêtres. En utilisant notre site ou en faisant appel à nos services, vous acceptez ces conditions.
+      </p>
+
+      <h2>Description des services</h2>
+      <p>
+        {site.name} est un installateur spécialisé en pellicules architecturales pour fenêtres résidentielles et commerciales (solaire, d'intimité, de sécurité et décorative), actif à Montréal et dans les municipalités environnantes du Grand Montréal.
+      </p>
+
+      <h2>Estimations et devis</h2>
+      <p>
+        Les estimations obtenues via notre site web, notre outil d'estimation en ligne ou notre widget de clavardage sont fournies à titre indicatif et gratuit. Elles ne constituent pas un contrat final : le prix, la portée des travaux et le délai d'installation sont confirmés par écrit après une évaluation sur place de vos fenêtres. Aucun engagement financier n'est requis avant l'acceptation d'un devis final.
+      </p>
+
+      <h2>Utilisation du site web</h2>
+      <p>
+        Vous vous engagez à utiliser notre site web à des fins légales uniquement et à ne pas tenter d'en compromettre la sécurité ou le fonctionnement. L'ensemble du contenu de ce site (textes, images, logos, mise en page) est la propriété de {site.name} ou de ses partenaires, tel que Tekton Performance Films pour les photographies de produits utilisées avec leur autorisation, et ne peut être reproduit sans autorisation écrite préalable.
+      </p>
+
+      <h2>Limitation de responsabilité</h2>
+      <p>
+        L'information présentée sur ce site (descriptions de services, données de performance des pellicules, articles de blogue) est fournie à titre informatif général et provient notamment des spécifications publiées par nos fournisseurs. Bien que nous nous efforcions d'en assurer l'exactitude, {site.name} ne peut être tenu responsable de dommages indirects découlant de l'utilisation de ce site. Nos services d'installation sont, quant à eux, couverts par les garanties spécifiques communiquées dans votre devis et par les garanties du fabricant applicables au produit installé.
+      </p>
+
+      <h2>Liens vers des sites tiers</h2>
+      <p>
+        Notre site peut contenir des liens vers des sites de tiers, notamment celui de notre partenaire Tekton Performance Films. Nous ne sommes pas responsables du contenu ou des pratiques de confidentialité de ces sites externes.
+      </p>
+
+      <h2>Modifications des conditions</h2>
+      <p>
+        Nous pouvons mettre à jour ces conditions d'utilisation à l'occasion. La date de la dernière mise à jour apparaît en haut de cette page.
+      </p>
+
+      <h2>Droit applicable</h2>
+      <p>
+        Les présentes conditions sont régies par les lois de la province de Québec et les lois fédérales du Canada applicables.
+      </p>
+
+      <h2>Nous contacter</h2>
+      <p>Pour toute question concernant ces conditions d'utilisation, contactez-nous :</p>
+      <ul>
+        <li>Téléphone : <a href={site.phoneHref}>{site.phone}</a></li>
+        <li>Courriel : <a href={site.emailHref}>{site.email}</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 32px 0 14px;
+  }
+  .prose-legal p {
+    margin: 0 0 18px;
+  }
+  .prose-legal ul {
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .prose-legal li {
+    margin-bottom: 8px;
+  }
+  .prose-legal a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>

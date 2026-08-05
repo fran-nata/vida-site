@@ -1,0 +1,112 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { site } from '../../lib/site';
+---
+<Layout
+  title={`Politique de confidentialité | ${site.name}`}
+  description="Politique de confidentialité de Vida Vitres : comment nous recueillons, utilisons et protégeons vos renseignements personnels."
+  canonicalPath="/politique-de-confidentialite/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Politique de confidentialité' }]} />
+
+  <article class="max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">Dernière mise à jour : 5 août 2026</p>
+    <h1 class="font-heading text-[26px] sm:text-[38px] font-extrabold tracking-tight leading-snug mb-7">Politique de confidentialité</h1>
+
+    <div class="prose-legal text-base leading-relaxed text-ink">
+      <p>
+        {site.name} (« nous », « notre » ou « nos ») s'engage à protéger la confidentialité des renseignements personnels de ses clients et visiteurs. Cette politique explique quels renseignements nous recueillons, comment nous les utilisons et quels sont vos droits à cet égard, conformément à la Loi sur la protection des renseignements personnels dans le secteur privé (Québec) et à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE, fédérale).
+      </p>
+
+      <h2>Renseignements que nous recueillons</h2>
+      <p>Nous recueillons des renseignements personnels lorsque vous :</p>
+      <ul>
+        <li>Remplissez un formulaire d'estimation ou de contact sur notre site (nom, numéro de téléphone, courriel, adresse, type de propriété)</li>
+        <li>Utilisez notre outil d'estimation en ligne ou notre widget de clavardage (webchat)</li>
+        <li>Nous appelez ou nous écrivez directement</li>
+        <li>Naviguez sur notre site (données techniques de base comme le type d'appareil ou la page consultée, via des cookies)</li>
+      </ul>
+
+      <h2>Utilisation des renseignements</h2>
+      <p>Nous utilisons vos renseignements personnels uniquement pour :</p>
+      <ul>
+        <li>Préparer et vous transmettre une estimation ou un devis</li>
+        <li>Planifier une évaluation sur place ou une installation</li>
+        <li>Répondre à vos questions par téléphone, courriel ou clavardage</li>
+        <li>Améliorer notre site web et nos services</li>
+      </ul>
+      <p>Nous ne vendons ni ne louons vos renseignements personnels à des tiers.</p>
+
+      <h2>Partage avec des tiers</h2>
+      <p>
+        Nous pouvons partager des renseignements limités avec des fournisseurs de services qui nous aident à exploiter notre entreprise, notamment notre hébergeur web et notre fournisseur d'outil de clavardage en ligne. Ces fournisseurs n'ont accès qu'aux renseignements nécessaires à l'exécution de leurs services et sont tenus de les protéger de façon appropriée. Nous ne partageons pas vos renseignements à des fins de marketing par des tiers non liés à notre entreprise.
+      </p>
+
+      <h2>Cookies et technologies similaires</h2>
+      <p>
+        Notre site utilise des cookies techniques nécessaires à son bon fonctionnement, ainsi que ceux requis par notre outil de clavardage en ligne. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur ; certaines fonctionnalités du site pourraient toutefois être limitées.
+      </p>
+
+      <h2>Conservation des données</h2>
+      <p>
+        Nous conservons vos renseignements personnels aussi longtemps que nécessaire pour répondre à votre demande, assurer le suivi de votre projet ou respecter nos obligations légales et comptables, après quoi ils sont supprimés ou anonymisés de façon sécuritaire.
+      </p>
+
+      <h2>Vos droits</h2>
+      <p>Vous avez le droit de :</p>
+      <ul>
+        <li>Accéder aux renseignements personnels que nous détenons à votre sujet</li>
+        <li>Demander la correction de renseignements inexacts</li>
+        <li>Retirer votre consentement à l'utilisation de vos renseignements, sous réserve de nos obligations légales</li>
+        <li>Demander la suppression de vos renseignements personnels</li>
+      </ul>
+      <p>
+        Pour exercer l'un de ces droits, contactez-nous aux coordonnées ci-dessous. Nous répondrons à votre demande dans un délai raisonnable.
+      </p>
+
+      <h2>Sécurité</h2>
+      <p>
+        Nous mettons en place des mesures de sécurité raisonnables pour protéger vos renseignements personnels contre l'accès, l'utilisation ou la divulgation non autorisés. Aucune transmission de données sur Internet n'est toutefois garantie à 100% sécuritaire.
+      </p>
+
+      <h2>Modifications de cette politique</h2>
+      <p>
+        Nous pouvons mettre à jour cette politique de confidentialité à l'occasion. La date de la dernière mise à jour apparaît en haut de cette page. Nous vous encourageons à la consulter périodiquement.
+      </p>
+
+      <h2>Nous contacter</h2>
+      <p>
+        Pour toute question concernant cette politique de confidentialité ou vos renseignements personnels, contactez-nous :
+      </p>
+      <ul>
+        <li>Téléphone : <a href={site.phoneHref}>{site.phone}</a></li>
+        <li>Courriel : <a href={site.emailHref}>{site.email}</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 32px 0 14px;
+  }
+  .prose-legal p {
+    margin: 0 0 18px;
+  }
+  .prose-legal ul {
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .prose-legal li {
+    margin-bottom: 8px;
+  }
+  .prose-legal a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>

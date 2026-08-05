@@ -105,6 +105,22 @@ section[id] {
 .hero-in-d3 { animation-delay: 320ms; }
 .hero-in-d4 { animation-delay: 420ms; }
 
+/* CTA glow: a slow, subtle ambient pulse on primary buttons, with a
+   stronger glow burst on hover. Color is the brand accent regardless
+   of button background so it reads consistently on both navy and
+   accent-filled buttons. */
+@keyframes btn-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 137, 90, 0); }
+  50% { box-shadow: 0 0 16px 3px rgba(201, 137, 90, 0.45); }
+}
+.btn-glow {
+  animation: btn-glow-pulse 2.8s ease-in-out infinite;
+}
+.btn-glow:hover {
+  animation-play-state: paused;
+  box-shadow: 0 0 22px 5px rgba(201, 137, 90, 0.6) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -118,5 +134,8 @@ section[id] {
     opacity: 1;
     animation: none;
     transform: none;
+  }
+  .btn-glow {
+    animation: none;
   }
 }

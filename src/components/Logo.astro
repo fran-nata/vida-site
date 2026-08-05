@@ -3,18 +3,21 @@ interface Props {
   variant?: 'light' | 'dark';
   class?: string;
 }
-const { class: className = '' } = Astro.props;
-// Only a light-background version of the logo has been provided so far.
-// It's used as-is on the dark navy footer too (the "VITRES" text and one
-// stroke of the mark are dark, so contrast is weaker there) until a
-// reversed/light version is available.
+const { variant = 'light', class: className = '' } = Astro.props;
+// Full "VIDA VITRES" lockup for light backgrounds (header). The footer is
+// dark navy, where the full lockup's black "VITRES" text and one V-stroke
+// have weak contrast, so it uses the VIDA-only mark instead (still has a
+// dark stroke on the V, but reads much cleaner without the extra text).
+const src = variant === 'dark' ? '/images/vida-vitres-logo-mark.png' : '/logo.png';
+const width = variant === 'dark' ? '126' : '180';
+const height = variant === 'dark' ? '41' : '41';
 ---
 <a href="/" class={`inline-flex items-center ${className}`} aria-label="Vida Vitres — Accueil">
   <img
-    src="/logo.png"
+    src={src}
     alt="Vida Vitres — pellicules pour fenêtres à Montréal et environs"
-    width="180"
-    height="41"
+    width={width}
+    height={height}
     class="h-9 w-auto transition-transform duration-300 hover:scale-105"
   />
 </a>

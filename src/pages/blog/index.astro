@@ -22,7 +22,7 @@ const posts = (await getCollection('blog')).sort(
     <div class="grid grid-cols-3 gap-6">
       {posts.map((post) => (
         <a href={`/blog/${post.id}/`} class="block border border-border rounded-lg overflow-hidden bg-white">
-          <ImagePlaceholder caption="illustration de l'article" aspect="aspect-video" class="rounded-none" />
+          <ImagePlaceholder caption={post.data.title} aspect="aspect-video" class="rounded-none" src={post.data.image} />
           <div class="p-5">
             <p class="text-xs font-bold tracking-wide uppercase text-accent mb-2.5">{post.data.category}</p>
             <h3 class="font-heading text-[17px] font-bold mb-2 leading-snug">{post.data.title}</h3>

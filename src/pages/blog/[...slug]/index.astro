@@ -28,7 +28,14 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('fr-CA', { yea
   <article class="max-w-[760px] mx-auto px-8 pt-10 pb-20">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">{post.data.category} · {formattedDate}</p>
     <h1 class="font-heading text-[38px] font-extrabold tracking-tight leading-snug mb-7">{post.data.title}</h1>
-    <ImagePlaceholder caption="illustration de l'article" hue={230} aspect="aspect-[16/7]" class="mb-9" />
+    <ImagePlaceholder
+      caption={post.data.title}
+      hue={230}
+      aspect="aspect-[16/7]"
+      class="mb-9"
+      src={post.data.image}
+      priority
+    />
     <div class="prose-article text-base leading-relaxed text-ink">
       <Content />
     </div>

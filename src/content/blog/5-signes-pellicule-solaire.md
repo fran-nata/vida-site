@@ -3,6 +3,7 @@ title: "5 signes qu'il est temps d'installer une pellicule solaire chez vous"
 description: "5 signes indiquant qu'une pellicule solaire pour fenêtre pourrait améliorer le confort de votre maison : chaleur, éblouissement, décoloration, factures."
 date: "2026-07-03"
 category: "Confort thermique"
+image: "/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg"
 ---
 
 La plupart des gens qui nous appellent ne se disent pas « j'ai besoin de pellicule solaire » — ils se disent « il y a quelque chose qui ne va pas avec cette pièce ». Pas certain si la pellicule solaire est faite pour votre maison ? Voici cinq signes qui indiquent que le moment est venu.

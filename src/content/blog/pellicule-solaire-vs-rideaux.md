@@ -3,6 +3,7 @@ title: "Pellicule solaire vs rideaux : que choisir pour bloquer la chaleur ?"
 description: "Comparaison entre pellicule solaire pour fenêtre et rideaux occultants pour réduire la chaleur et l'éblouissement dans une maison ou un bureau."
 date: "2026-03-12"
 category: "Confort thermique"
+image: "/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg"
 ---
 
 « Je ferme juste les rideaux » — c'est souvent la première réponse qu'on entend quand on parle de chaleur solaire. Ça marche, jusqu'à ce qu'on veuille revoir la lumière du jour. Quand la chaleur s'installe, la plupart des gens pensent d'abord aux rideaux ou aux stores. Mais la pellicule solaire pour fenêtre offre une solution plus durable, sans sacrifier la lumière naturelle.

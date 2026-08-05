@@ -22,6 +22,19 @@ const profile = regionProfiles[city.region];
 const nearNames = near.slice(0, 3).map((c) => c.name);
 const [introLocal, introClose] = locationIntros[city.slug];
 
+// Only real photography we have so far is solaire-themed; rotate through it
+// (offset from the combo-page rotation) so the 17 location pages vary.
+const photoPool = [
+  '/images/quartier-residentiel-grand-montreal-pellicule-fenetre.jpg',
+  '/images/pellicule-solaire-fenetre-panoramique-salon-montreal.jpg',
+  '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.jpg',
+  '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
+  '/images/installation-pellicule-solaire-vue-montreal.jpg',
+  '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+];
+const cityIndex = cities.findIndex((c) => c.slug === city.slug);
+const photo = photoPool[(cityIndex + 2) % photoPool.length];
+
 const whyUs = [
   { title: 'Installation locale', description: `Techniciens qui se déplacent dans ${city.name}.` },
   { title: 'Estimation gratuite', description: 'Un devis clair avant chaque installation.' },
@@ -70,7 +83,11 @@ const localFaqs = [
         <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
       </div>
     </div>
-    <ImagePlaceholder caption={`installation de pellicule pour fenêtres résidentielles à ${city.name}, ${city.region}`} hue={230} />
+    <ImagePlaceholder
+      caption={`Installation de pellicule pour fenêtres résidentielles à ${city.name}`}
+      hue={230}
+      src={photo}
+    />
   </section>
 
   <section class="max-w-[1240px] mx-auto px-8 pb-14">

@@ -9,7 +9,7 @@ const { service, href = `/services/${service.slug}/` } = Astro.props;
 ---
 <div class="border border-border rounded-2xl bg-white overflow-hidden flex flex-col">
   <div class="relative">
-    <ImagePlaceholder caption={service.photoCaption} hue={service.hue} aspect="aspect-[4/3]" class="rounded-none" />
+    <ImagePlaceholder caption={service.photoCaption} hue={service.hue} aspect="aspect-[4/3]" class="rounded-none" src={service.photo} />
     <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
       <span aria-hidden="true">{service.icon}</span> {service.tagline}
     </span>

@@ -4,17 +4,29 @@ interface Props {
   hue?: number;
   aspect?: string;
   class?: string;
+  src?: string;
+  priority?: boolean;
 }
-const { caption, hue = 230, aspect = 'aspect-[4/3]', class: className = '' } = Astro.props;
+const { caption, hue = 230, aspect = 'aspect-[4/3]', class: className = '', src, priority = false } = Astro.props;
 const bg = `repeating-linear-gradient(135deg, oklch(0.93 0.02 ${hue}), oklch(0.93 0.02 ${hue}) 12px, oklch(0.9 0.03 ${hue}) 12px, oklch(0.9 0.03 ${hue}) 24px)`;
 const color = `oklch(0.4 0.03 ${hue})`;
 ---
-<div
-  role="img"
-  aria-label={caption}
-  data-alt={caption}
-  class={`${aspect} rounded-lg flex items-center justify-center font-mono text-[13px] text-center p-6 ${className}`}
-  style={{ background: bg, color }}
->
-  [photo: {caption}]
-</div>
+{src ? (
+  <img
+    src={src}
+    alt={caption}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    class={`${aspect} w-full object-cover rounded-lg ${className}`}
+  />
+) : (
+  <div
+    role="img"
+    aria-label={caption}
+    data-alt={caption}
+    class={`${aspect} rounded-lg flex items-center justify-center font-mono text-[13px] text-center p-6 ${className}`}
+    style={{ background: bg, color }}
+  >
+    [photo: {caption}]
+  </div>
+)}

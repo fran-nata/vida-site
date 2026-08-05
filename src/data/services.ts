@@ -14,6 +14,9 @@ export interface Service {
   heroDescription: string;
   cardDescription: string;
   photoCaption: string;
+  photo?: string;
+  heroPhoto?: string;
+  heroPhotoCaption?: string;
   benefits: { title: string; description: string }[];
   tags: string;
   useCases?: string[];
@@ -39,7 +42,10 @@ export const services: Service[] = [
       "Installation de pellicule solaire pour fenêtres résidentielles et commerciales. Bloque jusqu'à 99% des UV, réduit la chaleur et l'éblouissement. Estimation gratuite à Montréal.",
     cardDescription:
       "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles, tout en laissant entrer la lumière naturelle.",
-    photoCaption: 'pellicule solaire installée sur grande fenêtre de salon à Montréal',
+    photoCaption: 'Salon avec fenêtres panoramiques et pellicule solaire, vue sur Montréal au coucher du soleil',
+    photo: '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.jpg',
+    heroPhoto: '/images/installation-pellicule-solaire-vue-montreal.jpg',
+    heroPhotoCaption: 'Installation de pellicule solaire sur grande fenêtre avec vue sur Montréal',
     benefits: [
       { title: 'Réduction de chaleur', description: "Jusqu'à 80% de rejet de chaleur solaire, pour un intérieur plus frais en été." },
       { title: 'Protection UV', description: "Bloque jusqu'à 99% des rayons UV, protégeant planchers, meubles et tissus contre la décoloration." },

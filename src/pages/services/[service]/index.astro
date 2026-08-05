@@ -48,7 +48,12 @@ const serviceLd = {
         <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
       </div>
     </div>
-    <ImagePlaceholder caption={service.photoCaption} hue={service.hue} />
+    <ImagePlaceholder
+      caption={service.heroPhotoCaption ?? service.photoCaption}
+      hue={service.hue}
+      src={service.heroPhoto ?? service.photo}
+      priority
+    />
   </section>
 
   <section class="max-w-[1240px] mx-auto px-8 pb-22">

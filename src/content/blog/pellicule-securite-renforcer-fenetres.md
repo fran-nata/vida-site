@@ -3,6 +3,7 @@ title: "Pellicule de sécurité : comment renforcer vos fenêtres contre l'effra
 description: "Comment la pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction résidentielles et commerciales."
 date: "2026-05-22"
 category: "Sécurité"
+image: "/images/impact-fissure-vitre-pellicule-securite-bureau-montreal.jpg"
 ---
 
 Après une effraction dans le quartier, le réflexe de plusieurs propriétaires est de vouloir tout changer pour du verre trempé — jusqu'à ce qu'ils voient la facture. Remplacer toutes ses fenêtres par du verre trempé coûte cher. La pellicule de sécurité offre une alternative efficace : elle renforce le verre existant sans travaux majeurs.

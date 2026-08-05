@@ -3,6 +3,7 @@ title: "Pellicule anti-UV : protéger vos meubles et planchers du soleil"
 description: "Comment la pellicule anti-UV pour fenêtre protège vos meubles, planchers de bois et tissus contre la décoloration causée par le soleil."
 date: "2026-04-02"
 category: "Protection UV"
+image: "/images/salon-lumineux-plancher-bois-fenetres-panoramiques-montreal.jpg"
 ---
 
 On l'a vu chez plusieurs clients : un plancher de bois franc parfaitement uniforme, sauf une bande plus pâle exactement là où le tapis a passé dix ans. Le soleil qui entre par vos fenêtres ne réchauffe pas seulement la pièce — il décolore lentement vos planchers, meubles et tissus. La pellicule anti-UV s'attaque directement à cette cause.

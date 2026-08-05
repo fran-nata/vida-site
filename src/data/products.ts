@@ -15,6 +15,7 @@ export interface Product {
   categoryLabel: string;
   hue: number;
   photo: string;
+  photoAlt: string;
   specs: ProductSpec[];
   serviceSlug: string;
 }
@@ -29,6 +30,7 @@ export const products: Product[] = [
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-clarion-fenetre-vue-montagne.jpg',
+    photoAlt: 'Pellicule solaire Tekton Clarion sur fenêtre panoramique avec vue dégagée, Montréal',
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 70, max: 100, suffix: '%', outcome: "La pièce garde toute sa luminosité — aucun effet « vitre teintée »." },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Planchers, meubles et tissus arrêtent de jaunir au soleil.' },
@@ -44,6 +46,7 @@ export const products: Product[] = [
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-keramos-ceramique-fenetre.jpg',
+    photoAlt: 'Pellicule solaire céramique Tekton Keramos pour fenêtre résidentielle, Montréal',
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 55, max: 100, suffix: '%', outcome: "Assez de lumière pour ne jamais avoir à allumer en plein jour." },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos meubles et planchers protégés, sans y penser.' },
@@ -59,6 +62,7 @@ export const products: Product[] = [
     categoryLabel: 'Intimité',
     hue: 280,
     photo: '/images/pellicule-tekton-nocturna-intimite-fenetre.jpg',
+    photoAlt: "Pellicule d'intimité Tekton Nocturna sans effet miroir pour fenêtre, Montréal",
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 30, max: 100, suffix: '%', outcome: 'Assez de clarté pour garder la pièce vivante toute la journée.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos meubles protégés en prime.' },
@@ -74,6 +78,7 @@ export const products: Product[] = [
     categoryLabel: 'Intimité',
     hue: 280,
     photo: '/images/pellicule-tekton-visio-double-reflexion-fenetre.jpg',
+    photoAlt: "Pellicule d'intimité Tekton Visio double réflexion sur fenêtre résidentielle, Montréal",
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 8, max: 100, suffix: '%', outcome: 'Personne ne devine ce qui se passe à l\'intérieur, même en plein jour.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Protection UV incluse, sans effort de plus.' },
@@ -89,6 +94,7 @@ export const products: Product[] = [
     categoryLabel: 'Décoratif',
     hue: 150,
     photo: '/images/pellicule-tekton-frost-givree-fenetre.jpg',
+    photoAlt: 'Pellicule décorative givrée Tekton Frost sur fenêtre, effet verre gravé, Montréal',
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 75, max: 100, suffix: '%', outcome: 'La pièce reste lumineuse — c\'est la vue directe qui disparaît.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Une protection qu\'on n\'a pas à payer en plus.' },
@@ -104,6 +110,7 @@ export const products: Product[] = [
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-bronze-reflective-fenetre.jpg',
+    photoAlt: 'Pellicule solaire réfléchissante Tekton Bronze Reflective sur fenêtre, Montréal',
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 35, max: 100, suffix: '%', outcome: 'Le soleil de plomb est filtré sans assombrir la pièce.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Meubles et planchers protégés à long terme.' },
@@ -119,6 +126,7 @@ export const products: Product[] = [
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-silver-reflective-fenetre.jpg',
+    photoAlt: 'Pellicule solaire réfléchissante Tekton Silver Reflective sur fenêtre, Montréal',
     specs: [
       { label: 'Transmission lumineuse (VLT)', value: 40, max: 100, suffix: '%', outcome: 'La climatisation travaille moins fort, tout l\'été.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos intérieurs protégés du jaunissement.' },
@@ -134,6 +142,7 @@ export const products: Product[] = [
     categoryLabel: 'Sécurité',
     hue: 20,
     photo: '/images/pellicule-tekton-fortis-securite-vitre-fissuree.jpg',
+    photoAlt: 'Pellicule de sécurité Tekton Fortis maintenant une vitre fissurée en place, Montréal',
     specs: [
       { label: 'Épaisseur maximale offerte', value: 14, max: 14, suffix: ' mil', outcome: 'Environ 7 fois plus épaisse que notre pellicule décorative Frost (2 mil).' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Une protection supplémentaire pour vos meubles, en prime.' },
@@ -149,6 +158,7 @@ export const products: Product[] = [
     categoryLabel: 'Sécurité',
     hue: 20,
     photo: '/images/pellicule-tekton-fortis-securite-vitre-fissuree.jpg',
+    photoAlt: 'Pellicule de sécurité Tekton Fortis Specialty avec fini givré sur vitre fissurée, Montréal',
     specs: [
       { label: 'Épaisseur (variante Frost 13)', value: 13, max: 14, suffix: ' mil', outcome: 'Presque aussi robuste que notre Fortis 14, avec un fini givré intégré.' },
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Protection UV incluse sur les trois finis offerts.' },
@@ -164,6 +174,7 @@ export const products: Product[] = [
     categoryLabel: 'Sécurité',
     hue: 20,
     photo: '/images/pellicule-tekton-fortis-graffiti-cloison-vitree.jpg',
+    photoAlt: 'Pellicule anti-graffiti Tekton Fortis Graffiti sur vitrine commerciale endommagée, Montréal',
     specs: [
       { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos surfaces protégées du jaunissement, en plus du blindage anti-graffiti.' },
     ],

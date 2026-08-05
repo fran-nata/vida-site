@@ -5,7 +5,7 @@ date: "2026-07-03"
 category: "Confort thermique"
 ---
 
-Pas certain si la pellicule solaire est faite pour votre maison ? Voici cinq signes qui indiquent que le moment est venu.
+La plupart des gens qui nous appellent ne se disent pas « j'ai besoin de pellicule solaire » — ils se disent « il y a quelque chose qui ne va pas avec cette pièce ». Pas certain si la pellicule solaire est faite pour votre maison ? Voici cinq signes qui indiquent que le moment est venu.
 
 - **Certaines pièces deviennent inconfortables en après-midi** — surtout si elles sont orientées sud ou ouest.
 - **Vous fermez constamment les rideaux** pour éviter l'éblouissement sur les écrans.

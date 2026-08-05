@@ -6,6 +6,7 @@ import ContactCta from '../../../../components/ContactCta.astro';
 import ImagePlaceholder from '../../../../components/ImagePlaceholder.astro';
 import { services } from '../../../../data/services';
 import { cities, nearbyCities } from '../../../../data/cities';
+import { comboIntros } from '../../../../data/comboIntros';
 import { site } from '../../../../lib/site';
 
 export function getStaticPaths() {
@@ -21,6 +22,7 @@ export function getStaticPaths() {
 const { service, city } = Astro.props;
 const otherServices = services.filter((s) => s.slug !== service.slug);
 const near = nearbyCities(city.slug, 3);
+const [introLocal, introClose] = comboIntros[service.slug][city.slug];
 
 const serviceLd = {
   '@context': 'https://schema.org',
@@ -49,12 +51,8 @@ const serviceLd = {
     <div>
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
       <h1 class="font-heading text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">{service.name} à {city.name}</h1>
-      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
-        À {city.name}, notre équipe installe la {service.name.toLowerCase()} avec précision, pour les projets résidentiels et commerciaux. {service.cardDescription}
-      </p>
-      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
-        Résidentiel ou commercial, nous adaptons l'installation de {service.name.toLowerCase()} à votre propriété à {city.name}, dans {city.region}.
-      </p>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">{introClose}</p>
       <div class="flex gap-3.5 flex-wrap">
         <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
         <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>

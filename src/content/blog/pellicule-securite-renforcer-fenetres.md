@@ -5,7 +5,7 @@ date: "2026-05-22"
 category: "Sécurité"
 ---
 
-Remplacer toutes ses fenêtres par du verre trempé coûte cher. La pellicule de sécurité offre une alternative efficace : elle renforce le verre existant sans travaux majeurs.
+Après une effraction dans le quartier, le réflexe de plusieurs propriétaires est de vouloir tout changer pour du verre trempé — jusqu'à ce qu'ils voient la facture. Remplacer toutes ses fenêtres par du verre trempé coûte cher. La pellicule de sécurité offre une alternative efficace : elle renforce le verre existant sans travaux majeurs.
 
 ## Comment elle protège
 

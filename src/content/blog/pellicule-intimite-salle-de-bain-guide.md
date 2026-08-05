@@ -5,7 +5,7 @@ date: "2026-04-18"
 category: "Pellicule d'intimité"
 ---
 
-La salle de bain est l'une des pièces où l'intimité compte le plus — et où les rideaux ne sont pas toujours pratiques à cause de l'humidité. La pellicule d'intimité givrée est une alternative élégante et durable.
+C'est une des questions qu'on nous pose le plus souvent, presque toujours avec un peu de gêne dans la voix : « est-ce qu'on voit vraiment à travers, le soir ? » La salle de bain est l'une des pièces où l'intimité compte le plus — et où les rideaux ne sont pas toujours pratiques à cause de l'humidité. La pellicule d'intimité givrée est une alternative élégante et durable.
 
 ## Comment ça fonctionne
 

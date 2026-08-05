@@ -5,7 +5,7 @@ date: "2026-04-02"
 category: "Protection UV"
 ---
 
-Le soleil qui entre par vos fenêtres ne réchauffe pas seulement la pièce — il décolore lentement vos planchers, meubles et tissus. La pellicule anti-UV s'attaque directement à cette cause.
+On l'a vu chez plusieurs clients : un plancher de bois franc parfaitement uniforme, sauf une bande plus pâle exactement là où le tapis a passé dix ans. Le soleil qui entre par vos fenêtres ne réchauffe pas seulement la pièce — il décolore lentement vos planchers, meubles et tissus. La pellicule anti-UV s'attaque directement à cette cause.
 
 ## Pourquoi les UV décolorent vos intérieurs
 

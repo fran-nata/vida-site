@@ -30,8 +30,8 @@ const serviceLd = {
 };
 ---
 <Layout
-  title={`${service.heroTitle} | ${service.tagline} | ${site.name}`}
-  description={`Installation de ${service.name.toLowerCase()} pour fenêtres résidentielles et commerciales à Montréal. ${service.cardDescription} Estimation gratuite.`}
+  title={service.metaTitle}
+  description={service.metaDescription}
   canonicalPath={`/services/${service.slug}/`}
 >
   <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Services', href: '/services/' }, { label: service.name }]} />
@@ -64,6 +64,7 @@ const serviceLd = {
     <section class="bg-bg-light px-8 py-18">
       <div class="max-w-[1240px] mx-auto">
         <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-5">Idéale pour maisons, condos et bureaux</h2>
+        {service.useCasesIntro && <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px]">{service.useCasesIntro}</p>}
         <div class="grid grid-cols-3 gap-4">
           {service.useCases.map((c) => (
             <div class="bg-white rounded-lg p-5 text-sm font-semibold">{c}</div>

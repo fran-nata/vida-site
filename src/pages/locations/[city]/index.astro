@@ -6,6 +6,7 @@ import ContactCta from '../../../components/ContactCta.astro';
 import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
 import { services } from '../../../data/services';
 import { cities, nearbyCities, regionProfiles } from '../../../data/cities';
+import { locationIntros } from '../../../data/locationIntros';
 import { site } from '../../../lib/site';
 
 export function getStaticPaths() {
@@ -19,6 +20,7 @@ const { city } = Astro.props;
 const near = nearbyCities(city.slug, 6);
 const profile = regionProfiles[city.region];
 const nearNames = near.slice(0, 3).map((c) => c.name);
+const [introLocal, introClose] = locationIntros[city.slug];
 
 const whyUs = [
   { title: 'Installation locale', description: `Techniciens qui se déplacent dans ${city.name}.` },
@@ -61,9 +63,8 @@ const localFaqs = [
     <div>
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
       <h1 class="font-heading text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
-      <p class="text-[17px] leading-relaxed text-muted mb-8 max-w-[680px]">
-        Vida Vitres installe la pellicule solaire, d'intimité, de sécurité et décorative pour les résidences et commerces de {city.name} et des environs, dans {city.region}. Nos techniciens se déplacent chez vous pour évaluer vos fenêtres et installer la pellicule adaptée à votre projet, avec une estimation gratuite avant chaque intervention.
-      </p>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-8 max-w-[680px]">{introClose}</p>
       <div class="flex gap-3.5 flex-wrap">
         <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
         <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>

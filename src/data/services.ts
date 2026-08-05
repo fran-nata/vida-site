@@ -17,7 +17,10 @@ export interface Service {
   benefits: { title: string; description: string }[];
   tags: string;
   useCases?: string[];
+  useCasesIntro?: string;
   faqs: FAQ[];
+  metaTitle: string;
+  metaDescription: string;
 }
 
 export const services: Service[] = [
@@ -30,7 +33,10 @@ export const services: Service[] = [
     hue: 230,
     heroTitle: 'Pellicule solaire pour fenêtres à Montréal',
     heroDescription:
-      "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles — tout en préservant la clarté de vos fenêtres et la lumière naturelle. Idéale pour les maisons, condos et bureaux exposés au soleil.",
+      "Si votre salon orienté ouest devient invivable à 16h en été, c'est pas normal de vivre avec ça année après année. La pellicule solaire bloque jusqu'à 99% des UV et coupe la chaleur avant qu'elle n'entre — sans assombrir la pièce ni changer une seule fenêtre.",
+    metaTitle: 'Pellicule Solaire pour Fenêtres | Réduction de Chaleur & UV | Vida Vitres',
+    metaDescription:
+      "Installation de pellicule solaire pour fenêtres résidentielles et commerciales. Bloque jusqu'à 99% des UV, réduit la chaleur et l'éblouissement. Estimation gratuite à Montréal.",
     cardDescription:
       "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles, tout en laissant entrer la lumière naturelle.",
     photoCaption: 'pellicule solaire installée sur grande fenêtre de salon à Montréal',
@@ -42,6 +48,8 @@ export const services: Service[] = [
     ],
     tags: 'Maisons · Condos · Bureaux · Commerces',
     useCases: ['Maisons unifamiliales', 'Condominiums', 'Vérandas & solariums', 'Bureaux & commerces', 'Cliniques médicales', 'Immeubles professionnels'],
+    useCasesIntro:
+      "On le voit sur presque chaque appel : une pièce orientée sud ou ouest que la famille a fini par abandonner l'après-midi, ou un bureau où personne ne veut s'asseoir près de la fenêtre. La pellicule s'applique sur la plupart des vitrages, simples ou doubles, et redonne l'usage de ces espaces — souvent le jour même de l'installation.",
     faqs: [
       { question: 'La pellicule solaire assombrit-elle la pièce ?', answer: 'Non — la plupart de nos pellicules solaires laissent passer 60 à 70% de la lumière visible tout en bloquant la chaleur et les UV.' },
       { question: "Combien coûte l'installation de pellicule solaire ?", answer: 'Le coût dépend de la surface vitrée et du type de pellicule choisi. Obtenez une estimation gratuite et personnalisée en quelques minutes.' },
@@ -57,7 +65,10 @@ export const services: Service[] = [
     hue: 280,
     heroTitle: "Pellicule d'Intimité pour fenêtres à Montréal",
     heroDescription:
-      "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
+      "Une salle de bain sans rideau, une porte d'entrée vitrée qui donne en plein sur le trottoir, un rez-de-jardin où on hésite à laisser la lumière allumée le soir — la pellicule d'intimité règle ça sans bloquer la lumière du jour ni transformer votre maison en bunker.",
+    metaTitle: "Pellicule d'Intimité pour Fenêtres | Discrétion & confort | Vida Vitres",
+    metaDescription:
+      "Installation de pellicule d'intimité pour fenêtres résidentielles et commerciales à Montréal. Crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue. Estimation gratuite.",
     cardDescription:
       "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
     photoCaption: "installation de pellicule d'intimité givrée sur fenêtre de salle de bain à Montréal",
@@ -83,7 +94,10 @@ export const services: Service[] = [
     hue: 20,
     heroTitle: 'Pellicule de Sécurité pour fenêtres à Montréal',
     heroDescription:
-      "La pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres.",
+      "Remplacer toutes vos fenêtres par du verre trempé pour dormir tranquille, c'est ni réaliste ni nécessaire. La pellicule de sécurité renforce le verre que vous avez déjà — elle tient les fragments ensemble lors d'un choc et ralentit pas mal une tentative d'entrée par la force.",
+    metaTitle: 'Pellicule de Sécurité pour Fenêtres | Protection & tranquillité d’esprit | Vida Vitres',
+    metaDescription:
+      "Installation de pellicule de sécurité pour fenêtres résidentielles et commerciales à Montréal. Renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres. Estimation gratuite.",
     cardDescription:
       "La pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres.",
     photoCaption: 'installation de pellicule de sécurité sur porte-fenêtre à Montréal',
@@ -109,7 +123,10 @@ export const services: Service[] = [
     hue: 150,
     heroTitle: 'Pellicule Décorative pour fenêtres à Montréal',
     heroDescription:
-      'La pellicule décorative modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces.',
+      "Une cloison de bureau en verre clair qui manque de caractère, une salle de conférence trop exposée, une porte d'entrée qu'on aimerait moderniser sans tout défaire — un fini givré sur mesure change le look d'un espace en une seule visite, à une fraction du coût d'une rénovation.",
+    metaTitle: 'Pellicule Décorative pour Fenêtres | Esthétique & branding | Vida Vitres',
+    metaDescription:
+      'Installation de pellicule décorative pour fenêtres résidentielles et commerciales à Montréal. Modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces. Estimation gratuite.',
     cardDescription:
       'La pellicule décorative modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces.',
     photoCaption: 'installation de pellicule décorative givrée sur cloison de bureau à Montréal',

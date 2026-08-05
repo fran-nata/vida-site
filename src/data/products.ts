@@ -12,6 +12,7 @@ export interface Product {
   category: 'solaire' | 'intimite' | 'securite' | 'decorative';
   categoryLabel: string;
   hue: number;
+  photo: string;
   description: string;
   specs: ProductSpec[];
   highlights: string[];
@@ -26,6 +27,7 @@ export const products: Product[] = [
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
+    photo: '/images/pellicule-tekton-clarion-fenetre-vue-montagne.jpg',
     description:
       "Une pellicule quasi invisible qui laisse passer jusqu'à 70% de la lumière tout en bloquant la chaleur et les UV — le choix par défaut pour préserver la vue et la clarté d'une grande fenêtre.",
     specs: [
@@ -42,6 +44,7 @@ export const products: Product[] = [
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
+    photo: '/images/pellicule-tekton-keramos-ceramique-fenetre.jpg',
     description:
       "Une technologie céramique qui optimise à la fois la clarté et le rejet de chaleur, sans l'aspect métallisé des pellicules réfléchissantes classiques. Offert en trois teintes selon le niveau de contrôle solaire recherché.",
     specs: [
@@ -58,6 +61,7 @@ export const products: Product[] = [
     category: 'intimite',
     categoryLabel: "Intimité",
     hue: 280,
+    photo: '/images/pellicule-tekton-nocturna-intimite-fenetre.jpg',
     description:
       "Une intimité de jour discrète, sans le look métallisé d'une pellicule réfléchissante classique — un fini élégant qui convient aussi bien aux résidences modernes qu'aux bâtiments plus classiques.",
     specs: [
@@ -74,6 +78,7 @@ export const products: Product[] = [
     category: 'intimite',
     categoryLabel: 'Intimité',
     hue: 280,
+    photo: '/images/pellicule-tekton-visio-double-reflexion-fenetre.jpg',
     description:
       "Une pellicule à double réflexion pensée pour une intimité de jour maximale, tout en gardant une vue claire et naturelle vers l'extérieur une fois la nuit tombée.",
     specs: [
@@ -90,6 +95,7 @@ export const products: Product[] = [
     category: 'decorative',
     categoryLabel: 'Décoratif',
     hue: 150,
+    photo: '/images/pellicule-tekton-frost-givree-fenetre.jpg',
     description:
       "Le look du verre sablé ou gravé, appliqué directement sur une vitre existante. Laisse entrer la lumière naturelle tout en bloquant complètement la vue directe — parfait pour bureaux, salles de bain et cloisons.",
     specs: [
@@ -106,6 +112,7 @@ export const products: Product[] = [
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
+    photo: '/images/pellicule-tekton-bronze-reflective-fenetre.jpg',
     description:
       "Une pellicule réfléchissante à la teinte cuivrée chaude, pensée pour les façades les plus exposées — elle bloque une bonne partie de la chaleur solaire tout en ajoutant une intimité de jour.",
     specs: [
@@ -122,6 +129,7 @@ export const products: Product[] = [
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
+    photo: '/images/pellicule-tekton-silver-reflective-fenetre.jpg',
     description:
       "La pellicule miroir classique, toujours l'une des plus performantes pour le rejet de chaleur solaire. Le choix des bâtiments commerciaux à forte exposition qui veulent maximiser l'efficacité énergétique.",
     specs: [
@@ -138,6 +146,7 @@ export const products: Product[] = [
     category: 'securite',
     categoryLabel: 'Sécurité',
     hue: 20,
+    photo: '/images/pellicule-tekton-fortis-securite-vitre-fissuree.jpg',
     description:
       "Une construction multicouche qui maintient les fragments de verre ensemble lors d'un impact, ralentissant considérablement une tentative d'effraction. Offerte en trois épaisseurs selon le niveau de protection recherché.",
     specs: [

@@ -1,5 +1,6 @@
 ---
 import type { Product } from '../data/products';
+import ImagePlaceholder from './ImagePlaceholder.astro';
 interface Props {
   product: Product;
   index?: number;
@@ -7,14 +8,20 @@ interface Props {
 const { product, index = 0 } = Astro.props;
 const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
 ---
-<div class={`group relative rounded-2xl border border-border bg-white p-6 flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-transparent reveal ${delayClass}`}>
-  <span
-    class="absolute top-0 left-6 -translate-y-1/2 text-[11px] font-bold px-3 py-1 rounded-full text-white"
-    style={`background: oklch(0.55 0.12 ${product.hue})`}
-  >
-    {product.categoryLabel}
-  </span>
-  <h3 class="font-heading text-xl font-bold mt-3 mb-1">{product.name}</h3>
+<div class={`group relative rounded-2xl border border-border bg-white overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-transparent reveal ${delayClass}`}>
+  <div class="relative overflow-hidden">
+    <div class="transition-transform duration-500 group-hover:scale-110">
+      <ImagePlaceholder caption={`Pellicule Tekton ${product.name}`} hue={product.hue} aspect="aspect-[4/3]" class="rounded-none" src={product.photo} />
+    </div>
+    <span
+      class="absolute top-3 left-3 text-[11px] font-bold px-3 py-1.5 rounded-full text-white"
+      style={`background: oklch(0.55 0.12 ${product.hue})`}
+    >
+      {product.categoryLabel}
+    </span>
+  </div>
+  <div class="p-6 flex flex-col flex-1">
+  <h3 class="font-heading text-xl font-bold mb-1">{product.name}</h3>
   <p class="text-[13px] font-semibold text-accent mb-4">{product.tagline}</p>
   <p class="text-sm leading-relaxed text-muted mb-6">{product.description}</p>
 
@@ -47,4 +54,5 @@ const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
   <a href={`/services/${product.serviceSlug}/`} class="text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">
     Voir le service associé →
   </a>
+  </div>
 </div>

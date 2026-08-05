@@ -18,7 +18,7 @@ import { cities, regionOrder } from '../../data/cities';
 
     {regionOrder.map((region) => (
       <div class="mb-8">
-        <h3 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h3>
+        <h2 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
           {cities.filter((c) => c.region === region).map((c) => <LocationCard city={c} />)}
         </div>

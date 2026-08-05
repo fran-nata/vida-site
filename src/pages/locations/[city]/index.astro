@@ -95,6 +95,7 @@ const localFaqs = [
   </section>
 
   <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-6">Nos services à {city.name}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {services.map((s) => (
         <a href={`/services/${s.slug}/${city.slug}/`} class="block border border-border rounded-lg p-6 bg-white">
@@ -124,7 +125,7 @@ const localFaqs = [
       <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-6">Pourquoi les résidents de {city.name} nous font confiance</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {whyUs.map((item) => (
-          <div><h4 class="text-[15px] font-bold mb-1.5">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
+          <div><h3 class="text-[15px] font-bold mb-1.5">{item.title}</h3><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
         ))}
       </div>
     </div>

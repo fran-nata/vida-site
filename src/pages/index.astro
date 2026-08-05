@@ -281,7 +281,7 @@ const faqs = [
       {steps.map((s, i) => (
         <div class={`group relative px-5 transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1} ${i > 0 ? 'sm:border-l border-border' : ''}`}>
           <div class="font-heading font-bold text-[26px] text-accent-light mb-3 transition-transform duration-300 group-hover:scale-110 inline-block">{s.n}</div>
-          <h4 class="text-base font-bold mb-2">{s.title}</h4>
+          <h3 class="text-base font-bold mb-2">{s.title}</h3>
           <p class="text-sm leading-relaxed text-muted">{s.description}</p>
         </div>
       ))}

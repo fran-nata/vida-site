@@ -62,7 +62,7 @@ const serviceLd = {
     <h2 class="font-heading text-[26px] sm:text-[32px] font-extrabold tracking-tight mb-9 reveal">Les avantages de la {service.name.toLowerCase()}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {service.benefits.map((b, i) => (
-        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h4 class="text-base font-bold mb-2">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h3 class="text-base font-bold mb-2">{b.title}</h3><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
       ))}
     </div>
   </section>

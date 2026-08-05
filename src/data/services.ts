@@ -77,10 +77,10 @@ export const services: Service[] = [
       "Installation de pellicule d'intimité pour fenêtres résidentielles et commerciales à Montréal. Crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue. Estimation gratuite.",
     cardDescription:
       "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
-    photoCaption: "installation de pellicule d'intimité givrée sur fenêtre de salle de bain à Montréal",
-    photo: '/images/pellicule-intimite-fenetre-givree-salle-de-bain-montreal.jpg',
-    heroPhoto: '/images/pellicule-intimite-fenetre-givree-salle-de-bain-montreal.jpg',
-    heroPhotoCaption: "Fenêtre de salle de bain avec pellicule d'intimité givrée à Montréal",
+    photoCaption: "Façade commerciale avec pellicule d'intimité réfléchissante à Montréal",
+    photo: '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
+    heroPhoto: '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
+    heroPhotoCaption: "Immeuble commercial avec pellicule d'intimité réfléchissante à Montréal",
     benefits: [
       { title: 'Intimité totale', description: "Empêche la vue depuis l'extérieur, de jour comme le soir." },
       { title: 'Lumière préservée', description: 'Un fini dépoli qui garde vos pièces lumineuses.' },

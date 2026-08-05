@@ -24,22 +24,24 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
 const near = nearbyCities(city.slug, 3);
 const [introLocal, introClose] = comboIntros[service.slug][city.slug];
 
-// Real photography only exists for pellicule-solaire (rotated, so the 17
-// combo pages for that service aren't all identical) and pellicule-intimité
-// (a single photo so far). No photos yet for sécurité/décorative.
+// Real photography exists for solaire (rotated, so the 17 combo pages for
+// that service aren't all identical), intimité, and décorative (one photo
+// each so far). No photo yet for sécurité.
 const solairePhotoPool = [
   '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.jpg',
   '/images/installation-pellicule-solaire-vue-montreal.jpg',
   '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
   '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
 ];
+const singlePhotoByService: Record<string, string> = {
+  'pellicule-intimite': '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
+  'pellicule-decorative': '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+};
 const cityIndex = cities.findIndex((c) => c.slug === city.slug);
 const photo =
   service.slug === 'pellicule-solaire'
     ? solairePhotoPool[cityIndex % solairePhotoPool.length]
-    : service.slug === 'pellicule-intimite'
-      ? '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg'
-      : undefined;
+    : singlePhotoByService[service.slug];
 
 const serviceLd = {
   '@context': 'https://schema.org',

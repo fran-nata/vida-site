@@ -138,7 +138,10 @@ export const services: Service[] = [
       'Installation de pellicule décorative pour fenêtres résidentielles et commerciales à Montréal. Modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces. Estimation gratuite.',
     cardDescription:
       'La pellicule décorative modernise vos surfaces vitrées avec des finitions givrées élégantes, personnalisables pour bureaux et commerces.',
-    photoCaption: 'installation de pellicule décorative givrée sur cloison de bureau à Montréal',
+    photoCaption: 'Cloison de bureau avec pellicule décorative givrée en bande, Montréal',
+    photo: '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+    heroPhoto: '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+    heroPhotoCaption: 'Cloison de bureau vitrée avec bande de pellicule décorative givrée à Montréal',
     benefits: [
       { title: 'Finitions sur mesure', description: 'Motifs givrés, bandes ou logos selon vos besoins.' },
       { title: 'Image de marque', description: 'Intégrez votre logo directement sur le verre.' },

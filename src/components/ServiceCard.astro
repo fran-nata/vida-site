@@ -4,12 +4,16 @@ import ImagePlaceholder from './ImagePlaceholder.astro';
 interface Props {
   service: Service;
   href?: string;
+  index?: number;
 }
-const { service, href = `/services/${service.slug}/` } = Astro.props;
+const { service, href = `/services/${service.slug}/`, index = 0 } = Astro.props;
+const delayClass = index > 0 ? `reveal-d${Math.min(index, 8)}` : '';
 ---
-<div class="border border-border rounded-2xl bg-white overflow-hidden flex flex-col">
-  <div class="relative">
-    <ImagePlaceholder caption={service.photoCaption} hue={service.hue} aspect="aspect-[4/3]" class="rounded-none" src={service.photo} />
+<div class={`group border border-border rounded-2xl bg-white overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-transparent reveal ${delayClass}`}>
+  <div class="relative overflow-hidden">
+    <div class="transition-transform duration-500 group-hover:scale-110">
+      <ImagePlaceholder caption={service.photoCaption} hue={service.hue} aspect="aspect-[4/3]" class="rounded-none" src={service.photo} />
+    </div>
     <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
       <span aria-hidden="true">{service.icon}</span> {service.tagline}
     </span>
@@ -25,6 +29,6 @@ const { service, href = `/services/${service.slug}/` } = Astro.props;
     <div class="mt-auto pt-4 border-t border-border flex items-center justify-between gap-3">
       <span class="text-[11px] text-muted-2">{service.tags}</span>
     </div>
-    <a href={href} class="mt-3 text-[13px] font-bold text-accent">Estimation &amp; Réservation →</a>
+    <a href={href} class="mt-3 text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">Estimation &amp; Réservation →</a>
   </div>
 </div>

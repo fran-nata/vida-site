@@ -39,28 +39,30 @@ const serviceLd = {
   <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
 
   <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
-    <div>
+    <div class="hero-in">
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-4">{service.tagline}</p>
       <h1 class="font-heading text-[46px] leading-[1.08] font-extrabold tracking-tight mb-5">{service.heroTitle}</h1>
       <p class="text-lg leading-relaxed text-muted max-w-[520px] mb-8">{service.heroDescription}</p>
       <div class="flex gap-3.5 flex-wrap">
-        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
-        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Appeler maintenant</a>
       </div>
     </div>
-    <ImagePlaceholder
-      caption={service.heroPhotoCaption ?? service.photoCaption}
-      hue={service.hue}
-      src={service.heroPhoto ?? service.photo}
-      priority
-    />
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={service.heroPhotoCaption ?? service.photoCaption}
+        hue={service.hue}
+        src={service.heroPhoto ?? service.photo}
+        priority
+      />
+    </div>
   </section>
 
   <section class="max-w-[1240px] mx-auto px-8 pb-22">
-    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-9">Les avantages de la {service.name.toLowerCase()}</h2>
+    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-9 reveal">Les avantages de la {service.name.toLowerCase()}</h2>
     <div class="grid grid-cols-4 gap-6">
-      {service.benefits.map((b) => (
-        <div><h4 class="text-base font-bold mb-2">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      {service.benefits.map((b, i) => (
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h4 class="text-base font-bold mb-2">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
       ))}
     </div>
   </section>
@@ -68,11 +70,11 @@ const serviceLd = {
   {service.useCases && (
     <section class="bg-bg-light px-8 py-18">
       <div class="max-w-[1240px] mx-auto">
-        <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-5">Idéale pour maisons, condos et bureaux</h2>
-        {service.useCasesIntro && <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px]">{service.useCasesIntro}</p>}
+        <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-5 reveal">Idéale pour maisons, condos et bureaux</h2>
+        {service.useCasesIntro && <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px] reveal reveal-d1">{service.useCasesIntro}</p>}
         <div class="grid grid-cols-3 gap-4">
-          {service.useCases.map((c) => (
-            <div class="bg-white rounded-lg p-5 text-sm font-semibold">{c}</div>
+          {service.useCases.map((c, i) => (
+            <div class={`bg-white rounded-lg p-5 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-md reveal reveal-d${i + 1}`}>{c}</div>
           ))}
         </div>
       </div>
@@ -80,12 +82,12 @@ const serviceLd = {
   )}
 
   <section class="max-w-[1240px] mx-auto px-8 py-22">
-    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-3">{service.name} disponible dans votre région</h2>
-    <p class="text-base leading-relaxed text-muted mb-9">Nous installons la {service.name.toLowerCase()} à Montréal et dans les régions suivantes.</p>
-    <div class="grid grid-cols-4 gap-2.5">
+    <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-3 reveal">{service.name} disponible dans votre région</h2>
+    <p class="text-base leading-relaxed text-muted mb-9 reveal reveal-d1">Nous installons la {service.name.toLowerCase()} à Montréal et dans les régions suivantes.</p>
+    <div class="grid grid-cols-4 gap-2.5 reveal reveal-d2">
       {featuredCities.map((c) => <LocationCard city={c} href={`/services/${service.slug}/${c.slug}/`} />)}
     </div>
-    <a href="/locations/" class="inline-block mt-5 text-sm font-bold text-accent">Voir toutes les régions desservies →</a>
+    <a href="/locations/" class="inline-block mt-5 text-sm font-bold text-accent transition-transform duration-200 hover:translate-x-1">Voir toutes les régions desservies →</a>
   </section>
 
   <FaqAccordion faqs={service.faqs} />

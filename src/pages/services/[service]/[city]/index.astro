@@ -59,27 +59,29 @@ const serviceLd = {
   <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
 
   <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
-    <div>
+    <div class="hero-in">
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
       <h1 class="font-heading text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">{service.name} à {city.name}</h1>
       <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
       <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">{introClose}</p>
       <div class="flex gap-3.5 flex-wrap">
-        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Obtenir mon estimation →</a>
-        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold">Appeler maintenant</a>
+        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Appeler maintenant</a>
       </div>
     </div>
-    <ImagePlaceholder
-      caption={`Installation de ${service.name.toLowerCase()} sur fenêtre résidentielle à ${city.name}`}
-      hue={service.hue}
-      src={photo}
-    />
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={`Installation de ${service.name.toLowerCase()} sur fenêtre résidentielle à ${city.name}`}
+        hue={service.hue}
+        src={photo}
+      />
+    </div>
   </section>
 
   <section class="max-w-[1240px] mx-auto px-8 pb-14">
     <div class="grid grid-cols-4 gap-5">
-      {service.benefits.slice(0, 4).map((b) => (
-        <div><h4 class="text-[15px] font-bold mb-1.5">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      {service.benefits.slice(0, 4).map((b, i) => (
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h4 class="text-[15px] font-bold mb-1.5">{b.title}</h4><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
       ))}
     </div>
   </section>

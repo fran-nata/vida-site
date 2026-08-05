@@ -4,12 +4,14 @@ import { site } from '../lib/site';
 <a
   id="call-now-btn"
   href={site.phoneHref}
-  class="fixed bottom-6 right-6 z-40 bg-accent text-white pl-4 pr-5 py-3.5 rounded-full shadow-lg font-bold text-sm flex items-center gap-2"
+  class="group fixed bottom-6 right-6 z-40 bg-accent text-white pl-4 pr-5 py-3.5 rounded-full shadow-lg font-bold text-sm flex items-center gap-2"
   style="opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 300ms ease, transform 300ms ease;"
   aria-label={`Appeler Vida Vitres au ${site.phone}`}
 >
-  <span aria-hidden="true">📞</span>
-  <span>Appeler maintenant</span>
+  <span class="flex items-center gap-2 transition-transform duration-200 group-hover:scale-105">
+    <span class="animate-pulse" aria-hidden="true">📞</span>
+    <span>Appeler maintenant</span>
+  </span>
 </a>
 
 <script>

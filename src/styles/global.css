@@ -26,6 +26,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -49,4 +53,69 @@
 
 ::selection {
   background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+}
+
+/* Scroll-in reveal animation. Plain CSS (not Tailwind utilities) so it
+   works reliably regardless of dev/build-time class scanning -- toggled
+   via a site-wide IntersectionObserver in ScrollAnimations.astro. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 90ms; }
+.reveal-d2 { transition-delay: 180ms; }
+.reveal-d3 { transition-delay: 270ms; }
+.reveal-d4 { transition-delay: 360ms; }
+.reveal-d5 { transition-delay: 450ms; }
+.reveal-d6 { transition-delay: 540ms; }
+.reveal-d7 { transition-delay: 630ms; }
+.reveal-d8 { transition-delay: 720ms; }
+
+/* Scroll offset so anchored sections don't hide under the sticky header */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Hero entrance: plays once on page load, not scroll-triggered (the hero
+   is already in the viewport, so an IntersectionObserver reveal wouldn't
+   fire naturally the way it does further down the page). */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-in {
+  opacity: 0;
+  animation: hero-in 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-in-d1 { animation-delay: 120ms; }
+.hero-in-d2 { animation-delay: 220ms; }
+.hero-in-d3 { animation-delay: 320ms; }
+.hero-in-d4 { animation-delay: 420ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-in {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
 }

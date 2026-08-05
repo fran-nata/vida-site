@@ -1,0 +1,50 @@
+---
+import type { Product } from '../data/products';
+interface Props {
+  product: Product;
+  index?: number;
+}
+const { product, index = 0 } = Astro.props;
+const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
+---
+<div class={`group relative rounded-2xl border border-border bg-white p-6 flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-transparent reveal ${delayClass}`}>
+  <span
+    class="absolute top-0 left-6 -translate-y-1/2 text-[11px] font-bold px-3 py-1 rounded-full text-white"
+    style={`background: oklch(0.55 0.12 ${product.hue})`}
+  >
+    {product.categoryLabel}
+  </span>
+  <h3 class="font-heading text-xl font-bold mt-3 mb-1">{product.name}</h3>
+  <p class="text-[13px] font-semibold text-accent mb-4">{product.tagline}</p>
+  <p class="text-sm leading-relaxed text-muted mb-6">{product.description}</p>
+
+  <div class="flex flex-col gap-4 mb-6">
+    {product.specs.map((spec) => (
+      <div>
+        <div class="flex items-baseline justify-between mb-1.5">
+          <span class="text-[12px] font-semibold text-muted-2">{spec.label}</span>
+          <span class="text-[13px] font-bold" style={`color: oklch(0.5 0.1 ${product.hue})`}>
+            <span data-count-to={spec.value} data-count-suffix={spec.suffix}>0{spec.suffix}</span>
+          </span>
+        </div>
+        <div class="h-2 rounded-full bg-bg-light overflow-hidden">
+          <div
+            class="h-full rounded-full"
+            style={`width: 0%; background: oklch(0.6 0.13 ${product.hue});`}
+            data-bar-to={(spec.value / spec.max) * 100}
+          ></div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <ul class="text-[13px] text-muted space-y-1.5 mb-6 mt-auto">
+    {product.highlights.map((h) => (
+      <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> {h}</li>
+    ))}
+  </ul>
+
+  <a href={`/services/${product.serviceSlug}/`} class="text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">
+    Voir le service associé →
+  </a>
+</div>

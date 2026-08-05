@@ -1,0 +1,50 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { products, productCategories } from '../../data/products';
+---
+<Layout
+  title="Nos Produits Tekton Performance Films | Pellicules pour Fenêtres | Vida Vitres"
+  description="Découvrez les pellicules Tekton Performance Films que nous installons : contrôle solaire, intimité, sécurité et décoratif, avec les données de performance réelles de chaque film."
+  canonicalPath="/produits/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Produits' }]} />
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 text-center">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">Partenaire officiel Tekton Performance Films</p>
+    <h1 class="font-heading text-[28px] sm:text-[42px] font-extrabold tracking-tight mb-5 reveal reveal-d1">Les pellicules que nous installons, avec des données réelles</h1>
+    <p class="text-[17px] leading-relaxed text-muted max-w-[680px] mx-auto reveal reveal-d2">
+      Pas de promesses vagues : voici les performances certifiées de chaque film Tekton que nous posons à Montréal, pour que vous choisissiez en connaissance de cause selon votre projet.
+    </p>
+  </section>
+
+  {productCategories.map((cat) => {
+    const items = products.filter((p) => p.category === cat.key);
+    if (!items.length) return null;
+    return (
+      <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
+        <div class="flex items-center gap-3 mb-7 reveal">
+          <span class="w-2.5 h-2.5 rounded-full shrink-0" style={`background: oklch(0.55 0.12 ${cat.hue})`}></span>
+          <h2 class="font-heading text-[20px] sm:text-[24px] font-bold tracking-tight">{cat.label}</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-3">
+          {items.map((product, i) => <ProductCard product={product} index={i} />)}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="bg-navy px-5 sm:px-8 py-12 sm:py-16">
+    <div class="max-w-[900px] mx-auto text-center reveal">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Pas sûr quel film choisir ?</p>
+      <h2 class="font-heading text-[22px] sm:text-[28px] font-bold text-white tracking-tight mb-4">Nos techniciens recommandent le bon film selon vos fenêtres</h2>
+      <p class="text-base leading-relaxed text-footer-muted max-w-[600px] mx-auto">
+        L'orientation, le type de vitrage et l'usage de la pièce influencent le choix du film. Une évaluation gratuite sur place règle la question en quelques minutes.
+      </p>
+    </div>
+  </section>
+
+  <ContactCta title="Trouvons le film idéal pour votre projet" description="Estimation gratuite et recommandation personnalisée selon vos fenêtres." />
+</Layout>

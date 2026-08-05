@@ -23,11 +23,12 @@ const products = ['Clarion 70', 'Keramos', 'Nocturna', 'Visio', 'Silver Reflecti
       <p class="text-[15px] leading-relaxed text-footer-muted max-w-[560px] mx-auto mb-8">
         Reconnues pour leur clarté optique exceptionnelle, leur rejet de chaleur supérieur et leur durabilité éprouvée, les pellicules Tekton représentent la norme de l'industrie pour les applications résidentielles et commerciales.
       </p>
-      <div class="flex flex-wrap justify-center gap-2.5">
+      <div class="flex flex-wrap justify-center gap-2.5 mb-8">
         {products.map((p) => (
           <span class="border border-white/20 text-white text-[13px] font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:bg-white hover:text-navy hover:border-white cursor-default">{p}</span>
         ))}
       </div>
+      <a href="/produits/" class="inline-block bg-accent text-white px-6 py-3 rounded-[10px] text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Voir les données de performance de chaque film →</a>
     </div>
   </div>
 </section>

@@ -140,6 +140,35 @@ export const products: Product[] = [
     ],
     serviceSlug: 'pellicule-securite',
   },
+  {
+    slug: 'fortis-specialty',
+    name: 'Fortis Specialty',
+    tagline: 'Sécurité et fini décoratif combinés',
+    hook: 'La protection Fortis, avec le fini givré, réfléchissant ou teinté en prime — un seul film, deux fonctions.',
+    category: 'securite',
+    categoryLabel: 'Sécurité',
+    hue: 20,
+    photo: '/images/pellicule-tekton-fortis-securite-vitre-fissuree.jpg',
+    specs: [
+      { label: 'Épaisseur (variante Frost 13)', value: 13, max: 14, suffix: ' mil', outcome: 'Presque aussi robuste que notre Fortis 14, avec un fini givré intégré.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Protection UV incluse sur les trois finis offerts.' },
+    ],
+    serviceSlug: 'pellicule-securite',
+  },
+  {
+    slug: 'fortis-graffiti',
+    name: 'Fortis Graffiti',
+    tagline: 'Bouclier sacrificiel contre les graffitis et égratignures',
+    hook: 'Le graffiti abîme le film, pas votre vitrine — on le remplace, la vitre ne bouge pas.',
+    category: 'securite',
+    categoryLabel: 'Sécurité',
+    hue: 20,
+    photo: '/images/pellicule-tekton-fortis-graffiti-cloison-vitree.jpg',
+    specs: [
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos surfaces protégées du jaunissement, en plus du blindage anti-graffiti.' },
+    ],
+    serviceSlug: 'pellicule-securite',
+  },
 ];
 
 export const productCategories = [

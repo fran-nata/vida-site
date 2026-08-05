@@ -24,9 +24,9 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
 const near = nearbyCities(city.slug, 3);
 const [introLocal, introClose] = comboIntros[service.slug][city.slug];
 
-// Real photography exists for solaire (rotated, so the 17 combo pages for
-// that service aren't all identical), intimité, and décorative (one photo
-// each so far). No photo yet for sécurité.
+// Real photography exists for all 4 services now -- solaire is rotated
+// (so its 17 combo pages aren't all identical); the other 3 have one
+// photo each so far.
 const solairePhotoPool = [
   '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.jpg',
   '/images/installation-pellicule-solaire-vue-montreal.jpg',
@@ -36,6 +36,7 @@ const solairePhotoPool = [
 const singlePhotoByService: Record<string, string> = {
   'pellicule-intimite': '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
   'pellicule-decorative': '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+  'pellicule-securite': '/images/pellicule-securite-vitre-fissuree-maintenue-montreal.jpg',
 };
 const cityIndex = cities.findIndex((c) => c.slug === city.slug);
 const photo =

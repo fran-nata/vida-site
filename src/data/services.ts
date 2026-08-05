@@ -109,7 +109,10 @@ export const services: Service[] = [
       "Installation de pellicule de sécurité pour fenêtres résidentielles et commerciales à Montréal. Renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres. Estimation gratuite.",
     cardDescription:
       "La pellicule de sécurité renforce le vitrage existant contre les chocs, le bris et les tentatives d'effraction, sans remplacer vos fenêtres.",
-    photoCaption: 'installation de pellicule de sécurité sur porte-fenêtre à Montréal',
+    photoCaption: 'Vitrage fissuré par un impact mais maintenu en place par la pellicule de sécurité, Montréal',
+    photo: '/images/pellicule-securite-vitre-fissuree-maintenue-montreal.jpg',
+    heroPhoto: '/images/pellicule-securite-vitre-fissuree-maintenue-montreal.jpg',
+    heroPhotoCaption: 'Vitre commerciale fissurée par un impact mais retenue en place grâce à la pellicule de sécurité',
     benefits: [
       { title: 'Résistance aux chocs', description: "Maintient les fragments de verre en place lors d'un bris." },
       { title: "Dissuasion d'effraction", description: "Ralentit l'accès, un frein efficace contre l'intrusion." },

@@ -74,15 +74,15 @@ const localFaqs = [
 >
   <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Régions', href: '/locations/' }, { label: city.name }]} />
 
-  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-14 grid grid-cols-2 gap-14 items-center">
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
     <div class="hero-in">
       <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
-      <h1 class="font-heading text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
+      <h1 class="font-heading text-[30px] sm:text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Pellicule pour fenêtres à {city.name}</h1>
       <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
       <p class="text-[17px] leading-relaxed text-muted mb-8 max-w-[680px]">{introClose}</p>
       <div class="flex gap-3.5 flex-wrap">
-        <a href="#contact" class="bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Obtenir mon estimation →</a>
-        <a href={site.phoneHref} class="bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Appeler maintenant</a>
+        <a href="#contact" class="w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 text-center">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 text-center">Appeler maintenant</a>
       </div>
     </div>
     <div class="hero-in hero-in-d1">
@@ -94,8 +94,8 @@ const localFaqs = [
     </div>
   </section>
 
-  <section class="max-w-[1240px] mx-auto px-8 pb-14">
-    <div class="grid grid-cols-4 gap-5">
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {services.map((s) => (
         <a href={`/services/${s.slug}/${city.slug}/`} class="block border border-border rounded-lg p-6 bg-white">
           <h3 class="font-heading text-[17px] font-bold mb-2">{s.name}</h3>
@@ -106,7 +106,7 @@ const localFaqs = [
     </div>
   </section>
 
-  <section class="max-w-[900px] mx-auto px-8 pb-16">
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pb-16">
     <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-4">Pellicule pour fenêtres à {city.name} : ce qui distingue votre secteur</h2>
     <p class="text-[15px] leading-relaxed text-muted mb-5">
       Le secteur de {city.name}, dans {city.region}, se caractérise surtout par {profile.buildingContext}. Dans ce contexte, {profile.exposureNote}. C'est pourquoi nos techniciens recommandent généralement une évaluation sur place plutôt qu'une estimation générique en ligne : le type de vitrage, l'orientation des fenêtres et l'usage de la pièce influencent directement le choix entre une <a href={`/services/${solaire.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule solaire</a>, une <a href={`/services/${intimite.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule d'intimité</a>, une <a href={`/services/${securite.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule de sécurité</a> ou une <a href={`/services/${decorative.slug}/${city.slug}/`} class="text-accent font-semibold">pellicule décorative</a>.
@@ -119,10 +119,10 @@ const localFaqs = [
     </p>
   </section>
 
-  <section class="bg-bg-light px-8 py-14">
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
     <div class="max-w-[1240px] mx-auto">
-      <h2 class="font-heading text-[26px] font-extrabold tracking-tight mb-6">Pourquoi les résidents de {city.name} nous font confiance</h2>
-      <div class="grid grid-cols-4 gap-6">
+      <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-6">Pourquoi les résidents de {city.name} nous font confiance</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {whyUs.map((item) => (
           <div><h4 class="text-[15px] font-bold mb-1.5">{item.title}</h4><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
         ))}
@@ -130,7 +130,7 @@ const localFaqs = [
     </div>
   </section>
 
-  <section class="max-w-[900px] mx-auto px-8 py-16">
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
     <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Questions fréquentes à {city.name}</h2>
     {localFaqs.map((f) => (
       <details class="border-b border-border py-5">
@@ -145,9 +145,9 @@ const localFaqs = [
     })} />
   </section>
 
-  <section class="max-w-[1240px] mx-auto px-8 py-22">
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
     <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Autres régions desservies près de {city.name}</h2>
-    <div class="grid grid-cols-3 gap-2.5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
       {near.map((c) => <LocationCard city={c} />)}
     </div>
   </section>

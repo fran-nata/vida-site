@@ -16,10 +16,10 @@ const posts = (await getCollection('blog')).sort(
 >
   <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blogue' }]} />
 
-  <section class="max-w-[1240px] mx-auto px-8 pt-10 pb-22">
-    <h1 class="font-heading text-[42px] font-extrabold tracking-tight mt-4 mb-5">Blogue</h1>
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-14 sm:pb-22">
+    <h1 class="font-heading text-[30px] sm:text-[42px] font-extrabold tracking-tight mt-4 mb-5">Blogue</h1>
     <p class="text-[17px] leading-relaxed text-muted mb-11 max-w-[680px]">Conseils, comparatifs et guides sur la pellicule solaire, d'intimité, de sécurité et décorative pour fenêtres.</p>
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => (
         <a href={`/blog/${post.id}/`} class="block border border-border rounded-lg overflow-hidden bg-white">
           <ImagePlaceholder caption={post.data.title} aspect="aspect-video" class="rounded-none" src={post.data.image} />

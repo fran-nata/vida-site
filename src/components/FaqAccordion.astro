@@ -6,8 +6,8 @@ interface Props {
 }
 const { faqs, title = 'Questions fréquentes' } = Astro.props;
 ---
-<section class="max-w-[900px] mx-auto px-8 py-16">
-  <h2 class="font-heading text-[32px] font-extrabold tracking-tight mb-8 reveal">{title}</h2>
+<section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+  <h2 class="font-heading text-[24px] sm:text-[32px] font-extrabold tracking-tight mb-8 reveal">{title}</h2>
   <div class="reveal reveal-d1">
     {faqs.map((faq) => (
       <details class="group border-b border-border py-5">

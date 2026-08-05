@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 ---
 <header id="site-header" class="sticky top-0 z-50 backdrop-blur-sm border-b" style="background-color: rgba(255,255,255,0.95); border-color: var(--color-border); transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;">
-  <div class="max-w-[1240px] mx-auto px-8 py-3.5 flex items-center justify-between gap-6">
+  <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between gap-4 sm:gap-6">
     <Logo />
     <nav class="hidden lg:flex gap-7 items-center">
       <a href="/services/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Services</a>
@@ -12,8 +12,24 @@ import Logo from './Logo.astro';
       <a href="/locations/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Régions</a>
       <a href="/blog/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Blogue</a>
     </nav>
-    <a href="/#estimateur" class="bg-navy text-white px-5 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Estimation &amp; Réservation</a>
+    <a href="/#estimateur" class="hidden sm:inline-block bg-navy text-white px-5 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Estimation &amp; Réservation</a>
+    <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 shrink-0 -mr-1.5">
+      <span class="menu-bar block w-6 h-[2px] bg-navy transition-transform duration-300"></span>
+      <span class="menu-bar block w-6 h-[2px] bg-navy transition-opacity duration-300"></span>
+      <span class="menu-bar block w-6 h-[2px] bg-navy transition-transform duration-300"></span>
+    </button>
   </div>
+  <nav id="mobile-nav" class="lg:hidden overflow-hidden" style="max-height: 0; transition: max-height 300ms ease;">
+    <div class="flex flex-col px-5 sm:px-8 pb-5 pt-1 gap-1 border-t border-border">
+      <a href="/services/" class="text-[15px] font-medium py-2.5 border-b border-border">Services</a>
+      <a href="/#estimateur" class="text-[15px] font-medium py-2.5 border-b border-border">Estimateur</a>
+      <a href="/#processus" class="text-[15px] font-medium py-2.5 border-b border-border">Processus</a>
+      <a href="/#faq" class="text-[15px] font-medium py-2.5 border-b border-border">FAQ</a>
+      <a href="/locations/" class="text-[15px] font-medium py-2.5 border-b border-border">Régions</a>
+      <a href="/blog/" class="text-[15px] font-medium py-2.5 border-b border-border">Blogue</a>
+      <a href="/#estimateur" class="bg-navy text-white px-5 py-3 rounded-[10px] text-sm font-semibold text-center mt-4">Estimation &amp; Réservation</a>
+    </div>
+  </nav>
 </header>
 
 <script>
@@ -27,5 +43,24 @@ import Logo from './Logo.astro';
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  const toggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  if (toggle && mobileNav) {
+    let open = false;
+    const bars = toggle.querySelectorAll('.menu-bar');
+    const setOpen = (next: boolean) => {
+      open = next;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      mobileNav.style.maxHeight = open ? mobileNav.scrollHeight + 'px' : '0';
+      if (bars[0] instanceof HTMLElement) bars[0].style.transform = open ? 'translateY(7px) rotate(45deg)' : 'none';
+      if (bars[1] instanceof HTMLElement) bars[1].style.opacity = open ? '0' : '1';
+      if (bars[2] instanceof HTMLElement) bars[2].style.transform = open ? 'translateY(-7px) rotate(-45deg)' : 'none';
+    };
+    toggle.addEventListener('click', () => setOpen(!open));
+    mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024 && open) setOpen(false); });
   }
 </script>

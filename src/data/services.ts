@@ -78,6 +78,9 @@ export const services: Service[] = [
     cardDescription:
       "La pellicule d'intimité crée des espaces privés sans sacrifier la lumière naturelle — idéale pour salles de bain, portes d'entrée et fenêtres donnant sur la rue.",
     photoCaption: "installation de pellicule d'intimité givrée sur fenêtre de salle de bain à Montréal",
+    photo: '/images/pellicule-intimite-fenetre-givree-salle-de-bain-montreal.jpg',
+    heroPhoto: '/images/pellicule-intimite-fenetre-givree-salle-de-bain-montreal.jpg',
+    heroPhotoCaption: "Fenêtre de salle de bain avec pellicule d'intimité givrée à Montréal",
     benefits: [
       { title: 'Intimité totale', description: "Empêche la vue depuis l'extérieur, de jour comme le soir." },
       { title: 'Lumière préservée', description: 'Un fini dépoli qui garde vos pièces lumineuses.' },

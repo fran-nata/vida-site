@@ -22,8 +22,8 @@ const profile = regionProfiles[city.region];
 const nearNames = near.slice(0, 3).map((c) => c.name);
 const [introLocal, introClose] = locationIntros[city.slug];
 
-// Only real photography we have so far is solaire-themed; rotate through it
-// (offset from the combo-page rotation) so the 17 location pages vary.
+// These pages cover all 4 services, so any real photo we have works; rotate
+// through the set (offset from the combo-page rotation) for variety.
 const photoPool = [
   '/images/quartier-residentiel-grand-montreal-pellicule-fenetre.jpg',
   '/images/pellicule-solaire-fenetre-panoramique-salon-montreal.jpg',
@@ -31,6 +31,7 @@ const photoPool = [
   '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
   '/images/installation-pellicule-solaire-vue-montreal.jpg',
   '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+  '/images/pellicule-intimite-fenetre-givree-salle-de-bain-montreal.jpg',
 ];
 const cityIndex = cities.findIndex((c) => c.slug === city.slug);
 const photo = photoPool[(cityIndex + 2) % photoPool.length];

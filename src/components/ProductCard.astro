@@ -22,10 +22,10 @@ const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
   </div>
   <div class="p-6 flex flex-col flex-1">
   <h3 class="font-heading text-xl font-bold mb-1">{product.name}</h3>
-  <p class="text-[13px] font-semibold text-accent mb-4">{product.tagline}</p>
-  <p class="text-sm leading-relaxed text-muted mb-6">{product.description}</p>
+  <p class="text-[13px] font-semibold text-accent mb-3">{product.tagline}</p>
+  <p class="font-heading text-[15px] font-bold leading-snug mb-6" style={`color: oklch(0.4 0.1 ${product.hue})`}>{product.hook}</p>
 
-  <div class="flex flex-col gap-4 mb-6">
+  <div class="flex flex-col gap-5 mb-6 mt-auto">
     {product.specs.map((spec) => (
       <div>
         <div class="flex items-baseline justify-between mb-1.5">
@@ -34,22 +34,17 @@ const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
             <span data-count-to={spec.value} data-count-suffix={spec.suffix}>0{spec.suffix}</span>
           </span>
         </div>
-        <div class="h-2 rounded-full bg-bg-light overflow-hidden">
+        <div class="h-2 rounded-full bg-bg-light overflow-hidden mb-2">
           <div
             class="h-full rounded-full"
             style={`width: 0%; background: oklch(0.6 0.13 ${product.hue});`}
             data-bar-to={(spec.value / spec.max) * 100}
           ></div>
         </div>
+        <p class="text-[12.5px] leading-snug text-muted">{spec.outcome}</p>
       </div>
     ))}
   </div>
-
-  <ul class="text-[13px] text-muted space-y-1.5 mb-6 mt-auto">
-    {product.highlights.map((h) => (
-      <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> {h}</li>
-    ))}
-  </ul>
 
   <a href={`/services/${product.serviceSlug}/`} class="text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">
     Voir le service associé →

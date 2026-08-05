@@ -3,19 +3,19 @@ export interface ProductSpec {
   value: number;
   max: number;
   suffix: string;
+  outcome: string;
 }
 
 export interface Product {
   slug: string;
   name: string;
   tagline: string;
+  hook: string;
   category: 'solaire' | 'intimite' | 'securite' | 'decorative';
   categoryLabel: string;
   hue: number;
   photo: string;
-  description: string;
   specs: ProductSpec[];
-  highlights: string[];
   serviceSlug: string;
 }
 
@@ -24,136 +24,120 @@ export const products: Product[] = [
     slug: 'clarion',
     name: 'Clarion',
     tagline: 'Clarté totale, contrôle solaire avancé',
+    hook: "Vos fenêtres restent aussi claires qu'avant — la chaleur et les UV en moins.",
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-clarion-fenetre-vue-montagne.jpg',
-    description:
-      "Une pellicule quasi invisible qui laisse passer jusqu'à 70% de la lumière tout en bloquant la chaleur et les UV — le choix par défaut pour préserver la vue et la clarté d'une grande fenêtre.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 70, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 70, max: 100, suffix: '%', outcome: "La pièce garde toute sa luminosité — aucun effet « vitre teintée »." },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Planchers, meubles et tissus arrêtent de jaunir au soleil.' },
     ],
-    highlights: ['Vue et clarté préservées', 'Rejet de chaleur infrarouge élevé', 'Certifié NFRC'],
     serviceSlug: 'pellicule-solaire',
   },
   {
     slug: 'keramos',
     name: 'Keramos',
     tagline: 'Film céramique haut de gamme',
+    hook: "Le contrôle solaire d'une pellicule réfléchissante, sans jamais en avoir l'air.",
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-keramos-ceramique-fenetre.jpg',
-    description:
-      "Une technologie céramique qui optimise à la fois la clarté et le rejet de chaleur, sans l'aspect métallisé des pellicules réfléchissantes classiques. Offert en trois teintes selon le niveau de contrôle solaire recherché.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 55, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 55, max: 100, suffix: '%', outcome: "Assez de lumière pour ne jamais avoir à allumer en plein jour." },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos meubles et planchers protégés, sans y penser.' },
     ],
-    highlights: ['Apparence naturelle, non réfléchissante', 'Réduit les coûts énergétiques', 'Ralentit la décoloration des meubles'],
     serviceSlug: 'pellicule-solaire',
   },
   {
     slug: 'nocturna',
     name: 'Nocturna',
     tagline: 'Intimité subtile, sans effet miroir',
+    hook: 'Personne ne voit à l\'intérieur le jour — vous, vous voyez toujours dehors le soir.',
     category: 'intimite',
-    categoryLabel: "Intimité",
+    categoryLabel: 'Intimité',
     hue: 280,
     photo: '/images/pellicule-tekton-nocturna-intimite-fenetre.jpg',
-    description:
-      "Une intimité de jour discrète, sans le look métallisé d'une pellicule réfléchissante classique — un fini élégant qui convient aussi bien aux résidences modernes qu'aux bâtiments plus classiques.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 30, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 30, max: 100, suffix: '%', outcome: 'Assez de clarté pour garder la pièce vivante toute la journée.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos meubles protégés en prime.' },
     ],
-    highlights: ['Look élevé, sans effet miroir', 'Réduit efficacement l\'éblouissement', 'Résistant aux égratignures'],
     serviceSlug: 'pellicule-intimite',
   },
   {
     slug: 'visio',
     name: 'Visio',
     tagline: 'Intimité double réflexion',
+    hook: 'Intimité maximale le jour, vue intacte une fois la nuit tombée.',
     category: 'intimite',
     categoryLabel: 'Intimité',
     hue: 280,
     photo: '/images/pellicule-tekton-visio-double-reflexion-fenetre.jpg',
-    description:
-      "Une pellicule à double réflexion pensée pour une intimité de jour maximale, tout en gardant une vue claire et naturelle vers l'extérieur une fois la nuit tombée.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 8, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 8, max: 100, suffix: '%', outcome: 'Personne ne devine ce qui se passe à l\'intérieur, même en plein jour.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Protection UV incluse, sans effort de plus.' },
     ],
-    highlights: ['Intimité de jour maximale', 'Vue naturelle conservée le soir', 'Réduit l\'éblouissement'],
     serviceSlug: 'pellicule-intimite',
   },
   {
     slug: 'frost',
     name: 'Frost',
     tagline: "L'apparence du verre givré, sans le remplacer",
+    hook: "Le look du verre gravé, posé en une visite — sans les frais d'un vitrier.",
     category: 'decorative',
     categoryLabel: 'Décoratif',
     hue: 150,
     photo: '/images/pellicule-tekton-frost-givree-fenetre.jpg',
-    description:
-      "Le look du verre sablé ou gravé, appliqué directement sur une vitre existante. Laisse entrer la lumière naturelle tout en bloquant complètement la vue directe — parfait pour bureaux, salles de bain et cloisons.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 75, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 75, max: 100, suffix: '%', outcome: 'La pièce reste lumineuse — c\'est la vue directe qui disparaît.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Une protection qu\'on n\'a pas à payer en plus.' },
     ],
-    highlights: ['Look du verre gravé, à moindre coût', 'Découpe de logo & motifs sur mesure', 'Pose et retrait sans résidu'],
     serviceSlug: 'pellicule-decorative',
   },
   {
     slug: 'bronze-reflective',
     name: 'Bronze Reflective',
     tagline: 'Chaleur bloquée, esthétique cuivrée',
+    hook: 'La fenêtre la plus chaude de la maison redevient vivable — été comme hiver.',
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-bronze-reflective-fenetre.jpg',
-    description:
-      "Une pellicule réfléchissante à la teinte cuivrée chaude, pensée pour les façades les plus exposées — elle bloque une bonne partie de la chaleur solaire tout en ajoutant une intimité de jour.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 35, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 35, max: 100, suffix: '%', outcome: 'Le soleil de plomb est filtré sans assombrir la pièce.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Meubles et planchers protégés à long terme.' },
     ],
-    highlights: ['Idéale pour façades très ensoleillées', 'Intimité de jour incluse', 'Réduit les coûts de climatisation'],
     serviceSlug: 'pellicule-solaire',
   },
   {
     slug: 'silver-reflective',
     name: 'Silver Reflective',
     tagline: 'Rejet de chaleur maximal',
+    hook: "Le rejet de chaleur le plus poussé de la gamme — pour les façades qui n'ont jamais de répit.",
     category: 'solaire',
     categoryLabel: 'Contrôle solaire',
     hue: 230,
     photo: '/images/pellicule-tekton-silver-reflective-fenetre.jpg',
-    description:
-      "La pellicule miroir classique, toujours l'une des plus performantes pour le rejet de chaleur solaire. Le choix des bâtiments commerciaux à forte exposition qui veulent maximiser l'efficacité énergétique.",
     specs: [
-      { label: 'Transmission lumineuse (VLT)', value: 40, max: 100, suffix: '%' },
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
+      { label: 'Transmission lumineuse (VLT)', value: 40, max: 100, suffix: '%', outcome: 'La climatisation travaille moins fort, tout l\'été.' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Vos intérieurs protégés du jaunissement.' },
     ],
-    highlights: ['Rejet de chaleur parmi les plus élevés', 'Intimité de jour maximale', 'Idéale pour le commercial'],
     serviceSlug: 'pellicule-solaire',
   },
   {
     slug: 'fortis',
     name: 'Fortis',
     tagline: 'Renforcement du vitrage contre les chocs',
+    hook: 'Le verre se fissure, mais il reste en place — l\'effraction est ralentie, pas juste dissuadée.',
     category: 'securite',
     categoryLabel: 'Sécurité',
     hue: 20,
     photo: '/images/pellicule-tekton-fortis-securite-vitre-fissuree.jpg',
-    description:
-      "Une construction multicouche qui maintient les fragments de verre ensemble lors d'un impact, ralentissant considérablement une tentative d'effraction. Offerte en trois épaisseurs selon le niveau de protection recherché.",
     specs: [
-      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%' },
-      { label: 'Épaisseur maximale offerte', value: 14, max: 14, suffix: ' mil' },
+      { label: 'Épaisseur maximale offerte', value: 14, max: 14, suffix: ' mil', outcome: 'Environ 7 fois plus épaisse que notre pellicule décorative Frost (2 mil).' },
+      { label: 'Rayons UV bloqués', value: 99, max: 100, suffix: '%', outcome: 'Une protection supplémentaire pour vos meubles, en prime.' },
     ],
-    highlights: ['Maintient le verre en place lors d\'un bris', 'Ralentit les tentatives d\'intrusion', 'Réduit les blessures par éclats'],
     serviceSlug: 'pellicule-securite',
   },
 ];

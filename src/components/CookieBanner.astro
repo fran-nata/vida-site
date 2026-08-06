@@ -51,6 +51,7 @@
   acceptBtn?.addEventListener('click', () => {
     localStorage.setItem(STORAGE_KEY, 'accepted');
     hideBanner();
+    window.dispatchEvent(new Event('cookie-consent-accepted'));
   });
 
   window.addEventListener('resize', () => {

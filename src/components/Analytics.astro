@@ -1,0 +1,58 @@
+---
+---
+<!-- Google Analytics + Meta Pixel, loaded deferred so their ~326 KiB combined
+     payload doesn't compete with the critical render path. Fires on first
+     user interaction, on cookie-banner acceptance, or after a fallback
+     delay -- whichever comes first -- so tracking still starts within the
+     same pageview. -->
+<script>
+  function loadAnalytics() {
+    // Google tag (gtag.js)
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-DYKK7S0NRJ';
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-DYKK7S0NRJ');
+
+    // Meta Pixel
+    (function (f: any, b: Document, e: string, v: string) {
+      if (f.fbq) return;
+      const n: any = (f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      });
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+      const t = b.createElement(e) as HTMLScriptElement;
+      t.async = true;
+      t.src = v;
+      const s = b.getElementsByTagName(e)[0];
+      s.parentNode?.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', '1600371741460136');
+    window.fbq('track', 'PageView');
+  }
+
+  let loaded = false;
+  function trigger() {
+    if (loaded) return;
+    loaded = true;
+    loadAnalytics();
+    events.forEach((e) => window.removeEventListener(e, trigger));
+  }
+
+  const events = ['scroll', 'mousemove', 'touchstart', 'keydown'];
+  events.forEach((e) => window.addEventListener(e, trigger, { once: true, passive: true }));
+  window.addEventListener('cookie-consent-accepted', trigger, { once: true });
+  setTimeout(trigger, 4000);
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1600371741460136&ev=PageView&noscript=1" />
+</noscript>

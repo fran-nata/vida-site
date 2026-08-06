@@ -1,0 +1,60 @@
+---
+---
+<div
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-50 bg-navy text-white px-5 sm:px-8 py-4 sm:py-5 shadow-[0_-4px_20px_rgba(0,0,0,0.15)]"
+  style="transform: translateY(100%); transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);"
+  role="region"
+  aria-label="Avis relatif aux cookies"
+>
+  <div class="max-w-[1240px] mx-auto flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+    <p class="text-[13px] sm:text-sm leading-relaxed text-footer-muted flex-1">
+      Nous utilisons des cookies nécessaires au bon fonctionnement de notre site. En poursuivant votre navigation, vous acceptez notre <a href="/politique-de-confidentialite/" class="text-accent-light font-semibold underline">politique de confidentialité</a>.
+    </p>
+    <div class="flex items-center gap-3 shrink-0">
+      <button id="cookie-accept" type="button" class="bg-accent text-white px-5 py-2.5 rounded-[10px] text-sm font-bold whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
+        J'ai compris
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'vv-cookie-consent';
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const callBtn = document.getElementById('call-now-btn');
+
+  function setCallButtonOffset(px: number) {
+    if (callBtn instanceof HTMLElement) {
+      callBtn.style.setProperty('--cookie-offset', px + 'px');
+    }
+  }
+
+  function showBanner() {
+    if (!(banner instanceof HTMLElement)) return;
+    banner.style.transform = 'translateY(0)';
+    setCallButtonOffset(banner.offsetHeight + 16);
+  }
+
+  function hideBanner() {
+    if (!(banner instanceof HTMLElement)) return;
+    banner.style.transform = 'translateY(100%)';
+    setCallButtonOffset(0);
+  }
+
+  if (banner && !localStorage.getItem(STORAGE_KEY)) {
+    setTimeout(showBanner, 700);
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'accepted');
+    hideBanner();
+  });
+
+  window.addEventListener('resize', () => {
+    if (banner instanceof HTMLElement && banner.style.transform === 'translateY(0px)') {
+      setCallButtonOffset(banner.offsetHeight + 16);
+    }
+  });
+</script>

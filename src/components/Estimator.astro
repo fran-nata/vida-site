@@ -9,7 +9,9 @@
 
   <div class="max-w-[560px] mx-auto reveal reveal-d1">
     <iframe
-      src="https://vitres-quiz.vibepreview.com/"
+      id="estimator-iframe"
+      data-src="https://vitres-quiz.vibepreview.com/"
+      loading="lazy"
       width="100%"
       height="680"
       style="border:none; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.15); max-width: 100%;"
@@ -17,3 +19,29 @@
     ></iframe>
   </div>
 </section>
+
+<script>
+  const iframe = document.getElementById('estimator-iframe');
+  if (iframe instanceof HTMLIFrameElement) {
+    const loadIframe = () => {
+      const src = iframe.dataset.src;
+      if (src && !iframe.src) iframe.src = src;
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadIframe();
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '400px 0px' }
+      );
+      io.observe(iframe);
+    } else {
+      loadIframe();
+    }
+  }
+</script>

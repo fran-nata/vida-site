@@ -43,7 +43,7 @@ export const services: Service[] = [
     cardDescription:
       "La pellicule solaire réduit la chaleur, l'éblouissement et bloque jusqu'à 99% des rayons UV nuisibles, tout en laissant entrer la lumière naturelle.",
     photoCaption: 'Salon avec fenêtres panoramiques et pellicule solaire, vue sur Montréal au coucher du soleil',
-    photo: '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.jpg',
+    photo: '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.webp',
     heroPhoto: '/images/installation-pellicule-solaire-vue-montreal.jpg',
     heroPhotoCaption: 'Installation de pellicule solaire sur grande fenêtre avec vue sur Montréal',
     benefits: [

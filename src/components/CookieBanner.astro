@@ -33,8 +33,9 @@
 
   function showBanner() {
     if (!(banner instanceof HTMLElement)) return;
+    const height = banner.offsetHeight;
     banner.style.transform = 'translateY(0)';
-    setCallButtonOffset(banner.offsetHeight + 16);
+    setCallButtonOffset(height + 16);
   }
 
   function hideBanner() {
@@ -54,7 +55,8 @@
 
   window.addEventListener('resize', () => {
     if (banner instanceof HTMLElement && banner.style.transform === 'translateY(0px)') {
-      setCallButtonOffset(banner.offsetHeight + 16);
+      const height = banner.offsetHeight;
+      setCallButtonOffset(height + 16);
     }
   });
 </script>

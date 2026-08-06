@@ -17,6 +17,7 @@ const color = `oklch(0.4 0.03 ${hue})`;
     alt={caption}
     loading={priority ? 'eager' : 'lazy'}
     decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
     class={`${aspect} w-full object-cover rounded-lg ${className}`}
   />
 ) : (

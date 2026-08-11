@@ -24,6 +24,13 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
 const near = nearbyCities(city.slug, 3);
 const [introLocal, introClose] = comboIntros[service.slug][city.slug];
 
+const enSlugMap: Record<string, string> = {
+  'pellicule-solaire': 'heat-control-window-film',
+  'pellicule-intimite': 'privacy-window-film',
+  'pellicule-securite': 'security-window-film',
+  'pellicule-decorative': 'decorative-window-film',
+};
+
 // Real photography exists for all 4 services now -- solaire is rotated
 // (so its 17 combo pages aren't all identical); the other 3 have one
 // photo each so far.
@@ -58,6 +65,7 @@ const serviceLd = {
   title={`${service.name} à ${city.name} | ${site.name}`}
   description={`Installation de ${service.name.toLowerCase()} pour fenêtres à ${city.name} (${city.region}). ${service.tagline}. Estimation gratuite, résidentiel et commercial.`}
   canonicalPath={`/services/${service.slug}/${city.slug}/`}
+  alternatePath={`/en/services/${enSlugMap[service.slug]}/${city.slug}/`}
 >
   <Breadcrumb items={[
     { label: 'Accueil', href: '/' },

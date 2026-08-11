@@ -1,0 +1,122 @@
+---
+import Layout from '../../../../../components/Layout.astro';
+import Breadcrumb from '../../../../../components/Breadcrumb.astro';
+import LocationCard from '../../../../../components/LocationCard.astro';
+import ContactCta from '../../../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../../../components/ImagePlaceholder.astro';
+import { servicesEn } from '../../../../../data/servicesEn';
+import { cities } from '../../../../../data/cities';
+import { cityFlavorEn, serviceSentenceEn, closerEn } from '../../../../../data/comboIntrosEn';
+import { site } from '../../../../../lib/site';
+
+const frSlugMap: Record<string, string> = {
+  'heat-control-window-film': 'pellicule-solaire',
+  'privacy-window-film': 'pellicule-intimite',
+  'security-window-film': 'pellicule-securite',
+  'decorative-window-film': 'pellicule-decorative',
+};
+
+export function getStaticPaths() {
+  const paths: { params: { service: string; city: string }; props: { service: (typeof servicesEn)[number]; city: (typeof cities)[number] } }[] = [];
+  for (const service of servicesEn) {
+    for (const city of cities) {
+      paths.push({ params: { service: service.slug, city: city.slug }, props: { service, city } });
+    }
+  }
+  return paths;
+}
+
+const { service, city } = Astro.props;
+const otherServices = servicesEn.filter((s) => s.slug !== service.slug);
+const near = cities.filter((c) => c.slug !== city.slug).slice(0, 3);
+const introLocal = `${cityFlavorEn[city.slug]} ${serviceSentenceEn[service.slug]}`;
+const introClose = closerEn(city.name);
+
+const solairePhotoPool = [
+  '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.webp',
+  '/images/installation-pellicule-solaire-vue-montreal.jpg',
+  '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+  '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
+];
+const singlePhotoByService: Record<string, string> = {
+  'privacy-window-film': '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
+  'decorative-window-film': '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+  'security-window-film': '/images/pellicule-securite-vitre-fissuree-maintenue-montreal.jpg',
+};
+const cityIndex = cities.findIndex((c) => c.slug === city.slug);
+const photo =
+  service.slug === 'heat-control-window-film'
+    ? solairePhotoPool[cityIndex % solairePhotoPool.length]
+    : singlePhotoByService[service.slug];
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.name,
+  name: `${service.name} in ${city.name} | ${site.name}`,
+  description: `${service.cardDescription} Available in ${city.name}.`,
+  areaServed: city.name,
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+---
+<Layout
+  title={`${service.name} in ${city.name} | ${site.name}`}
+  description={`${service.name} installed on your existing windows in ${city.name} (${city.region}). ${service.tagline}. Free estimate, residential and commercial.`}
+  canonicalPath={`/en/services/${service.slug}/${city.slug}/`}
+  lang="en"
+  alternatePath={`/services/${frSlugMap[service.slug]}/${city.slug}/`}
+>
+  <Breadcrumb items={[
+    { label: 'Home', href: '/en/' },
+    { label: service.name, href: `/en/services/${service.slug}/` },
+    { label: city.name },
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{service.tagline} · {city.name}</p>
+      <h1 class="font-heading text-[28px] sm:text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">{service.name} in {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">{introClose}</p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Get my estimate →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Call now</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={`${service.name} installed on a residential window in ${city.name}`}
+        hue={service.hue}
+        src={photo}
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-6">Benefits of {service.name.toLowerCase()} in {city.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {service.benefits.slice(0, 4).map((b, i) => (
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h3 class="text-[15px] font-bold mb-1.5">{b.title}</h3><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Other services available in {city.name}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-5">
+        {otherServices.map((s) => <LocationCard city={{ slug: s.slug, name: s.name, region: '' }} href={`/en/services/${s.slug}/${city.slug}/`} />)}
+      </div>
+      <a href={`/locations/${city.slug}/`} class="text-sm font-bold text-accent">See all our services in {city.name} →</a>
+      {service.slug === 'heat-control-window-film' && (
+        <p class="text-sm text-muted mt-4">
+          Searching for "house window tint"? <a href={`/en/house-window-tint/`} class="text-accent font-semibold">Same service, different name →</a>
+        </p>
+      )}
+    </div>
+  </section>
+
+  <ContactCta lang="en" />
+</Layout>

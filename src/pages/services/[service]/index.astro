@@ -90,6 +90,18 @@ const serviceLd = {
     <a href="/locations/" class="inline-block mt-5 text-sm font-bold text-accent transition-transform duration-200 hover:translate-x-1">Voir toutes les régions desservies →</a>
   </section>
 
+  {service.slug === 'pellicule-solaire' && (
+    <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+      <div class="max-w-[900px] mx-auto text-center">
+        <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-4">On vous a aussi parlé de « vitres teintées » ?</h2>
+        <p class="text-[15px] leading-relaxed text-muted mb-6">
+          C'est le même service, sous un autre nom. Consultez notre page dédiée aux vitres teintées résidentielles pour votre maison, avec le prix expliqué et la couverture par région.
+        </p>
+        <a href="/vitres-teintees/" class="text-sm font-bold text-accent">Voir les vitres teintées résidentielles →</a>
+      </div>
+    </section>
+  )}
+
   <FaqAccordion faqs={service.faqs} />
 
   <ContactCta title="Réduisez la chaleur dès aujourd'hui" description={`Obtenez votre estimation gratuite pour la ${service.name.toLowerCase()}.`} />

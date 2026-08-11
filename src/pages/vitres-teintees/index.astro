@@ -1,0 +1,147 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import { cities, regionOrder } from '../../data/cities';
+import { site } from '../../lib/site';
+
+const faqs = [
+  {
+    question: 'Combien coûte une baie vitrée teintée ?',
+    answer: "Le prix d'une baie vitrée teintée dépend de sa superficie, du type de teinte choisie et du nombre de fenêtres à couvrir dans la maison. Une seule grande baie vitrée coûte moins cher qu'un projet complet, mais il n'existe pas de tarif générique fiable en ligne : nos techniciens mesurent vos fenêtres sur place et vous remettent une estimation gratuite et détaillée, sans engagement.",
+  },
+  {
+    question: 'Quelle est la différence entre vitres teintées et pellicule solaire ?',
+    answer: "Aucune — ce sont deux noms pour le même produit. « Vitres teintées » décrit le résultat visuel (une légère teinte sur le verre) ; « pellicule solaire » est le nom technique du film architectural qu'on applique directement sur le verre existant de vos fenêtres pour l'obtenir, sans remplacer une seule fenêtre.",
+  },
+  {
+    question: 'Les vitres teintées résidentielles conviennent-elles à toutes les maisons ?',
+    answer: "Oui. La pellicule solaire s'applique sur la plupart des vitrages résidentiels, à simple ou double vitrage, que ce soit une maison unifamiliale, un condo, un plex ou une propriété avec véranda. L'exposition et le type de fenêtre influencent surtout le choix de la teinte, pas la faisabilité du projet.",
+  },
+  {
+    question: 'Combien de temps dure l\'installation de vitres teintées pour une maison ?',
+    answer: "La majorité des projets résidentiels sont complétés en une seule journée, selon le nombre de fenêtres et leur accessibilité. Une seule baie vitrée peut souvent être teintée en quelques heures.",
+  },
+  {
+    question: 'Les vitres teintées peuvent-elles être retirées plus tard ?',
+    answer: "Oui, une pellicule installée par un professionnel se retire proprement sans endommager la vitre, si jamais vous changez d'avis ou vendez la propriété.",
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Vitres teintées résidentielles',
+  name: `Vitres teintées résidentielles | ${site.name}`,
+  description: "Installation de vitres teintées pour maisons dans le Grand Montréal — pellicule solaire posée sur le verre existant, sans remplacement de fenêtres.",
+  areaServed: 'Grand Montréal',
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+---
+<Layout
+  title="Vitres Teintées Résidentielles | Maison, Baie Vitrée, Prix | Vida Vitres Montréal"
+  description="Vitres teintées pour maison à Montréal et environs : installation résidentielle sur baies vitrées et fenêtres existantes. Prix sur estimation gratuite, sans remplacement de fenêtres."
+  canonicalPath="/vitres-teintees/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Vitres teintées' }]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">Résidentiel · Grand Montréal</p>
+      <h1 class="font-heading text-[28px] sm:text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Vitres teintées résidentielles pour votre maison</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
+        Vous cherchez à faire teinter les vitres de votre maison ? Chez Vida Vitres, c'est ce qu'on appelle une pellicule solaire — un film mince appliqué directement sur le verre existant de vos fenêtres, qui les teinte légèrement tout en bloquant la chaleur et jusqu'à 99% des rayons UV. Aucun remplacement de fenêtre nécessaire.
+      </p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
+        Installation résidentielle à Montréal et dans 17 municipalités environnantes, estimation gratuite avant tout engagement.
+      </p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Appeler maintenant</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption="Vitres teintées résidentielles sur baie vitrée de maison, Montréal"
+        hue={230}
+        src="/images/pellicule-solaire-fenetre-panoramique-salon-montreal.webp"
+        priority
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pb-14">
+    <h2 class="font-heading text-[24px] sm:text-[28px] font-bold tracking-tight mb-5">Vitres teintées maison : ce que ça change concrètement</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      La grande majorité des recherches pour « vitres teintées résidentiel » ou « vitres teintées maison » mènent en fait à un seul et même produit : la pellicule solaire. C'est un film architectural mince, posé directement sur la face intérieure du verre existant, qui donne à vos fenêtres une teinte légère — du quasi invisible au plus prononcé, selon vos préférences — tout en bloquant une bonne partie de la chaleur solaire et des rayons UV responsables de la décoloration des planchers et meubles.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Contrairement à un vitrage teinté d'usine ou à un remplacement de fenêtres, des vitres teintées appliquées sur le verre existant se posent en une seule visite, sans travaux de construction, et à une fraction du coût d'un changement de fenêtres. C'est la solution la plus rapide pour une maison, un condo ou un plex où une pièce orientée sud ou ouest devient difficile à occuper l'après-midi.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted">
+      Nous desservons les propriétaires résidentiels à Montréal et dans 17 municipalités du Grand Montréal — Laval, la Rive-Sud, Lanaudière, les Laurentides, l'Ouest-de-l'Île et Vaudreuil-Soulanges. Chaque projet commence par une estimation gratuite sur place, où nos techniciens évaluent vos fenêtres et vous recommandent la teinte adaptée à votre exposition.
+    </p>
+  </section>
+
+  <section class="bg-navy px-5 sm:px-8 py-14 sm:py-18 text-center">
+    <div class="max-w-[720px] mx-auto">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Prix d'une baie vitrée teintée</p>
+      <h2 class="font-heading text-[22px] sm:text-[28px] font-bold text-white tracking-tight mb-4">Combien coûte une baie vitrée teintée ?</h2>
+      <p class="text-base leading-relaxed text-footer-muted">
+        Le prix varie selon la superficie de la baie vitrée, la teinte choisie et le nombre de fenêtres à couvrir dans la maison. Plutôt que d'afficher un tarif générique qui ne correspondrait pas à votre situation, on préfère mesurer vos fenêtres sur place et vous remettre une estimation gratuite, claire et détaillée — sans surprise et sans engagement.
+      </p>
+    </div>
+  </section>
+
+  <section id="regions" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Zone de service</p>
+    <h2 class="font-heading text-[24px] sm:text-[28px] font-bold tracking-tight mb-8 max-w-[640px]">Vitres teintées résidentielles par région</h2>
+    {regionOrder.map((region) => (
+      <div class="mb-8">
+        <h3 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+          {cities.filter((c) => c.region === region).map((c) => <LocationCard city={c} href={`/vitres-teintees/${c.slug}/`} />)}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[900px] mx-auto text-center">
+      <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-4">Vous cherchiez plutôt notre fiche technique ?</h2>
+      <p class="text-[15px] leading-relaxed text-muted mb-6">
+        Consultez la fiche complète du service — avantages, cas d'usage et données de performance des pellicules Tekton que nous installons.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/services/pellicule-solaire/" class="text-sm font-bold text-accent">Voir le service pellicule solaire →</a>
+        <a href="/produits/" class="text-sm font-bold text-accent">Voir les produits Tekton →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Questions fréquentes</h2>
+    {faqs.map((f) => (
+      <details class="group border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer flex items-center justify-between gap-3">
+          {f.question}
+          <span class="text-accent shrink-0 transition-transform duration-300 group-open:rotate-180" aria-hidden="true">⌄</span>
+        </summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <ContactCta title="Obtenez le prix de vos vitres teintées" description="Estimation gratuite et sans engagement pour votre maison." />
+</Layout>

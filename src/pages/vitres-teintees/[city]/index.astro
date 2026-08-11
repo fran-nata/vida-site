@@ -1,0 +1,144 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import LocationCard from '../../../components/LocationCard.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
+import { services } from '../../../data/services';
+import { cities, nearbyCities } from '../../../data/cities';
+import { vitresTeinteesIntros } from '../../../data/vitresTeinteesIntros';
+import { site } from '../../../lib/site';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const intro = vitresTeinteesIntros[city.slug];
+const near = nearbyCities(city.slug, 3);
+const solaire = services.find((s) => s.slug === 'pellicule-solaire')!;
+
+const photoPool = [
+  '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.webp',
+  '/images/installation-pellicule-solaire-vue-montreal.jpg',
+  '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+  '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
+];
+const cityIndex = cities.findIndex((c) => c.slug === city.slug);
+const photo = photoPool[cityIndex % photoPool.length];
+
+const faqs = [
+  {
+    question: `Combien coûte une baie vitrée teintée à ${city.name} ?`,
+    answer: `Le prix dépend de la superficie vitrée, du type de fenêtre (baie vitrée, porte-fenêtre, fenêtre standard) et de la teinte choisie. Il n'y a pas de tarif fixe en ligne qui tienne compte de votre situation réelle — nos techniciens mesurent vos fenêtres à ${city.name} sur place et vous remettent une estimation gratuite et détaillée avant tout engagement.`,
+  },
+  {
+    question: 'Vitres teintées et pellicule solaire, est-ce la même chose ?',
+    answer: "Oui. « Vitres teintées » est le terme qu'utilisent la plupart des gens ; « pellicule solaire » est le nom du produit qu'on installe pour l'obtenir. Dans les deux cas, il s'agit d'un film appliqué sur le verre existant de vos fenêtres — aucun remplacement de fenêtre n'est nécessaire.",
+  },
+  {
+    question: 'Peut-on teinter une seule fenêtre ou baie vitrée, ou faut-il faire toute la maison ?',
+    answer: "Vous pouvez teinter une seule baie vitrée, une seule pièce, ou l'ensemble de la maison — le choix vous appartient entièrement. Plusieurs clients commencent par la pièce la plus problématique (le salon qui surchauffe, par exemple) avant d'ajouter le reste plus tard.",
+  },
+  {
+    question: 'Les vitres teintées assombrissent-elles la pièce ?',
+    answer: "Non — la plupart de nos teintes résidentielles laissent passer 50 à 70% de la lumière visible tout en bloquant la chaleur et jusqu'à 99% des UV. La pièce reste lumineuse, simplement plus confortable.",
+  },
+];
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Vitres teintées résidentielles',
+  name: `Vitres teintées résidentielles à ${city.name} | ${site.name}`,
+  description: `Installation de vitres teintées (pellicule solaire) pour maisons et fenêtres résidentielles à ${city.name}.`,
+  areaServed: city.name,
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+---
+<Layout
+  title={`Vitres Teintées Résidentielles à ${city.name} | Maison & Baie Vitrée | ${site.name}`}
+  description={`Vitres teintées pour maison à ${city.name} : installation résidentielle sur baies vitrées et fenêtres existantes. Prix sur estimation gratuite, sans remplacement de fenêtres.`}
+  canonicalPath={`/vitres-teintees/${city.slug}/`}
+>
+  <Breadcrumb items={[
+    { label: 'Accueil', href: '/' },
+    { label: 'Vitres teintées', href: '/vitres-teintees/' },
+    { label: city.name },
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">Vitres teintées résidentielles · {city.name}</p>
+      <h1 class="font-heading text-[28px] sm:text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">Vitres teintées résidentielles à {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{intro.paragraph1}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">{intro.paragraph2}</p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Obtenir mon estimation →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Appeler maintenant</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={`Vitres teintées résidentielles sur ${intro.windowType} à ${city.name}`}
+        hue={230}
+        src={photo}
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-6">Pourquoi teinter vos fenêtres à {city.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {solaire.benefits.map((b, i) => (
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h3 class="text-[15px] font-bold mb-1.5">{b.title}</h3><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[900px] mx-auto text-center">
+      <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-4">« Vitres teintées » et « pellicule solaire » : même service</h2>
+      <p class="text-[15px] leading-relaxed text-muted mb-6">
+        Chez {site.name}, ce qu'on appelle des vitres teintées résidentielles est le même produit que notre pellicule solaire — un film architectural posé sur le verre existant de vos fenêtres. Vous pouvez consulter la fiche complète du service, avec les données de performance des films Tekton que nous installons.
+      </p>
+      <a href={`/services/pellicule-solaire/${city.slug}/`} class="text-sm font-bold text-accent">Voir la fiche pellicule solaire à {city.name} →</a>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Questions fréquentes sur les vitres teintées à {city.name}</h2>
+    {faqs.map((f) => (
+      <details class="group border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer flex items-center justify-between gap-3">
+          {f.question}
+          <span class="text-accent shrink-0 transition-transform duration-300 group-open:rotate-180" aria-hidden="true">⌄</span>
+        </summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Vitres teintées dans les régions voisines de {city.name}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-5">
+        {near.map((c) => <LocationCard city={c} href={`/vitres-teintees/${c.slug}/`} />)}
+      </div>
+      <a href="/vitres-teintees/" class="text-sm font-bold text-accent">Voir toutes les régions →</a>
+    </div>
+  </section>
+
+  <ContactCta title="Obtenez le prix de vos vitres teintées" description="Estimation gratuite et sans engagement pour votre maison." />
+</Layout>

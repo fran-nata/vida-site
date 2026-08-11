@@ -1,13 +1,13 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../../components/Layout.astro';
-import Breadcrumb from '../../../components/Breadcrumb.astro';
-import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
-import ContactCta from '../../../components/ContactCta.astro';
-import { site } from '../../../lib/site';
+import Layout from '../../../../components/Layout.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import ImagePlaceholder from '../../../../components/ImagePlaceholder.astro';
+import ContactCta from '../../../../components/ContactCta.astro';
+import { site } from '../../../../lib/site';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blogEn');
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -16,16 +16,17 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const formattedDate = new Date(post.data.date).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
-const alternatePath = post.data.enSlug ? `/en/blog/${post.data.enSlug}/` : '/en/blog/';
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const alternatePath = post.data.frSlug ? `/blog/${post.data.frSlug}/` : '/blog/';
 ---
 <Layout
-  title={`${post.data.title} | Blogue ${site.name}`}
+  title={`${post.data.title} | ${site.name} Blog`}
   description={post.data.description}
-  canonicalPath={`/blog/${post.id}/`}
+  canonicalPath={`/en/blog/${post.id}/`}
+  lang="en"
   alternatePath={alternatePath}
 >
-  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blogue', href: '/blog/' }, { label: post.data.title }]} />
+  <Breadcrumb items={[{ label: 'Home', href: '/en/' }, { label: 'Blog', href: '/en/blog/' }, { label: post.data.title }]} />
 
   <article class="max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">{post.data.category} · {formattedDate}</p>
@@ -43,7 +44,7 @@ const alternatePath = post.data.enSlug ? `/en/blog/${post.data.enSlug}/` : '/en/
     </div>
   </article>
 
-  <ContactCta />
+  <ContactCta lang="en" />
 </Layout>
 
 <style>

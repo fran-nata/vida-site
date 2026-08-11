@@ -4,6 +4,7 @@ description: "5 signes indiquant qu'une pellicule solaire pour fenêtre pourrait
 date: "2026-07-03"
 category: "Confort thermique"
 image: "/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg"
+enSlug: "5-signs-you-need-house-window-tint"
 ---
 
 La plupart des gens qui nous appellent ne se disent pas « j'ai besoin de pellicule solaire » — ils se disent « il y a quelque chose qui ne va pas avec cette pièce ». Pas certain si la pellicule solaire est faite pour votre maison ? Voici cinq signes qui indiquent que le moment est venu.

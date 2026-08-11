@@ -4,6 +4,7 @@ description: "Guide pour choisir et installer une pellicule d'intimité pour sal
 date: "2026-04-18"
 category: "Pellicule d'intimité"
 image: "/images/salle-de-bain-fenetres-givrees-douche-vitree-montreal.jpg"
+enSlug: "bathroom-privacy-window-film-guide"
 ---
 
 C'est une des questions qu'on nous pose le plus souvent, presque toujours avec un peu de gêne dans la voix : « est-ce qu'on voit vraiment à travers, le soir ? » La salle de bain est l'une des pièces où l'intimité compte le plus — et où les rideaux ne sont pas toujours pratiques à cause de l'humidité. La pellicule d'intimité givrée est une alternative élégante et durable.

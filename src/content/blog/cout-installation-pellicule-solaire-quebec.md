@@ -4,6 +4,7 @@ description: "Facteurs qui influencent le prix d'installation de pellicule solai
 date: "2026-05-05"
 category: "Prix & estimation"
 image: "/images/installation-pellicule-solaire-vue-montreal.jpg"
+enSlug: "house-window-tint-cost-quebec"
 ---
 
 « Combien ça coûte pour toute la maison ? » — c'est presque toujours la première question, et la réponse honnête est : ça dépend, et voici pourquoi. Le prix d'une installation de pellicule solaire varie beaucoup d'un projet à l'autre. Voici les facteurs qui influencent le coût final, et pourquoi une estimation personnalisée reste la meilleure façon de connaître votre prix.

@@ -1,0 +1,153 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import LocationCard from '../../../components/LocationCard.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
+import { cities, regionOrder } from '../../../data/cities';
+import { site } from '../../../lib/site';
+
+const faqs = [
+  {
+    question: 'How much does house window tint cost?',
+    answer: "The price of house window tint depends on your glass area, the type of film (heat control, privacy, reflective, or mirror), and how many windows you're covering. There's no reliable flat rate online that fits every home — our technicians measure your windows on site and hand you a free, detailed, no-obligation estimate.",
+  },
+  {
+    question: 'What is the best house window tint for privacy?',
+    answer: "For daytime privacy without losing natural light, a frosted or one-way reflective film is the most popular choice for homes — it diffuses light instead of blocking it, so no direct silhouette is visible from outside. A mirror-style reflective film gives the strongest daytime privacy effect and also cuts a meaningful amount of heat, which is why many homeowners choose it for street-facing or south-facing windows.",
+  },
+  {
+    question: 'Does one-way or mirror window tint work at night too?',
+    answer: "One-way and reflective films work best in daylight, when the outside is brighter than the inside. After dark, with interior lights on, the effect weakens — no film fully replaces a curtain in that situation. We're upfront about this during your estimate so you know exactly what to expect.",
+  },
+  {
+    question: 'Are there reviews I can check before booking?',
+    answer: "Yes — we're happy to share references and examples of recent residential installs in your area. Ask when you book your free estimate and we'll walk you through work close to your neighborhood.",
+  },
+  {
+    question: 'Is there house window tint installation near me?',
+    answer: 'We install house window tint across Montreal and 17 surrounding areas — the South Shore, Laval, Lanaudière, the Laurentians, the West Island, and Vaudreuil-Soulanges. Our technicians come to your home for the estimate and the installation.',
+  },
+  {
+    question: 'Does house window tint film block heat as well as add privacy?',
+    answer: "Many of our films do both. Reflective and mirror finishes provide strong daytime privacy while also rejecting solar heat, and our heat-control films focus purely on temperature and UV — the right choice depends on which problem bothers you more: the heat, or the view in.",
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'House window tint',
+  name: `House Window Tint | ${site.name}`,
+  description: 'House window tint installation for homes in Greater Montreal — heat control, privacy, one-way, reflective, and mirror window film applied to existing glass.',
+  areaServed: 'Greater Montreal',
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+---
+<Layout
+  title="House Window Tint Near You | Price, Privacy & Heat Control | Vida Vitres"
+  description="House window tint for homes in Montreal & nearby: heat control, privacy, one-way, and reflective film installed on your existing glass. Free estimate, no window replacement."
+  canonicalPath="/en/house-window-tint/"
+  lang="en"
+  alternatePath="/vitres-teintees/"
+>
+  <Breadcrumb items={[{ label: 'Home', href: '/en/' }, { label: 'House Window Tint' }]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">Residential · Greater Montreal</p>
+      <h1 class="font-heading text-[28px] sm:text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">House Window Tint Near You</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">
+        Looking for house window tint — for heat, for privacy, or both? We install film directly on your existing glass: heat control to cut sun and UV, and privacy film in frosted, one-way, reflective, or mirror finishes. No window replacement, no construction.
+      </p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">
+        Residential installation across Montreal and 17 nearby areas. Free, no-obligation estimate before anything is booked.
+      </p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Get my estimate →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Call now</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption="House window tint film on a residential picture window, Montreal"
+        hue={230}
+        src="/images/pellicule-solaire-fenetre-panoramique-salon-montreal.webp"
+        priority
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pb-14">
+    <h2 class="font-heading text-[24px] sm:text-[28px] font-bold tracking-tight mb-5">Two reasons homeowners search for window tint</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      Most "house window tint" searches fall into one of two problems. Either a room gets unbearably hot and bright in the afternoon sun, or a window faces the street, a neighbor, or a walkway and privacy becomes the issue. Some homes need both. Either way, the fix is the same kind of product: a thin film applied to the inside of your existing glass — not a window replacement, and typically finished in a single visit.
+    </p>
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="bg-white rounded-2xl p-7 border border-border">
+        <h3 class="font-heading text-lg font-bold mb-3">Privacy, one-way & reflective window tint</h3>
+        <p class="text-[15px] leading-relaxed text-muted mb-5">
+          A frosted or one-way reflective finish blocks a direct view into your home during the day while still letting daylight through. A mirror-style reflective film pushes that privacy effect further and adds meaningful heat rejection at the same time — popular on street-facing living rooms, front doors, and ground-floor windows.
+        </p>
+        <a href="/en/services/privacy-window-film/" class="text-sm font-bold text-accent">See privacy window film →</a>
+      </div>
+      <div class="bg-white rounded-2xl p-7 border border-border">
+        <h3 class="font-heading text-lg font-bold mb-3">Heat control window film</h3>
+        <p class="text-[15px] leading-relaxed text-muted mb-5">
+          Rejects up to 80% of solar heat and blocks up to 99% of UV rays, without darkening the room or changing how your windows look. The most common fix for a south- or west-facing room that becomes unusable every afternoon in summer.
+        </p>
+        <a href="/en/services/heat-control-window-film/" class="text-sm font-bold text-accent">See heat control window film →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy px-5 sm:px-8 py-14 sm:py-18 text-center">
+    <div class="max-w-[720px] mx-auto">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Price</p>
+      <h2 class="font-heading text-[22px] sm:text-[28px] font-bold text-white tracking-tight mb-4">How much does house window tint cost?</h2>
+      <p class="text-base leading-relaxed text-footer-muted">
+        It depends on your glass area, the film you choose, and how many windows are involved. Rather than post a generic number that won't match your home, we measure your windows on site and hand you a free, clear, no-obligation estimate.
+      </p>
+    </div>
+  </section>
+
+  <section id="regions" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">Service area</p>
+    <h2 class="font-heading text-[24px] sm:text-[28px] font-bold tracking-tight mb-8 max-w-[640px]">House window tint near you, by area</h2>
+    {regionOrder.map((region) => (
+      <div class="mb-8">
+        <h3 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+          {cities.filter((c) => c.region === region).map((c) => <LocationCard city={c} href={`/locations/${c.slug}/`} />)}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Frequently asked questions</h2>
+    {faqs.map((f) => (
+      <details class="group border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer flex items-center justify-between gap-3">
+          {f.question}
+          <span class="text-accent shrink-0 transition-transform duration-300 group-open:rotate-180" aria-hidden="true">⌄</span>
+        </summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <ContactCta title="Get the price for your house window tint" description="Free, no-obligation estimate for your home." lang="en" />
+</Layout>

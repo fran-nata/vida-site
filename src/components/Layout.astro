@@ -12,9 +12,14 @@ interface Props {
   title: string;
   description: string;
   canonicalPath: string;
+  lang?: 'fr' | 'en';
+  /** Path (leading slash) of this page's equivalent in the other language, if one exists yet. */
+  alternatePath?: string;
 }
-const { title, description, canonicalPath } = Astro.props;
+const { title, description, canonicalPath, lang = 'fr', alternatePath } = Astro.props;
 const canonical = `${site.domain}${canonicalPath}`;
+const frUrl = lang === 'fr' ? canonical : alternatePath ? `${site.domain}${alternatePath}` : undefined;
+const enUrl = lang === 'en' ? canonical : alternatePath ? `${site.domain}${alternatePath}` : undefined;
 
 const localBusinessLd = {
   '@context': 'https://schema.org',
@@ -27,7 +32,7 @@ const localBusinessLd = {
 };
 ---
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,15 +62,18 @@ const localBusinessLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {frUrl && <link rel="alternate" hreflang="fr" href={frUrl} />}
+    {enUrl && <link rel="alternate" hreflang="en" href={enUrl} />}
+    {frUrl && <link rel="alternate" hreflang="x-default" href={frUrl} />}
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessLd)} />
     <Analytics />
   </head>
   <body>
-    <Header />
+    <Header lang={lang} alternatePath={alternatePath} />
     <slot />
-    <Footer />
-    <CallButton />
-    <CookieBanner />
+    <Footer lang={lang} />
+    <CallButton lang={lang} />
+    <CookieBanner lang={lang} />
     <ScrollAnimations />
   </body>
 </html>

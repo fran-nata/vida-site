@@ -1,15 +1,22 @@
 ---
+interface Props {
+  lang?: 'fr' | 'en';
+}
+const { lang = 'fr' } = Astro.props;
+const isEn = lang === 'en';
 const products = ['Clarion 70', 'Keramos', 'Nocturna', 'Visio', 'Silver Reflective', 'Bronze Reflective'];
 ---
 <section class="bg-bg-light px-5 sm:px-8 py-14 sm:py-22">
   <div class="max-w-[900px] mx-auto text-center">
-    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">Partenaire officiel</p>
-    <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 reveal">La qualité avant tout</h2>
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">{isEn ? 'Official Partner' : 'Partenaire officiel'}</p>
+    <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 reveal">{isEn ? 'Quality first' : 'La qualité avant tout'}</h2>
     <p class="text-base leading-relaxed text-muted mb-11 max-w-[560px] mx-auto reveal reveal-d1">
-      Nous sommes fiers de nous associer à Tekton Performance Films pour vous offrir les pellicules architecturales les plus avancées et performantes sur le marché.
+      {isEn
+        ? 'We\'re proud to partner with Tekton Performance Films to bring you the most advanced, high-performing architectural window films on the market.'
+        : 'Nous sommes fiers de nous associer à Tekton Performance Films pour vous offrir les pellicules architecturales les plus avancées et performantes sur le marché.'}
     </p>
     <div class="bg-navy rounded-2xl px-5 py-10 sm:px-10 sm:py-12 reveal reveal-d2">
-      <a href="https://www.tektonpf.com/" target="_blank" rel="noopener" class="inline-block bg-white rounded-xl px-6 py-4 transition-transform duration-300 hover:scale-105" aria-label="Visiter le site de Tekton Performance Films (nouvel onglet)">
+      <a href="https://www.tektonpf.com/" target="_blank" rel="noopener" class="inline-block bg-white rounded-xl px-6 py-4 transition-transform duration-300 hover:scale-105" aria-label={isEn ? 'Visit the Tekton Performance Films website (new tab)' : 'Visiter le site de Tekton Performance Films (nouvel onglet)'}>
         <img
           src="/images/tekton-performance-films-logo.avif"
           alt="Tekton Performance Films"
@@ -19,16 +26,18 @@ const products = ['Clarion 70', 'Keramos', 'Nocturna', 'Visio', 'Silver Reflecti
           class="h-10 w-auto"
         />
       </a>
-      <h3 class="font-heading text-lg font-bold text-white mt-6 mb-3">Pellicules architecturales haut de gamme</h3>
+      <h3 class="font-heading text-lg font-bold text-white mt-6 mb-3">{isEn ? 'Premium architectural window film' : 'Pellicules architecturales haut de gamme'}</h3>
       <p class="text-[15px] leading-relaxed text-footer-muted max-w-[560px] mx-auto mb-8">
-        Reconnues pour leur clarté optique exceptionnelle, leur rejet de chaleur supérieur et leur durabilité éprouvée, les pellicules Tekton représentent la norme de l'industrie pour les applications résidentielles et commerciales.
+        {isEn
+          ? 'Known for exceptional optical clarity, superior heat rejection, and proven durability, Tekton films are the industry standard for residential and commercial applications.'
+          : 'Reconnues pour leur clarté optique exceptionnelle, leur rejet de chaleur supérieur et leur durabilité éprouvée, les pellicules Tekton représentent la norme de l\'industrie pour les applications résidentielles et commerciales.'}
       </p>
       <div class="flex flex-wrap justify-center gap-2.5 mb-8">
         {products.map((p) => (
           <span class="border border-white/20 text-white text-[13px] font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:bg-white hover:text-navy hover:border-white cursor-default">{p}</span>
         ))}
       </div>
-      <a href="/produits/" class="btn-glow inline-block bg-accent text-white px-6 py-3 rounded-[10px] text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">Voir les données de performance de chaque film →</a>
+      <a href="/produits/" class="btn-glow inline-block bg-accent text-white px-6 py-3 rounded-[10px] text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'See performance data for each film →' : 'Voir les données de performance de chaque film →'}</a>
     </div>
   </div>
 </section>

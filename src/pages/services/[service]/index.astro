@@ -19,6 +19,13 @@ export function getStaticPaths() {
 const { service } = Astro.props;
 const featuredCities = cities.slice(0, 4);
 
+const enSlugMap: Record<string, string> = {
+  'pellicule-solaire': 'heat-control-window-film',
+  'pellicule-intimite': 'privacy-window-film',
+  'pellicule-securite': 'security-window-film',
+  'pellicule-decorative': 'decorative-window-film',
+};
+
 const serviceLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -33,6 +40,7 @@ const serviceLd = {
   title={service.metaTitle}
   description={service.metaDescription}
   canonicalPath={`/services/${service.slug}/`}
+  alternatePath={`/en/services/${enSlugMap[service.slug]}/`}
 >
   <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Services', href: '/services/' }, { label: service.name }]} />
 

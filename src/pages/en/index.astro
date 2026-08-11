@@ -1,0 +1,217 @@
+---
+import Layout from '../../components/Layout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import Gallery from '../../components/Gallery.astro';
+import ApplicationsSplit from '../../components/ApplicationsSplit.astro';
+import PartnerSpotlight from '../../components/PartnerSpotlight.astro';
+import { servicesEn } from '../../data/servicesEn';
+import { cities } from '../../data/cities';
+import { site } from '../../lib/site';
+
+const whyUs = [
+  { title: 'Heat reduction', description: 'Less solar heat enters your space.' },
+  { title: 'Less glare', description: 'Better visual comfort throughout the day.' },
+  { title: 'UV blocking', description: 'Up to 99% of harmful UV rays blocked.' },
+  { title: 'Better privacy', description: 'Protect your privacy without darkening your rooms.' },
+  { title: 'Stronger security', description: 'Glass better resists impact and break-in attempts.' },
+  { title: 'Added comfort', description: 'Stable temperature, a more livable space.' },
+  { title: 'Modernized space', description: 'Decorative finishes for a contemporary look.' },
+  { title: 'Protected interiors', description: 'Floors, furniture, and fabrics protected from fading.' },
+];
+
+const steps = [
+  { n: '01', title: 'Free estimate', description: 'Reach out online or by phone to book your free on-site window tint estimate.' },
+  { n: '02', title: 'Window assessment', description: 'We assess your windows, take measurements, and discuss what you need.' },
+  { n: '03', title: 'Film recommendation', description: 'We recommend the right film with a clear, transparent quote.' },
+  { n: '04', title: 'Professional installation', description: 'Our technicians install with precision. Clean, tidy, durable results guaranteed.' },
+];
+
+const faqs = [
+  { question: 'How much does house window tint cost?', answer: "Price depends on your glass area, the film you choose, and the number of windows. There's no reliable generic price online — we measure your windows on site and give you a free, no-obligation estimate tailored to your project." },
+  { question: 'Does window film make a room darker?', answer: 'Not much. Most of our heat control and privacy films let natural light through while filtering heat and glare.' },
+  { question: 'How long does house window tint installation take?', answer: 'Most residential projects are completed in a single day, depending on the number of windows. Larger commercial glass jobs may be scheduled over several days to minimize disruption.' },
+  { question: 'Can window film be removed later?', answer: "Yes — our films are designed for clean removal without damage to the glass when installed by a professional." },
+  { question: 'What window types can be tinted?', answer: "Our films apply to most flat residential and commercial windows, single or double-pane, including patio doors, commercial curtain walls, and office glass partitions." },
+  { question: 'Is one-way or reflective window film only for privacy, or does it also block heat?', answer: 'Both — our reflective and mirror-style films provide strong daytime privacy while also rejecting a significant amount of solar heat, which is why they\'re popular for south- and west-facing homes.' },
+  { question: 'Do you serve homes near me, or just businesses?', answer: 'We serve homeowners and property managers across 17+ areas of Greater Montreal — from a single bathroom window to a full house or office building.' },
+];
+---
+<Layout
+  title="House Window Tint in Montreal | Heat Control & Privacy Film | Vida Vitres"
+  description="Professional house window tint installed on your existing glass — heat control, privacy, and security film for homes in Montreal & nearby. Free estimate, no window replacement."
+  canonicalPath="/en/"
+  lang="en"
+  alternatePath="/"
+>
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <ImagePlaceholder
+        caption="Living room with panoramic windows and heat control window film, Montreal skyline at sunset"
+        hue={230}
+        aspect="aspect-auto"
+        class="h-full rounded-none"
+        src="/images/pellicule-solaire-fenetre-panoramique-salon-montreal.webp"
+        priority
+      />
+      <div class="absolute inset-0 bg-navy/60"></div>
+    </div>
+    <div class="relative max-w-[1240px] mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-14 sm:pb-20">
+      <p class="hero-in inline-block text-[12px] font-bold tracking-wide uppercase text-white border border-white/30 rounded-full px-4 py-1.5 mb-6">Residential &amp; Commercial · Greater Montreal</p>
+      <h1 class="hero-in hero-in-d1 font-heading text-[32px] sm:text-[42px] lg:text-[54px] leading-[1.1] sm:leading-[1.05] font-bold text-white tracking-tight mb-5 max-w-[720px]">
+        House window tint installed with precision in Montreal &amp; nearby
+      </h1>
+      <p class="hero-in hero-in-d2 text-base sm:text-lg leading-relaxed text-white/85 max-w-[560px] mb-8">
+        Cut heat and glare, protect your privacy, and reinforce your glass — without replacing your windows. Professional window film service in Montreal and 17 surrounding areas.
+      </p>
+      <div class="hero-in hero-in-d3 flex gap-3.5 flex-wrap mb-10">
+        <a href="#estimate" class="btn-glow w-full sm:w-auto text-center bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">Get my estimate &amp; book →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto justify-center bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">📞 Call now</a>
+      </div>
+      <div class="hero-in hero-in-d4 flex gap-4 sm:gap-6 flex-wrap text-white/85 text-sm font-semibold mb-10">
+        <span>• Professional installation</span><span>• Free estimates</span><span>• Residential &amp; commercial</span>
+      </div>
+      <div class="hero-in hero-in-d4 flex gap-8 sm:gap-10 flex-wrap border-t border-white/15 pt-8">
+        <div><div class="font-heading font-bold text-[26px] text-white"><span data-count-to="17" data-count-suffix="+">0+</span></div><div class="text-[13px] text-white/70">areas served</div></div>
+        <div><div class="font-heading font-bold text-[26px] text-white"><span data-count-to="99" data-count-suffix="%">0%</span></div><div class="text-[13px] text-white/70">of UV rays blocked</div></div>
+        <div><div class="font-heading font-bold text-[26px] text-white"><span data-count-to="100" data-count-suffix="%">0%</span></div><div class="text-[13px] text-white/70">customer satisfaction</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pt-12 sm:pt-18 pb-12 sm:pb-16">
+    <h2 class="font-heading text-[24px] sm:text-[28px] font-bold tracking-tight mb-5 reveal">House window tint for homes &amp; businesses in Greater Montreal</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5 reveal reveal-d1">
+      Vida Vitres is a specialized installer of architectural window film for flat glass, serving Montreal and 17 surrounding municipalities. Whether you're looking for <a href="/en/services/heat-control-window-film/" class="text-accent font-semibold">heat control window film</a> to cut heat and block UV rays, <a href="/en/services/privacy-window-film/" class="text-accent font-semibold">privacy window film</a> — frosted, one-way, or mirror — to protect your privacy without sacrificing natural light, <a href="/en/services/security-window-film/" class="text-accent font-semibold">security window film</a> to reinforce your glass against impact and break-ins, or <a href="/en/services/decorative-window-film/" class="text-accent font-semibold">decorative window film</a> to modernize an office or storefront, our team installs house window tint with precision, a clean finish, and a manufacturer warranty.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted mb-5 reveal reveal-d2">
+      We serve homeowners and commercial property managers across the island of Montreal, Laval, the South Shore, Lanaudière, the Laurentians, the West Island, and Vaudreuil-Soulanges. Every window tint estimate is free, based on your property's actual glass area, and comes with no obligation — you get a clear quote before any installation.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted reveal reveal-d3">
+      Made by Tekton Performance Films, our residential and commercial window films are built to last for years without yellowing or peeling, with an optical clarity that preserves the look of your windows. Whether your project is a single bathroom window or the full glass surface of an office building, our approach stays the same: an on-site evaluation, a recommendation that fits your budget, and a clean installation by technicians trained specifically for architectural window film.
+    </p>
+  </section>
+
+  <section id="estimate" class="bg-navy px-5 sm:px-8 py-14 sm:py-22 text-center">
+    <div class="max-w-[720px] mx-auto reveal">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Get a price</p>
+      <h2 class="font-heading text-[26px] sm:text-[32px] font-bold text-white tracking-tight mb-4">What does house window tint cost?</h2>
+      <p class="text-base leading-relaxed text-footer-muted mb-8">
+        Price depends on your glass area, the film you choose, and how many windows are involved. Rather than post a generic number that won't match your home, we measure your windows on site and hand you a free, clear, no-obligation estimate.
+      </p>
+      <a href={site.phoneHref} class="btn-glow inline-block bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">Call for your free estimate →</a>
+    </div>
+  </section>
+
+  <section id="services" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">Our services</p>
+    <h2 class="font-heading text-[28px] sm:text-[36px] font-bold tracking-tight mb-4 max-w-[640px] reveal">Solutions tailored to your needs</h2>
+    <p class="text-base leading-relaxed text-muted mb-11 max-w-[640px] reveal reveal-d1">Whether you're a homeowner, property manager, or business owner, we have the right film for you.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {servicesEn.map((s, i) => <ServiceCard service={s} index={i} lang="en" />)}
+    </div>
+  </section>
+
+  <section class="bg-navy px-5 sm:px-8 py-14 sm:py-22 overflow-hidden">
+    <div class="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="relative reveal">
+        <ImagePlaceholder
+          caption="Reduced glare and heat thanks to heat control window film, Montreal"
+          hue={230}
+          aspect="aspect-[4/3]"
+          src="/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg"
+        />
+        <div class="absolute -bottom-5 -right-5 bg-white rounded-xl px-5 py-3.5 shadow-lg transition-transform duration-300 hover:scale-105">
+          <div class="font-heading text-lg font-bold text-accent"><span data-count-to="100" data-count-suffix="%">0%</span></div>
+          <div class="text-[11px] text-muted-2">Customer satisfaction</div>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Why choose Vida Vitres</p>
+        <h2 class="font-heading text-[26px] sm:text-[32px] font-bold text-white tracking-tight mb-4">Why homeowners &amp; businesses choose window film</h2>
+        <p class="text-base leading-relaxed text-footer-muted mb-8">
+          Quality film, installed by professionals, transforms your space. Comfort, privacy, aesthetics — all the benefits, none of the drawbacks.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+          {whyUs.map((item) => (
+            <div class="flex items-start gap-2.5 transition-transform duration-200 hover:translate-x-1">
+              <span class="text-accent-light mt-0.5" aria-hidden="true">✓</span>
+              <div>
+                <div class="text-sm font-bold text-white mb-0.5">{item.title}</div>
+                <p class="text-[13px] leading-relaxed text-footer-muted">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Gallery lang="en" />
+
+  <section id="regions" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">Service area</p>
+    <h2 class="font-heading text-[28px] sm:text-[36px] font-bold tracking-tight mb-5 max-w-[640px] reveal">House window tint near you — Montreal &amp; 17 nearby areas</h2>
+    <p class="text-base leading-relaxed text-muted mb-4 max-w-[720px] reveal reveal-d1">
+      From Montreal to Laval, through Longueuil, Repentigny, and Terrebonne in Lanaudière, Saint-Eustache, Blainville, Mirabel, and Boisbriand in the Laurentians, Beaconsfield, Pointe-Claire, Dollard-Des Ormeaux, and Kirkland on the West Island, plus Vaudreuil-Dorion, Saint-Lazare, L'Île-Perrot, and Pincourt in Vaudreuil-Soulanges — our technicians come directly to you for window tint installation.
+    </p>
+    <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px] reveal reveal-d2">Click your area to see our heat control, privacy, security, and decorative window film services near you.</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 reveal reveal-d3">
+      {cities.map((c) => <LocationCard city={c} />)}
+    </div>
+    <a href="/locations/" class="inline-block mt-6 text-sm font-bold text-accent transition-transform duration-200 hover:translate-x-1">See all areas →</a>
+  </section>
+
+  <ApplicationsSplit lang="en" />
+
+  <section id="process" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center reveal">Our process</p>
+    <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 text-center reveal">Simple &amp; efficient</h2>
+    <p class="text-base leading-relaxed text-muted mb-14 text-center max-w-[560px] mx-auto reveal reveal-d1">4 steps from idea to installation.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-0 relative">
+      {steps.map((s, i) => (
+        <div class={`group relative px-5 transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1} ${i > 0 ? 'sm:border-l border-border' : ''}`}>
+          <div class="font-heading font-bold text-[26px] text-accent-light mb-3 transition-transform duration-300 group-hover:scale-110 inline-block">{s.n}</div>
+          <h3 class="text-base font-bold mb-2">{s.title}</h3>
+          <p class="text-sm leading-relaxed text-muted">{s.description}</p>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-12 reveal reveal-d4">
+      <a href="#estimate" class="btn-glow inline-block bg-navy text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">Get my estimate &amp; book →</a>
+    </div>
+  </section>
+
+  <PartnerSpotlight lang="en" />
+
+  <section id="faq" class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 lg:gap-16">
+      <div class="reveal">
+        <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3">FAQ</p>
+        <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4">Got questions?</h2>
+        <p class="text-base leading-relaxed text-muted mb-7">Here are the questions we hear most often. Can't find your answer? Contact us directly.</p>
+        <a href={site.phoneHref} class="inline-block bg-navy text-white px-6 py-3 rounded-[10px] text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">Contact us →</a>
+      </div>
+      <div class="reveal reveal-d1">
+        {faqs.map((f) => (
+          <details class="group border border-border rounded-xl px-5 py-1 mb-3 transition-colors duration-200 hover:border-accent">
+            <summary class="text-[15px] font-bold cursor-pointer py-4 flex items-center justify-between gap-3">
+              {f.question}
+              <span class="text-accent transition-transform duration-300 group-open:rotate-180" aria-hidden="true">⌄</span>
+            </summary>
+            <p class="text-[15px] leading-relaxed text-muted pb-4 max-w-[700px]">{f.answer}</p>
+          </details>
+        ))}
+        <script type="application/ld+json" set:html={JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+        })} />
+      </div>
+    </div>
+  </section>
+
+  <ContactCta title="Ready to upgrade your windows?" description="Get your instant estimate and book your free evaluation to find the right solution for your home or business." lang="en" />
+</Layout>

@@ -1,16 +1,21 @@
 ---
 import { site } from '../lib/site';
+interface Props {
+  lang?: 'fr' | 'en';
+}
+const { lang = 'fr' } = Astro.props;
+const isEn = lang === 'en';
 ---
 <a
   id="call-now-btn"
   href={site.phoneHref}
   class="btn-glow group fixed right-4 sm:right-6 z-40 bg-accent text-white p-3.5 sm:pl-4 sm:pr-5 sm:py-3.5 rounded-full shadow-lg font-bold text-sm flex items-center gap-2"
   style="opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 300ms ease, transform 300ms ease, bottom 300ms ease;"
-  aria-label={`Appeler Vida Vitres au ${site.phone}`}
+  aria-label={isEn ? `Call Vida Vitres at ${site.phone}` : `Appeler Vida Vitres au ${site.phone}`}
 >
   <span class="flex items-center gap-2 transition-transform duration-200 group-hover:scale-105">
     <span class="animate-pulse" aria-hidden="true">📞</span>
-    <span class="hidden sm:inline">Appeler maintenant</span>
+    <span class="hidden sm:inline">{isEn ? 'Call now' : 'Appeler maintenant'}</span>
   </span>
 </a>
 

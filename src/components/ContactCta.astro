@@ -3,20 +3,26 @@ import { site } from '../lib/site';
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'fr' | 'en';
 }
 const {
-  title = 'Obtenez votre estimation gratuite',
-  description = 'Réponse rapide, sans engagement.',
+  title,
+  description,
+  lang = 'fr',
 } = Astro.props;
+const isEn = lang === 'en';
+const resolvedTitle = title ?? (isEn ? 'Get your free estimate' : 'Obtenez votre estimation gratuite');
+const resolvedDescription = description ?? (isEn ? 'Quick response, no obligation.' : 'Réponse rapide, sans engagement.');
+const estimateAnchor = isEn ? '/en/#estimate' : '/#estimateur';
 ---
 <section id="contact" class="bg-navy px-5 sm:px-8 py-14 sm:py-18 text-center overflow-hidden">
   <div class="max-w-[640px] mx-auto reveal">
-    <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">Passez à l'action</p>
-    <h2 class="font-heading text-[24px] sm:text-[30px] font-bold text-white mb-4">{title}</h2>
-    <p class="text-base leading-relaxed text-footer-muted mb-7">{description}</p>
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent-light mb-3">{isEn ? 'Take action' : "Passez à l'action"}</p>
+    <h2 class="font-heading text-[24px] sm:text-[30px] font-bold text-white mb-4">{resolvedTitle}</h2>
+    <p class="text-base leading-relaxed text-footer-muted mb-7">{resolvedDescription}</p>
     <div class="flex gap-3.5 justify-center flex-wrap">
-      <a href="/#estimateur" class="btn-glow w-full sm:w-auto inline-block bg-accent text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">Obtenir mon estimation &amp; réserver →</a>
-      <a href={site.phoneHref} class="w-full sm:w-auto inline-block border-2 border-white text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-navy active:translate-y-0">Appeler {site.phone}</a>
+      <a href={estimateAnchor} class="btn-glow w-full sm:w-auto inline-block bg-accent text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'Get my estimate & book →' : 'Obtenir mon estimation & réserver →'}</a>
+      <a href={site.phoneHref} class="w-full sm:w-auto inline-block border-2 border-white text-white px-7 py-3.5 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-navy active:translate-y-0">{isEn ? `Call ${site.phone}` : `Appeler ${site.phone}`}</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,146 @@
+---
+import Layout from '../../../../components/Layout.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import LocationCard from '../../../../components/LocationCard.astro';
+import ContactCta from '../../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../../components/ImagePlaceholder.astro';
+import { servicesEn } from '../../../../data/servicesEn';
+import { cities } from '../../../../data/cities';
+import { houseWindowTintIntros } from '../../../../data/houseWindowTintIntros';
+import { site } from '../../../../lib/site';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const intro = houseWindowTintIntros[city.slug];
+const near = cities.filter((c) => c.slug !== city.slug).slice(0, 3);
+const heatControl = servicesEn.find((s) => s.slug === 'heat-control-window-film')!;
+
+const photoPool = [
+  '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.webp',
+  '/images/installation-pellicule-solaire-vue-montreal.jpg',
+  '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+  '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
+];
+const cityIndex = cities.findIndex((c) => c.slug === city.slug);
+const photo = photoPool[cityIndex % photoPool.length];
+
+const faqs = [
+  {
+    question: `How much does a tinted picture window cost in ${city.name}?`,
+    answer: `The price depends on your glass area, the window type (picture window, patio door, standard window), and the tint you choose. There's no reliable flat rate online that fits every home — our technicians measure your windows in ${city.name} on site and hand you a free, detailed, no-obligation estimate.`,
+  },
+  {
+    question: 'Is house window tint the same thing as heat control film?',
+    answer: 'Yes. "House window tint" is what most people search for; "heat control window film" is the technical name for the product we install to get it. Either way, it\'s a film applied to the existing glass of your windows — no window replacement required.',
+  },
+  {
+    question: 'Can I tint just one window, or does the whole house need it?',
+    answer: "You can tint a single picture window, a single room, or the whole house — it's entirely up to you. Many clients start with the most problematic room (the living room that overheats, for example) and add the rest later.",
+  },
+  {
+    question: 'Does house window tint make the room darker?',
+    answer: 'No — most of our residential tints let 50-70% of visible light through while blocking heat and up to 99% of UV. The room stays bright, just more comfortable.',
+  },
+];
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'House window tint',
+  name: `House Window Tint in ${city.name} | ${site.name}`,
+  description: `House window tint (heat control film) installation for homes and residential windows in ${city.name}.`,
+  areaServed: city.name,
+  provider: { '@type': 'LocalBusiness', name: site.name },
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+---
+<Layout
+  title={`House Window Tint in ${city.name} | Price & Picture Windows | ${site.name}`}
+  description={`House window tint for homes in ${city.name}: residential installation on picture windows and existing glass. Free estimate, no window replacement.`}
+  canonicalPath={`/en/house-window-tint/${city.slug}/`}
+  lang="en"
+  alternatePath={`/vitres-teintees/${city.slug}/`}
+>
+  <Breadcrumb items={[
+    { label: 'Home', href: '/en/' },
+    { label: 'House Window Tint', href: '/en/house-window-tint/' },
+    { label: city.name },
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">House window tint · {city.name}</p>
+      <h1 class="font-heading text-[28px] sm:text-[40px] font-bold tracking-tight mb-5 max-w-[760px]">House Window Tint in {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{intro.paragraph1}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-10 max-w-[680px]">{intro.paragraph2}</p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Get my estimate →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Call now</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={`House window tint on ${intro.windowType} in ${city.name}`}
+        hue={230}
+        src={photo}
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-6">Why tint your windows in {city.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {heatControl.benefits.map((b, i) => (
+        <div class={`transition-transform duration-300 hover:-translate-y-1 reveal reveal-d${i + 1}`}><h3 class="text-[15px] font-bold mb-1.5">{b.title}</h3><p class="text-sm leading-relaxed text-muted">{b.description}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[900px] mx-auto text-center">
+      <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-4">"House window tint" and "heat control film": same service</h2>
+      <p class="text-[15px] leading-relaxed text-muted mb-6">
+        At {site.name}, what we call house window tint is the same product as our heat control window film — an architectural film applied to the existing glass of your windows. You can check out the full service page, with performance data for the Tekton films we install.
+      </p>
+      <a href={`/en/services/heat-control-window-film/${city.slug}/`} class="text-sm font-bold text-accent">See heat control window film in {city.name} →</a>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Frequently asked questions about house window tint in {city.name}</h2>
+    {faqs.map((f) => (
+      <details class="group border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer flex items-center justify-between gap-3">
+          {f.question}
+          <span class="text-accent shrink-0 transition-transform duration-300 group-open:rotate-180" aria-hidden="true">⌄</span>
+        </summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]">{f.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">House window tint in areas near {city.name}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-5">
+        {near.map((c) => <LocationCard city={c} href={`/en/house-window-tint/${c.slug}/`} />)}
+      </div>
+      <a href="/en/house-window-tint/" class="text-sm font-bold text-accent">See all areas →</a>
+    </div>
+  </section>
+
+  <ContactCta title="Get the price for your house window tint" description="Free, no-obligation estimate for your home." lang="en" />
+</Layout>

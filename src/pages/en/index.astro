@@ -159,9 +159,9 @@ const faqs = [
     </p>
     <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px] reveal reveal-d2">Click your area to see our heat control, privacy, security, and decorative window film services near you.</p>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 reveal reveal-d3">
-      {cities.map((c) => <LocationCard city={c} />)}
+      {cities.map((c) => <LocationCard city={c} href={`/en/locations/${c.slug}/`} />)}
     </div>
-    <a href="/locations/" class="inline-block mt-6 text-sm font-bold text-accent transition-transform duration-200 hover:translate-x-1">See all areas →</a>
+    <a href="/en/locations/" class="inline-block mt-6 text-sm font-bold text-accent transition-transform duration-200 hover:translate-x-1">See all areas →</a>
   </section>
 
   <ApplicationsSplit lang="en" />

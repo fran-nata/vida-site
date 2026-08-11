@@ -1,0 +1,158 @@
+---
+import Layout from '../../../../components/Layout.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import LocationCard from '../../../../components/LocationCard.astro';
+import ContactCta from '../../../../components/ContactCta.astro';
+import ImagePlaceholder from '../../../../components/ImagePlaceholder.astro';
+import { servicesEn } from '../../../../data/servicesEn';
+import { cities } from '../../../../data/cities';
+import { regionProfilesEn } from '../../../../data/regionProfilesEn';
+import { locationIntrosEn } from '../../../../data/locationIntrosEn';
+import { site } from '../../../../lib/site';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const near = cities.filter((c) => c.slug !== city.slug).slice(0, 6);
+const profile = regionProfilesEn[city.region];
+const nearNames = near.slice(0, 3).map((c) => c.name);
+const [introLocal, introClose] = locationIntrosEn[city.slug];
+
+const photoPool = [
+  '/images/quartier-residentiel-grand-montreal-pellicule-fenetre.jpg',
+  '/images/pellicule-solaire-fenetre-panoramique-salon-montreal.webp',
+  '/images/fenetres-panoramiques-condo-montreal-pellicule-solaire.webp',
+  '/images/comparaison-avant-apres-pellicule-solaire-maison-montreal.jpg',
+  '/images/installation-pellicule-solaire-vue-montreal.jpg',
+  '/images/reduction-eblouissement-chaleur-pellicule-solaire-fenetre.jpg',
+  '/images/pellicule-intimite-fenetre-reflechissante-immeuble-montreal.jpg',
+  '/images/pellicule-decorative-cloison-bureau-givree-montreal.jpg',
+];
+const cityIndex = cities.findIndex((c) => c.slug === city.slug);
+const photo = photoPool[(cityIndex + 2) % photoPool.length];
+
+const whyUs = [
+  { title: 'Local installation', description: `Technicians who come to you in ${city.name}.` },
+  { title: 'Free estimate', description: 'A clear quote before every installation.' },
+  { title: 'Tekton films', description: 'Premium products, backed by a manufacturer warranty.' },
+  { title: 'Residential & commercial', description: 'Homes, condos, offices, and businesses.' },
+];
+
+const heatControl = servicesEn.find((s) => s.slug === 'heat-control-window-film')!;
+const privacy = servicesEn.find((s) => s.slug === 'privacy-window-film')!;
+const security = servicesEn.find((s) => s.slug === 'security-window-film')!;
+const decorative = servicesEn.find((s) => s.slug === 'decorative-window-film')!;
+
+const localFaqs = [
+  {
+    question: `Which window film is most requested in ${city.name}?`,
+    answerText: `In ${city.name}, where you'll find ${profile.buildingContext}, ${profile.exposureNote}. Heat control and privacy film are therefore the two most frequently requested services, often installed together on the same windows.`,
+    answerHtml: `In ${city.name}, where you'll find ${profile.buildingContext}, ${profile.exposureNote}. <a href="/en/services/${heatControl.slug}/${city.slug}/" class="text-accent font-semibold">Heat control film</a> and <a href="/en/services/${privacy.slug}/${city.slug}/" class="text-accent font-semibold">privacy film</a> are therefore the two most frequently requested services, often installed together on the same windows.`,
+  },
+  {
+    question: `Do your technicians come directly to my home in ${city.name}?`,
+    answerText: `Yes — both the on-site evaluation and the installation happen at your address in ${city.name}, whether for ${profile.propertyTypes}. No travel is required on your part, and the initial estimate is free and comes with no obligation.`,
+    answerHtml: `Yes — both the on-site evaluation and the installation happen at your address in ${city.name}, whether for ${profile.propertyTypes}. No travel is required on your part, and the initial estimate is free and comes with no obligation.`,
+  },
+  {
+    question: `Do you also serve the municipalities around ${city.name}?`,
+    answerText: `Yes, in addition to ${city.name}, we cover ${nearNames.join(', ')} and the rest of Greater Montreal. Our technicians often schedule several installations in the same area during the same week.`,
+    answerHtml: `Yes, in addition to ${city.name}, we cover ${near.slice(0, 3).map((c) => `<a href="/en/locations/${c.slug}/" class="text-accent font-semibold">${c.name}</a>`).join(', ')} and the rest of Greater Montreal. Our technicians often schedule several installations in the same area during the same week.`,
+  },
+];
+---
+<Layout
+  title={`Window Film in ${city.name} | Heat Control, Privacy, Security | ${site.name}`}
+  description={`Heat control, privacy, and security window film installation in ${city.name} (${city.region}). Free estimate. Residential and commercial.`}
+  canonicalPath={`/en/locations/${city.slug}/`}
+  lang="en"
+  alternatePath={`/locations/${city.slug}/`}
+>
+  <Breadcrumb items={[{ label: 'Home', href: '/en/' }, { label: 'Areas', href: '/en/locations/' }, { label: city.name }]} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="hero-in">
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-4">{city.name}</p>
+      <h1 class="font-heading text-[30px] sm:text-[42px] font-bold tracking-tight mb-5 max-w-[760px]">Window Film in {city.name}</h1>
+      <p class="text-[17px] leading-relaxed text-muted mb-4 max-w-[680px]">{introLocal}</p>
+      <p class="text-[17px] leading-relaxed text-muted mb-8 max-w-[680px]">{introClose}</p>
+      <div class="flex gap-3.5 flex-wrap">
+        <a href="#contact" class="btn-glow w-full sm:w-auto bg-accent text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Get my estimate →</a>
+        <a href={site.phoneHref} class="btn-glow w-full sm:w-auto bg-navy text-white px-7 py-4 rounded-[10px] text-[15px] font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center">Call now</a>
+      </div>
+    </div>
+    <div class="hero-in hero-in-d1">
+      <ImagePlaceholder
+        caption={`Residential window film installation in ${city.name}`}
+        hue={230}
+        src={photo}
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-6">Our services in {city.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {servicesEn.map((s) => (
+        <a href={`/en/services/${s.slug}/${city.slug}/`} class="block border border-border rounded-lg p-6 bg-white">
+          <h3 class="font-heading text-[17px] font-bold mb-2">{s.name}</h3>
+          <p class="text-sm leading-relaxed text-muted mb-3.5">{s.tagline}</p>
+          <span class="text-[13px] font-bold text-accent">See the service in {city.name} →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pb-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-4">Window film in {city.name}: what sets your area apart</h2>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      The {city.name} area, in {city.region}, is mainly characterized by {profile.buildingContext}. In this context, {profile.exposureNote}. That's why our technicians generally recommend an on-site evaluation rather than a generic online estimate: glass type, window orientation, and how the room is used directly shape the choice between <a href={`/en/services/${heatControl.slug}/${city.slug}/`} class="text-accent font-semibold">heat control film</a>, <a href={`/en/services/${privacy.slug}/${city.slug}/`} class="text-accent font-semibold">privacy film</a>, <a href={`/en/services/${security.slug}/${city.slug}/`} class="text-accent font-semibold">security film</a>, or <a href={`/en/services/${decorative.slug}/${city.slug}/`} class="text-accent font-semibold">decorative film</a>.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted mb-5">
+      For {profile.propertyTypes} in {city.name}, heat control film remains the most common starting point: it reduces the heat that builds up in the afternoon and blocks up to 99% of the UV rays responsible for fading floors and furniture, without changing how your windows look or reducing their clarity.
+    </p>
+    <p class="text-[15px] leading-relaxed text-muted">
+      When privacy or security is the priority — a bathroom facing the street, a ground-floor patio door, a commercial storefront — our technicians evaluate on site in {city.name} to recommend a frosted finish, security film, or a combination of both depending on the window in question. Every installation comes with a free estimate and a clear quote before any commitment.
+    </p>
+  </section>
+
+  <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-14">
+    <div class="max-w-[1240px] mx-auto">
+      <h2 class="font-heading text-[22px] sm:text-[26px] font-extrabold tracking-tight mb-6">Why {city.name} residents trust us</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {whyUs.map((item) => (
+          <div><h3 class="text-[15px] font-bold mb-1.5">{item.title}</h3><p class="text-sm leading-relaxed text-muted">{item.description}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-8">Frequently asked questions in {city.name}</h2>
+    {localFaqs.map((f) => (
+      <details class="border-b border-border py-5">
+        <summary class="text-base font-bold cursor-pointer">{f.question}</summary>
+        <p class="text-[15px] leading-relaxed text-muted mt-3.5 max-w-[700px]" set:html={f.answerHtml} />
+      </details>
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: localFaqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answerText } })),
+    })} />
+  </section>
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 sm:py-22">
+    <h2 class="font-heading text-2xl font-extrabold tracking-tight mb-5">Other areas served near {city.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+      {near.map((c) => <LocationCard city={c} href={`/en/locations/${c.slug}/`} />)}
+    </div>
+  </section>
+
+  <ContactCta lang="en" />
+</Layout>

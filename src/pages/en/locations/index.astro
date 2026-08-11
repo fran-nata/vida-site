@@ -1,0 +1,32 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import LocationCard from '../../../components/LocationCard.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import { cities, regionOrder } from '../../../data/cities';
+---
+<Layout
+  title="Areas We Serve | Window Film in Greater Montreal | Vida Vitres"
+  description="Vida Vitres installs window film in Montreal, Laval, Longueuil, and 14 other municipalities across Greater Montreal."
+  canonicalPath="/en/locations/"
+  lang="en"
+  alternatePath="/locations/"
+>
+  <Breadcrumb items={[{ label: 'Home', href: '/en/' }, { label: 'Areas' }]} />
+
+  <section class="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-14 sm:pb-22">
+    <h1 class="font-heading text-[30px] sm:text-[42px] font-extrabold tracking-tight mt-4 mb-5">Areas we serve</h1>
+    <p class="text-[17px] leading-relaxed text-muted mb-11 max-w-[680px]">Vida Vitres installs window film in Montreal and 17 surrounding municipalities.</p>
+
+    {regionOrder.map((region) => (
+      <div class="mb-8">
+        <h2 class="text-[15px] font-bold text-accent mb-3.5 uppercase tracking-wide">{region}</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+          {cities.filter((c) => c.region === region).map((c) => <LocationCard city={c} href={`/en/locations/${c.slug}/`} />)}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <ContactCta lang="en" />
+</Layout>

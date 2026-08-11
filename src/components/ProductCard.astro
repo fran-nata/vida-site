@@ -4,9 +4,12 @@ import ImagePlaceholder from './ImagePlaceholder.astro';
 interface Props {
   product: Product;
   index?: number;
+  lang?: 'fr' | 'en';
 }
-const { product, index = 0 } = Astro.props;
+const { product, index = 0, lang = 'fr' } = Astro.props;
+const isEn = lang === 'en';
 const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
+const serviceHref = isEn ? `/en/services/${product.serviceSlug}/` : `/services/${product.serviceSlug}/`;
 ---
 <div class={`group relative rounded-2xl border border-border bg-white overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-transparent reveal ${delayClass}`}>
   <div class="relative overflow-hidden">
@@ -46,8 +49,8 @@ const delayClass = index > 0 ? `reveal-d${Math.min((index % 8) + 1, 8)}` : '';
     ))}
   </div>
 
-  <a href={`/services/${product.serviceSlug}/`} class="text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">
-    Voir le service associé →
+  <a href={serviceHref} class="text-[13px] font-bold text-accent inline-flex items-center gap-1 transition-transform duration-200 group-hover:translate-x-1">
+    {isEn ? 'See related service →' : 'Voir le service associé →'}
   </a>
   </div>
 </div>

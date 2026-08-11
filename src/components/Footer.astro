@@ -25,13 +25,14 @@ const popularCities = cities.slice(0, 3);
           <div class="flex flex-col gap-2.5 text-sm">
             {servicesEn.map((s) => <a href={`/en/services/${s.slug}/`}>{s.name}</a>)}
             <a href="/en/house-window-tint/">House Window Tint</a>
+            <a href="/en/products/">Our Tekton Products</a>
           </div>
         </div>
         <div>
           <div class="text-[13px] font-bold text-white mb-3.5">Popular Areas</div>
           <div class="flex flex-col gap-2.5 text-sm">
-            {popularCities.map((c) => <a href={`/locations/${c.slug}/`}>{c.name}</a>)}
-            <a href="/locations/">All areas →</a>
+            {popularCities.map((c) => <a href={`/en/locations/${c.slug}/`}>{c.name}</a>)}
+            <a href="/en/locations/">All areas →</a>
           </div>
         </div>
         <div>
@@ -78,8 +79,8 @@ const popularCities = cities.slice(0, 3);
     <div class="border-t border-white/10 pt-6 flex items-center justify-between flex-wrap gap-3 text-[13px]">
       <span>© 2026 {site.name}. {isEn ? 'All rights reserved.' : 'Tous droits réservés.'}</span>
       <div class="flex items-center gap-5 flex-wrap">
-        <a href="/politique-de-confidentialite/" class="text-footer-muted hover:text-white transition-colors duration-200">{isEn ? 'Privacy Policy' : 'Politique de confidentialité'}</a>
-        <a href="/conditions-utilisation/" class="text-footer-muted hover:text-white transition-colors duration-200">{isEn ? 'Terms of Use' : "Conditions d'utilisation"}</a>
+        <a href={isEn ? '/en/privacy-policy/' : '/politique-de-confidentialite/'} class="text-footer-muted hover:text-white transition-colors duration-200">{isEn ? 'Privacy Policy' : 'Politique de confidentialité'}</a>
+        <a href={isEn ? '/en/terms-of-use/' : '/conditions-utilisation/'} class="text-footer-muted hover:text-white transition-colors duration-200">{isEn ? 'Terms of Use' : "Conditions d'utilisation"}</a>
         <span class="text-footer-muted">Tekton Performance Films</span>
       </div>
     </div>

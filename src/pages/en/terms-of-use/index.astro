@@ -1,0 +1,91 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { site } from '../../../lib/site';
+---
+<Layout
+  title={`Terms of Use | ${site.name}`}
+  description="Terms of use for the Vida Vitres website and general terms applicable to our window film installation services."
+  canonicalPath="/en/terms-of-use/"
+  lang="en"
+  alternatePath="/conditions-utilisation/"
+>
+  <Breadcrumb items={[{ label: 'Home', href: '/en/' }, { label: 'Terms of Use' }]} />
+
+  <article class="max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent my-3">Last updated: August 5, 2026</p>
+    <h1 class="font-heading text-[26px] sm:text-[38px] font-extrabold tracking-tight leading-snug mb-7">Terms of Use</h1>
+
+    <div class="prose-legal text-base leading-relaxed text-ink">
+      <p>
+        These terms of use govern your access to and use of the {site.name} website ("we," "our," or "us"), as well as the general terms applicable to our window film installation services. By using our site or engaging our services, you accept these terms.
+      </p>
+
+      <h2>Description of services</h2>
+      <p>
+        {site.name} is a specialized installer of architectural window film for residential and commercial windows (heat control, privacy, security, and decorative), serving Montreal and the surrounding municipalities of Greater Montreal.
+      </p>
+
+      <h2>Estimates and quotes</h2>
+      <p>
+        Estimates obtained through our website or our online estimate tool are provided for informational purposes and free of charge. They do not constitute a final contract: price, scope of work, and installation timeline are confirmed in writing after an on-site evaluation of your windows. No financial commitment is required before a final quote is accepted.
+      </p>
+
+      <h2>Use of the website</h2>
+      <p>
+        You agree to use our website for lawful purposes only and not to attempt to compromise its security or functioning. All content on this site (text, images, logos, layout) is the property of {site.name} or its partners, such as Tekton Performance Films for product photography used with their permission, and may not be reproduced without prior written authorization.
+      </p>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        Information presented on this site (service descriptions, film performance data, blog articles) is provided for general informational purposes and is drawn in part from specifications published by our suppliers. While we strive for accuracy, {site.name} cannot be held liable for indirect damages arising from the use of this site. Our installation services, on the other hand, are covered by the specific warranties communicated in your quote and by the manufacturer warranties applicable to the product installed.
+      </p>
+
+      <h2>Links to third-party sites</h2>
+      <p>
+        Our site may contain links to third-party sites, including that of our partner Tekton Performance Films. We are not responsible for the content or privacy practices of these external sites.
+      </p>
+
+      <h2>Changes to these terms</h2>
+      <p>
+        We may update these terms of use from time to time. The last-updated date appears at the top of this page.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>
+        These terms are governed by the laws of the province of Quebec and applicable federal laws of Canada.
+      </p>
+
+      <h2>Contact us</h2>
+      <p>For any questions regarding these terms of use, contact us:</p>
+      <ul>
+        <li>Phone: <a href={site.phoneHref}>{site.phone}</a></li>
+        <li>Email: <a href={site.emailHref}>{site.email}</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 32px 0 14px;
+  }
+  .prose-legal p {
+    margin: 0 0 18px;
+  }
+  .prose-legal ul {
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .prose-legal li {
+    margin-bottom: 8px;
+  }
+  .prose-legal a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>

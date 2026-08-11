@@ -109,7 +109,7 @@ const serviceLd = {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-5">
         {otherServices.map((s) => <LocationCard city={{ slug: s.slug, name: s.name, region: '' }} href={`/en/services/${s.slug}/${city.slug}/`} />)}
       </div>
-      <a href={`/locations/${city.slug}/`} class="text-sm font-bold text-accent">See all our services in {city.name} →</a>
+      <a href={`/en/locations/${city.slug}/`} class="text-sm font-bold text-accent">See all our services in {city.name} →</a>
       {service.slug === 'heat-control-window-film' && (
         <p class="text-sm text-muted mt-4">
           Searching for "house window tint"? <a href={`/en/house-window-tint/`} class="text-accent font-semibold">Same service, different name →</a>

@@ -50,6 +50,10 @@
   details > summary::-webkit-details-marker {
     display: none;
   }
+
+  button {
+    font-family: var(--font-heading);
+  }
 }
 
 ::selection {
@@ -106,32 +110,37 @@ section[id] {
 .hero-in-d4 { animation-delay: 420ms; }
 
 /* CTA glow: a slow, subtle ambient pulse on primary buttons, with a
-   stronger glow burst on hover. All glowing buttons share one purple
+   stronger glow burst on hover. All glowing buttons share one deep-purple
    gradient here, overriding whatever bg-accent/bg-navy utility class
    is on the element in markup (this rule is unlayered, so it beats
-   Tailwind's layered utilities regardless of specificity). The
-   floating call button is the one exception -- it keeps the bronze
-   accent color via the higher-specificity #call-now-btn override below. */
+   Tailwind's layered utilities regardless of specificity). Every "call
+   now" button (every one of them links to site.phoneHref, i.e. a
+   tel: link) is the exception -- it keeps the bronze accent color,
+   matching the logo, via the attribute-selector override below. */
 @keyframes btn-glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--glow-rgb, 108, 66, 168), 0); }
-  50% { box-shadow: 0 0 16px 3px rgba(var(--glow-rgb, 108, 66, 168), 0.45); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--glow-rgb, 74, 42, 122), 0); }
+  50% { box-shadow: 0 0 16px 3px rgba(var(--glow-rgb, 74, 42, 122), 0.45); }
 }
 .btn-glow {
-  --glow-rgb: 108, 66, 168;
-  background-image: linear-gradient(135deg, #9c81d6, #6b42a8) !important;
-  background-color: #7c56bf !important;
-  border-color: transparent !important;
+  --glow-rgb: 74, 42, 122;
+  background-image: linear-gradient(135deg, #7a5cc0, #4a2a7a) !important;
+  background-color: #5a3690 !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: #2f1a52 !important;
+  font-family: var(--font-heading) !important;
   animation: btn-glow-pulse 2.8s ease-in-out infinite;
 }
 .btn-glow:hover {
   animation-play-state: paused;
-  box-shadow: 0 0 22px 5px rgba(var(--glow-rgb, 108, 66, 168), 0.6) !important;
+  box-shadow: 0 0 22px 5px rgba(var(--glow-rgb, 74, 42, 122), 0.6) !important;
 }
 
-#call-now-btn.btn-glow {
+a.btn-glow[href^="tel:"] {
   --glow-rgb: 201, 137, 90;
   background-image: none !important;
   background-color: var(--color-accent) !important;
+  border-color: #8a5c3a !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

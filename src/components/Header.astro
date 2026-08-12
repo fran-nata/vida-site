@@ -37,7 +37,7 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
     <a href={switcherHref} class="hidden sm:inline-flex items-center gap-1 text-[13px] font-bold text-navy border border-border rounded-full px-3 py-1.5 hover:border-accent hover:text-accent transition-colors duration-200" aria-label={isEn ? 'Passer au français' : 'Switch to English'}>
       {isEn ? 'FR' : 'EN'}
     </a>
-    <a href={estimateAnchor} class="btn-glow hidden sm:inline-block bg-navy text-white px-5 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'Get an Estimate' : 'Estimation & Réservation'}</a>
+    <a href={estimateAnchor} class="btn-glow hidden sm:inline-block bg-accent text-white px-5 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'Get an Estimate' : 'Estimation & Réservation'}</a>
     <button id="menu-toggle" type="button" aria-label={isEn ? 'Open menu' : 'Ouvrir le menu'} aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 shrink-0 -mr-1.5">
       <span class="menu-bar block w-6 h-[2px] bg-navy transition-transform duration-300"></span>
       <span class="menu-bar block w-6 h-[2px] bg-navy transition-opacity duration-300"></span>
@@ -54,7 +54,7 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
         <a href="/en/locations/" class="text-[15px] font-medium py-2.5 border-b border-border">Areas</a>
         <a href="/en/blog/" class="text-[15px] font-medium py-2.5 border-b border-border">Blog</a>
         <a href={switcherHref} class="text-[15px] font-medium py-2.5 border-b border-border">Français</a>
-        <a href={estimateAnchor} class="btn-glow bg-navy text-white px-5 py-3 rounded-[10px] text-sm font-semibold text-center mt-4">Get an Estimate</a>
+        <a href={estimateAnchor} class="btn-glow bg-accent text-white px-5 py-3 rounded-[10px] text-sm font-semibold text-center mt-4">Get an Estimate</a>
       </div>
     ) : (
       <div class="flex flex-col px-5 sm:px-8 pb-5 pt-1 gap-1 border-t border-border">
@@ -66,7 +66,7 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
         <a href="/locations/" class="text-[15px] font-medium py-2.5 border-b border-border">Régions</a>
         <a href="/blog/" class="text-[15px] font-medium py-2.5 border-b border-border">Blogue</a>
         <a href={switcherHref} class="text-[15px] font-medium py-2.5 border-b border-border">English</a>
-        <a href="/#estimateur" class="btn-glow bg-navy text-white px-5 py-3 rounded-[10px] text-sm font-semibold text-center mt-4">Estimation &amp; Réservation</a>
+        <a href="/#estimateur" class="btn-glow bg-accent text-white px-5 py-3 rounded-[10px] text-sm font-semibold text-center mt-4">Estimation &amp; Réservation</a>
       </div>
     )}
   </nav>

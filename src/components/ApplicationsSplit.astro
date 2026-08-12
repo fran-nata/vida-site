@@ -53,13 +53,13 @@ const commercial = isEn ? commercialEn : commercialFr;
 <section class="bg-bg-light px-5 sm:px-8 py-14 sm:py-22">
   <div class="max-w-[1240px] mx-auto">
     <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center reveal">{isEn ? 'Applications' : 'Applications'}</p>
-    <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 text-center reveal">{isEn ? 'Solutions for homes & businesses' : 'Solutions pour maisons &amp; entreprises'}</h2>
+    <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 text-center reveal">{isEn ? 'Solutions for homes & businesses' : 'Solutions pour maisons & entreprises'}</h2>
     <p class="text-base leading-relaxed text-muted mb-11 text-center max-w-[560px] mx-auto reveal reveal-d1">{isEn ? 'From single-family homes to large commercial spaces, Vida Vitres works everywhere.' : 'De la maison unifamiliale aux grands espaces commerciaux, Vida Vitres intervient partout.'}</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[900px] mx-auto">
       <div class="bg-white rounded-2xl p-8 border border-border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl reveal reveal-d2">
         <div class="w-11 h-11 rounded-xl bg-bg-light flex items-center justify-center text-xl mb-4" aria-hidden="true">🏠</div>
         <h3 class="font-heading text-lg font-bold mb-1">{isEn ? 'Residential' : 'Résidentiel'}</h3>
-        <p class="text-[13px] text-muted-2 mb-5">{isEn ? 'Homes & condos' : 'Maisons &amp; condos'}</p>
+        <p class="text-[13px] text-muted-2 mb-5">{isEn ? 'Homes & condos' : 'Maisons & condos'}</p>
         <ul class="text-sm text-muted space-y-2.5">
           {residential.map((item) => <li class="flex items-center gap-2"><span class="text-accent">•</span> {item}</li>)}
         </ul>
@@ -67,7 +67,7 @@ const commercial = isEn ? commercialEn : commercialFr;
       <div class="bg-navy rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl reveal reveal-d3">
         <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-xl mb-4" aria-hidden="true">🏢</div>
         <h3 class="font-heading text-lg font-bold text-white mb-1">Commercial</h3>
-        <p class="text-[13px] text-footer-muted mb-5">{isEn ? 'Offices & businesses' : 'Bureaux &amp; commerces'}</p>
+        <p class="text-[13px] text-footer-muted mb-5">{isEn ? 'Offices & businesses' : 'Bureaux & commerces'}</p>
         <ul class="text-sm text-footer-muted space-y-2.5">
           {commercial.map((item) => <li class="flex items-center gap-2"><span class="text-accent-light">•</span> {item}</li>)}
         </ul>

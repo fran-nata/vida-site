@@ -15,18 +15,20 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
   <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between gap-4 sm:gap-6">
     <Logo href={home} />
     {isEn ? (
-      <nav class="hidden lg:flex gap-7 items-center">
+      <nav class="hidden lg:flex gap-5 xl:gap-7 items-center">
         <a href="/en/services/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Services</a>
         <a href="/en/house-window-tint/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Window Tint</a>
+        <a href="/en/projects/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Projects &amp; results</a>
         <a href={estimateAnchor} class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Estimate</a>
         <a href={`${home}#faq`} class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">FAQ</a>
         <a href="/en/locations/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Areas</a>
         <a href="/en/blog/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Blog</a>
       </nav>
     ) : (
-      <nav class="hidden lg:flex gap-7 items-center">
+      <nav class="hidden lg:flex gap-5 xl:gap-7 items-center">
         <a href="/services/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Services</a>
         <a href="/produits/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Produits</a>
+        <a href="/projets/" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Projets et résultats</a>
         <a href="/#estimateur" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Estimateur</a>
         <a href="/#processus" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Processus</a>
         <a href="/#faq" class="relative text-[15px] font-medium py-1 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">FAQ</a>
@@ -49,6 +51,7 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
       <div class="flex flex-col px-5 sm:px-8 pb-5 pt-1 gap-1 border-t border-border">
         <a href="/en/services/" class="text-[15px] font-medium py-2.5 border-b border-border">Services</a>
         <a href="/en/house-window-tint/" class="text-[15px] font-medium py-2.5 border-b border-border">Window Tint</a>
+        <a href="/en/projects/" class="text-[15px] font-medium py-2.5 border-b border-border">Projects &amp; results</a>
         <a href={estimateAnchor} class="text-[15px] font-medium py-2.5 border-b border-border">Estimate</a>
         <a href={`${home}#faq`} class="text-[15px] font-medium py-2.5 border-b border-border">FAQ</a>
         <a href="/en/locations/" class="text-[15px] font-medium py-2.5 border-b border-border">Areas</a>
@@ -60,6 +63,7 @@ const switcherHref = isEn ? (alternatePath ?? '/') : (alternatePath ?? '/en/');
       <div class="flex flex-col px-5 sm:px-8 pb-5 pt-1 gap-1 border-t border-border">
         <a href="/services/" class="text-[15px] font-medium py-2.5 border-b border-border">Services</a>
         <a href="/produits/" class="text-[15px] font-medium py-2.5 border-b border-border">Produits</a>
+        <a href="/projets/" class="text-[15px] font-medium py-2.5 border-b border-border">Projets et résultats</a>
         <a href="/#estimateur" class="text-[15px] font-medium py-2.5 border-b border-border">Estimateur</a>
         <a href="/#processus" class="text-[15px] font-medium py-2.5 border-b border-border">Processus</a>
         <a href="/#faq" class="text-[15px] font-medium py-2.5 border-b border-border">FAQ</a>

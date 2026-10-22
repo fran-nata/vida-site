@@ -1,0 +1,32 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { publishedProjects } from '../../data/projects';
+---
+<Layout
+  title="Projets et résultats | Pellicules pour fenêtres à Montréal | Vida Vitres"
+  description="Des projets réels de pellicules pour fenêtres dans la région de Montréal : le défi de départ, notre intervention et les résultats constatés par nos clients."
+  canonicalPath="/projets/"
+  alternatePath="/en/projects/"
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Projets et résultats' }]} />
+
+  <section class="max-w-[900px] mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-10 sm:pb-12 text-center">
+    <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 reveal">Nos réalisations</p>
+    <h1 class="font-heading text-[28px] sm:text-[42px] font-extrabold tracking-tight mb-5 reveal reveal-d1">Projets et résultats</h1>
+    <p class="text-[17px] leading-relaxed text-muted max-w-[680px] mx-auto reveal reveal-d2">
+      Des projets réels, racontés simplement : le problème de départ, ce que nous avons installé et ce que nos clients constatent au quotidien.
+    </p>
+  </section>
+
+  <section class="max-w-[1100px] mx-auto px-5 sm:px-8 pb-10 sm:pb-14">
+    <div class="space-y-6">
+      {publishedProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <p class="text-center text-[14px] text-muted-2 mt-8 reveal">De nouveaux projets s'ajoutent au fil des chantiers, avec l'accord de chaque client.</p>
+  </section>
+
+  <ContactCta title="Votre projet pourrait être le prochain" description="Estimation gratuite et recommandation personnalisée selon vos fenêtres." />
+</Layout>

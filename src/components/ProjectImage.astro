@@ -1,0 +1,37 @@
+---
+import { mediaExists } from '../lib/media';
+interface Props {
+  /** Full public path, e.g. /projets/clinique-dentaire/avant-1.jpg */
+  src: string;
+  alt: string;
+  lang?: 'fr' | 'en';
+  aspect?: string;
+  class?: string;
+  priority?: boolean;
+}
+const { src, alt, lang = 'fr', aspect = 'aspect-[4/3]', class: className = '', priority = false } = Astro.props;
+const exists = mediaExists(src);
+if (!exists && import.meta.env.PROD) console.warn(`[projects] missing media: public${src}`);
+const bg = 'repeating-linear-gradient(135deg, oklch(0.93 0.02 280), oklch(0.93 0.02 280) 12px, oklch(0.9 0.03 280) 12px, oklch(0.9 0.03 280) 24px)';
+---
+{exists ? (
+  <img
+    src={src}
+    alt={alt}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class={`${aspect} w-full object-cover ${className}`}
+  />
+) : (
+  <div
+    role="img"
+    aria-label={alt}
+    data-placeholder="true"
+    class={`${aspect} w-full flex flex-col items-center justify-center gap-1 text-center p-5 font-mono text-[12px] ${className}`}
+    style={{ background: bg, color: 'oklch(0.35 0.04 280)' }}
+  >
+    <span class="font-bold uppercase tracking-wide">{lang === 'en' ? 'Placeholder — media to be supplied' : 'Espace réservé — média à fournir'}</span>
+    <span class="break-all opacity-80">{src}</span>
+  </div>
+)}

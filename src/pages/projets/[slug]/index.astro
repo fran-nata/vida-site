@@ -1,0 +1,21 @@
+---
+import Layout from '../../../components/Layout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ProjectCaseStudy from '../../../components/ProjectCaseStudy.astro';
+import { publishedProjects } from '../../../data/projects';
+
+export function getStaticPaths() {
+  return publishedProjects.map((project) => ({ params: { slug: project.fr.slug }, props: { project } }));
+}
+const { project } = Astro.props;
+const copy = project.fr;
+---
+<Layout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  canonicalPath={`/projets/${copy.slug}/`}
+  alternatePath={`/en/projects/${project.en.slug}/`}
+>
+  <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Projets et résultats', href: '/projets/' }, { label: copy.overview[1].value }]} />
+  <ProjectCaseStudy project={project} />
+</Layout>

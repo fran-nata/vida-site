@@ -39,6 +39,7 @@ export interface ProjectCopy {
   intervention: { intro: string; points: string[]; howItWorksTitle: string; howItWorks: string };
   results: { intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
   beforeAfter: { title: string; intro: string; beforeTitle: string; afterTitle: string; beforeTag: string; afterTag: string };
+  insideOut: { title: string; intro: string; insideTag: string; outsideTag: string };
   videos: { title: string; intro: string };
   cta: { title: string; text: string; button: string };
 }
@@ -47,7 +48,7 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
-  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; videos: ProjectVideo[] };
+  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; insideOut: { inside: ProjectImage; outside: ProjectImage }; videos: ProjectVideo[] };
   fr: ProjectCopy;
   en: ProjectCopy;
 }
@@ -119,6 +120,24 @@ export const projects: Project[] = [
           caption: { fr: 'Vitrage vu de côté, après', en: 'Glazing seen from the side, after' },
         },
       ],
+      insideOut: {
+        inside: {
+          file: 'fenetre-interieur.jpg',
+          alt: {
+            fr: "Vue depuis l'intérieur d'une salle de traitement : la grande fenêtre laisse voir la rue, le terrain et les arbres",
+            en: 'View from inside a treatment room: the large window shows the street, the lawn and the trees',
+          },
+          caption: { fr: "De l'intérieur : la vue reste dégagée", en: 'From inside: the view stays clear' },
+        },
+        outside: {
+          file: 'fenetre-exterieur.jpg',
+          alt: {
+            fr: "La même fenêtre vue de l'extérieur : les vitres renvoient la rue, les arbres et le ciel",
+            en: 'The same window seen from outside: the glass mirrors the street, trees and sky',
+          },
+          caption: { fr: "De l'extérieur : la vitre renvoie la rue et les arbres", en: 'From outside: the glass mirrors the street and trees' },
+        },
+      },
       videos: [
         {
           file: 'https://assets.cdn.filesafe.space/Ca6Eop6IEwpdDw9Nce2y/media/6ada407d4a3f84ab597d9bad.mp4',
@@ -204,6 +223,12 @@ export const projects: Project[] = [
         beforeTag: 'Avant',
         afterTag: 'Après',
       },
+      insideOut: {
+        title: "Même fenêtre, vue de l'intérieur et de l'extérieur",
+        intro: "Deux photos prises à la même position, de part et d'autre de la vitre, en plein jour. L'effet réfléchissant dépend de l'éclairage.",
+        insideTag: 'Intérieur',
+        outsideTag: 'Extérieur',
+      },
       videos: {
         title: 'Le projet en vidéo',
         intro: "Deux vidéos : le choix de la pellicule, puis une visite des lieux avant et après l'installation. Le son ne démarre jamais automatiquement : lancez la lecture quand vous le souhaitez.",
@@ -285,6 +310,12 @@ export const projects: Project[] = [
         afterTitle: 'After installation',
         beforeTag: 'Before',
         afterTag: 'After',
+      },
+      insideOut: {
+        title: 'Same window, seen from inside and outside',
+        intro: 'Two photos taken from the same position on either side of the glass, in daylight. The reflective effect depends on lighting.',
+        insideTag: 'Inside',
+        outsideTag: 'Outside',
       },
       videos: {
         title: 'The project on video',

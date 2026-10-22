@@ -10,6 +10,7 @@ file shows a labelled « Espace réservé » box and the build logs `[projects] 
 | `avant-2.jpg` | ✅ supplied (nothing to blur) | « Avant » gallery — treatment room, shades down |
 | `avant-3.jpg` | ✅ supplied (product carton text blurred) | « Avant » gallery — work-area window |
 | `resultat-1.jpg`, `resultat-2.jpg`, `resultat-3.jpg` | ✅ supplied (signs / number / pedestrian reflection blurred) | « Après » gallery |
+| `fenetre-interieur.jpg`, `fenetre-exterieur.jpg` | ✅ supplied (exterior: reflected installer, passer-by and door lettering blurred) | « Même fenêtre, vue de l'intérieur et de l'extérieur » |
 | Video « Le choix de la pellicule » (63 s, 76 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
 | Video « Visite avant et après » (40 s, 45 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
 

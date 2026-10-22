@@ -11,6 +11,7 @@ file shows a labelled « Espace réservé » box and the build logs `[projects] 
 | `avant-3.jpg` | ✅ supplied (product carton text blurred) | « Avant » gallery — work-area window |
 | `resultat-1.jpg`, `resultat-2.jpg`, `resultat-3.jpg` | ✅ supplied (signs / number / pedestrian reflection blurred) | « Après » gallery |
 | `fenetre-interieur.jpg`, `fenetre-exterieur.jpg` | ✅ supplied (exterior: reflected installer, passer-by and door lettering blurred) | « Même fenêtre, vue de l'intérieur et de l'extérieur » |
+| `comparaison-1.jpg`, `comparaison-2.jpg` | ✅ supplied (small sign and street-name sign blurred) | « Avec et sans pellicule, côte à côte » |
 | Video « Le choix de la pellicule » (63 s, 76 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
 | Video « Visite avant et après » (40 s, 45 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
 
@@ -24,6 +25,7 @@ Web copies are 1800px JPGs (~250–400 KB). Originals are not stored in the repo
 ## Before publishing — review
 
 - [x] Exterior photos: sign, street number, door lettering, pedestrian reflection and a carton label blurred on the web copies.
+- [ ] `comparaison-1.jpg` has a white arrow drawn on it. The caption does not say which pane it points to — tell Claude, or send the version without the arrow.
 - [ ] Confirm the three « avant » photos really are pre-installation. `avant-3.jpg` shows installer tools (squeegee poles, cloths) and a dark glass, so it may have been taken during the job.
 - [ ] **Review both videos** (not yet reviewed by Claude — no ffmpeg here to inspect frames/audio): patients, readable screens, signage/names, spoken names. If anything must be cut, re-export and replace the CDN file. They never autoplay.
 - [ ] Videos are portrait 1080×1920 and large (76 MB / 45 MB). Consider compressing to ~10–15 MB each and adding poster images; the page loads them on demand (`preload=metadata`).

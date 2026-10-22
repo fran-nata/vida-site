@@ -40,6 +40,7 @@ export interface ProjectCopy {
   results: { intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
   beforeAfter: { title: string; intro: string; beforeTitle: string; afterTitle: string; beforeTag: string; afterTag: string };
   insideOut: { title: string; intro: string; insideTag: string; outsideTag: string };
+  sideBySide: { title: string; intro: string; tag: string };
   videos: { title: string; intro: string };
   cta: { title: string; text: string; button: string };
 }
@@ -48,7 +49,7 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
-  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; insideOut: { inside: ProjectImage; outside: ProjectImage }; videos: ProjectVideo[] };
+  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; insideOut: { inside: ProjectImage; outside: ProjectImage }; sideBySide: ProjectImage[]; videos: ProjectVideo[] };
   fr: ProjectCopy;
   en: ProjectCopy;
 }
@@ -138,6 +139,24 @@ export const projects: Project[] = [
           caption: { fr: "De l'extérieur : la vitre renvoie la rue et les arbres", en: 'From outside: the glass mirrors the street and trees' },
         },
       },
+      sideBySide: [
+        {
+          file: 'comparaison-1.jpg',
+          alt: {
+            fr: "Vue de l'intérieur d'une grande fenêtre à plusieurs vitres : des vitres avec pellicule et des vitres sans pellicule côte à côte, avec une flèche blanche ajoutée sur la photo",
+            en: 'View from inside a large multi-pane window: panes with film and panes without film side by side, with a white arrow added to the photo',
+          },
+          caption: { fr: "Vitres avec et sans pellicule, côte à côte, vues de l'intérieur", en: 'Panes with and without film, side by side, seen from inside' },
+        },
+        {
+          file: 'comparaison-2.jpg',
+          alt: {
+            fr: "Salle de traitement : dans le coin de fenêtres, une vitre sans pellicule laisse voir la rue nettement tandis que la vitre voisine, avec pellicule, renvoie un reflet",
+            en: 'Treatment room: in the corner of windows, one pane without film shows the street clearly while the neighbouring pane, with film, shows a reflection',
+          },
+          caption: { fr: 'Salle de traitement : vitres avec et sans pellicule, côte à côte', en: 'Treatment room: panes with and without film, side by side' },
+        },
+      ],
       videos: [
         {
           file: 'https://assets.cdn.filesafe.space/Ca6Eop6IEwpdDw9Nce2y/media/6ada407d4a3f84ab597d9bad.mp4',
@@ -229,6 +248,11 @@ export const projects: Project[] = [
         insideTag: 'Intérieur',
         outsideTag: 'Extérieur',
       },
+      sideBySide: {
+        title: 'Avec et sans pellicule, côte à côte',
+        intro: "Dans ces deux vues prises de l'intérieur, certaines vitres sont couvertes de pellicule et d'autres non : la différence se voit d'un seul coup d'œil.",
+        tag: 'Comparaison',
+      },
       videos: {
         title: 'Le projet en vidéo',
         intro: "Deux vidéos : le choix de la pellicule, puis une visite des lieux avant et après l'installation. Le son ne démarre jamais automatiquement : lancez la lecture quand vous le souhaitez.",
@@ -316,6 +340,11 @@ export const projects: Project[] = [
         intro: 'Two photos taken from the same position on either side of the glass, in daylight. The reflective effect depends on lighting.',
         insideTag: 'Inside',
         outsideTag: 'Outside',
+      },
+      sideBySide: {
+        title: 'With and without film, side by side',
+        intro: 'In these two views from inside, some panes are covered with film and others are not, so the difference is visible at a glance.',
+        tag: 'Comparison',
       },
       videos: {
         title: 'The project on video',

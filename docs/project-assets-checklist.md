@@ -5,20 +5,19 @@ The pages detect files automatically: once a file exists, its placeholder is rep
 real media (no code change). Until then each slot shows a labelled
 « Espace réservé — média à fournir » box and the build logs `[projects] missing media`.
 
-| File | Used for | Notes |
+| File | Status | Used for |
 |---|---|---|
-| `hero.jpg` | Case-study hero, `/projets/` card, homepage feature | Best single image. Landscape, ~1600px wide minimum. |
-| `avant-1.jpg` / `apres-1.jpg` | Before/after pair 1 | Same viewpoint if possible. |
-| `avant-2.jpg` / `apres-2.jpg` | Before/after pair 2 | |
-| `avant-3.jpg` / `apres-3.jpg` | Before/after pair 3 | Remove the pair in `src/data/projects.ts` if you have fewer. |
-| `visite-avant.mp4` | Walkthrough video, before | H.264 MP4, ideally < 20 MB. |
-| `visite-apres.mp4` | Walkthrough video, after | |
-| `visite-avant-poster.jpg`, `visite-apres-poster.jpg` | Optional video thumbnails | Skipped if absent. |
+| `hero.jpg` | ✅ supplied (sign + street number blurred) | Case-study hero, `/projets/` card, homepage feature |
+| `resultat-1.jpg`, `resultat-2.jpg`, `resultat-3.jpg` | ✅ supplied (signs/number/pedestrian reflection blurred) | « Le résultat en images » gallery |
+| `avant-1.jpg` … `avant-3.jpg` + `apres-1.jpg` … `apres-3.jpg` | ⏳ missing | Before/after pairs. A pair only appears once **both** files exist. Interior views were not supplied yet. |
+| `visite-avant.mp4`, `visite-apres.mp4` | ⏳ missing (placeholder shown) | Walkthrough videos. H.264 MP4, ideally < 20 MB. |
+| `visite-avant-poster.jpg`, `visite-apres-poster.jpg` | optional | Video thumbnails |
 
 Recommended: JPG at ~1600px wide, ~200–400 KB each (compress first).
 
 ## Before publishing — review every asset
 
+- [x] Exterior photos checked: clinic sign, street number and a pedestrian reflection were blurred on the web copies (originals untouched, not in the repo).
 - [ ] **No patients visible** (faces, bodies, silhouettes in treatment chairs) — blur or crop.
 - [ ] **No readable patient information** on wall screens, monitors, charts, files or whiteboards — blur.
 - [ ] **No clinic name, logo, signage or address** visible (clinic stays unnamed until an approved name is supplied).

@@ -40,6 +40,7 @@ export interface ProjectCopy {
   challenge: { intro: string; points: Point[] };
   intervention: { intro: string; points: string[]; howItWorksTitle: string; howItWorks: string };
   results: { intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
+  gallery: { title: string; intro: string };
   beforeAfter: { title: string; intro: string; before: string; after: string };
   videos: { title: string; intro: string };
   cta: { title: string; text: string; button: string };
@@ -49,7 +50,7 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
-  media: { hero: ProjectImage; pairs: ProjectPair[]; videos: ProjectVideo[] };
+  media: { hero: ProjectImage; gallery: ProjectImage[]; pairs: ProjectPair[]; videos: ProjectVideo[] };
   fr: ProjectCopy;
   en: ProjectCopy;
 }
@@ -64,10 +65,33 @@ export const projects: Project[] = [
       hero: {
         file: 'hero.jpg',
         alt: {
-          fr: 'Fenêtres de la clinique dentaire avec pellicule réfléchissante, région de Montréal',
-          en: 'Dental clinic windows with reflective film, Montreal area',
+          fr: "Vitrage d'angle de la clinique vu de l'extérieur : la pellicule réfléchissante renvoie le ciel, les arbres et les immeubles voisins",
+          en: 'Corner glazing of the clinic seen from outside: the reflective film mirrors the sky, trees and neighbouring buildings',
         },
       },
+      gallery: [
+        {
+          file: 'resultat-1.jpg',
+          alt: {
+            fr: "Vitrage d'angle de la clinique vu du trottoir, avec reflets des arbres et du ciel dans les vitres",
+            en: 'Corner glazing of the clinic seen from the sidewalk, with trees and sky reflected in the glass',
+          },
+        },
+        {
+          file: 'resultat-2.jpg',
+          alt: {
+            fr: "Vue en contre-plongée du vitrage d'angle : bande de vitres plus claire en haut, vitres réfléchissantes en bas",
+            en: 'Upward view of the corner glazing: a lighter band of glass above and mirror-like glass below',
+          },
+        },
+        {
+          file: 'resultat-3.jpg',
+          alt: {
+            fr: 'Vitrage de la clinique vu de côté, avec reflets du terrain, des arbres et de la rue',
+            en: 'Side view of the clinic glazing, reflecting the lawn, trees and street',
+          },
+        },
+      ],
       pairs: [
         {
           caption: { fr: 'Vue 1', en: 'View 1' },
@@ -164,6 +188,10 @@ export const projects: Project[] = [
         privacyNote:
           "L'effet réfléchissant dépend de l'éclairage : il fonctionne lorsqu'il fait plus clair à l'extérieur qu'à l'intérieur et ne garantit pas l'intimité en soirée ou la nuit. Une pellicule seule ne garantit pas non plus la confidentialité des renseignements des patients ni la conformité à la réglementation : elle s'ajoute aux autres mesures de la clinique.",
       },
+      gallery: {
+        title: 'Le résultat en images',
+        intro: "Vues extérieures du vitrage après l'installation. En plein jour, la pellicule renvoie le ciel, les arbres et la rue.",
+      },
       beforeAfter: {
         title: 'Avant et après',
         intro: 'Photos du projet, présentées côte à côte.',
@@ -243,6 +271,10 @@ export const projects: Project[] = [
         privacyTitle: 'Good to know about privacy',
         privacyNote:
           'The reflective effect depends on lighting: it works when it is brighter outside than inside, and it does not guarantee privacy in the evening or at night. Film alone also does not guarantee the confidentiality of patient information or regulatory compliance: it complements the clinic’s other measures.',
+      },
+      gallery: {
+        title: 'The result in pictures',
+        intro: 'Exterior views of the glazing after installation. In daylight, the film mirrors the sky, the trees and the street.',
       },
       beforeAfter: {
         title: 'Before and after',

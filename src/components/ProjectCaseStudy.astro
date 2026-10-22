@@ -15,6 +15,7 @@ const hero = project.media.hero;
 const estimateHref = isEn ? '/en/#estimate' : '/#estimateur';
 const indexHref = isEn ? '/en/projects/' : '/projets/';
 const phoneLabel = isEn ? `Call ${site.phone}` : `Appeler ${site.phone}`;
+const pairs = project.media.pairs.filter((p) => mediaExists(`${dir}/${p.before.file}`) && mediaExists(`${dir}/${p.after.file}`));
 const videos = project.media.videos.map((v) => ({
   ...v,
   src: `${dir}/${v.file}`,
@@ -105,12 +106,26 @@ if (import.meta.env.PROD) videos.filter((v) => !v.exists).forEach((v) => console
   </div>
 </section>
 
-<!-- Before / after photos -->
+<!-- Results gallery -->
 <section class="max-w-[1100px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+  <h2 class="font-heading text-[24px] sm:text-[32px] font-bold tracking-tight mb-3 reveal">{copy.gallery.title}</h2>
+  <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px] reveal reveal-d1">{copy.gallery.intro}</p>
+  <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5">
+    {project.media.gallery.map((img) => (
+      <figure class="mb-4 sm:mb-5 break-inside-avoid rounded-2xl overflow-hidden border border-border reveal">
+        <ProjectImage src={`${dir}/${img.file}`} alt={img.alt[lang]} lang={lang} aspect="" />
+      </figure>
+    ))}
+  </div>
+</section>
+
+<!-- Before / after photos (shown only once both files of a pair exist) -->
+{pairs.length > 0 && (
+<section class="max-w-[1100px] mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
   <h2 class="font-heading text-[24px] sm:text-[32px] font-bold tracking-tight mb-3 reveal">{copy.beforeAfter.title}</h2>
   <p class="text-base leading-relaxed text-muted mb-8 reveal reveal-d1">{copy.beforeAfter.intro}</p>
   <div class="space-y-8 sm:space-y-10">
-    {project.media.pairs.map((pair) => (
+    {pairs.map((pair) => (
       <figure class="reveal">
         <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
           <div class="relative rounded-2xl overflow-hidden border border-border">
@@ -127,6 +142,7 @@ if (import.meta.env.PROD) videos.filter((v) => !v.exists).forEach((v) => console
     ))}
   </div>
 </section>
+)}
 
 <!-- Videos -->
 <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-16">

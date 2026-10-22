@@ -10,8 +10,8 @@ file shows a labelled « Espace réservé » box and the build logs `[projects] 
 | `avant-2.jpg` | ✅ supplied (nothing to blur) | « Avant » gallery — treatment room, shades down |
 | `avant-3.jpg` | ✅ supplied (product carton text blurred) | « Avant » gallery — work-area window |
 | `resultat-1.jpg`, `resultat-2.jpg`, `resultat-3.jpg` | ✅ supplied (signs / number / pedestrian reflection blurred) | « Après » gallery |
-| `visite-avant.mp4`, `visite-apres.mp4` | ⏳ missing (placeholders shown) | Walkthrough videos. H.264 MP4, ideally < 20 MB. |
-| `visite-avant-poster.jpg`, `visite-apres-poster.jpg` | optional | Video thumbnails |
+| Video « Le choix de la pellicule » (63 s, 76 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
+| Video « Visite avant et après » (40 s, 45 MB) | ✅ linked from the client CDN (not stored in the repo) | Video section |
 
 Web copies are 1800px JPGs (~250–400 KB). Originals are not stored in the repo.
 
@@ -24,7 +24,10 @@ Web copies are 1800px JPGs (~250–400 KB). Originals are not stored in the repo
 
 - [x] Exterior photos: sign, street number, door lettering, pedestrian reflection and a carton label blurred on the web copies.
 - [ ] Confirm the three « avant » photos really are pre-installation. `avant-3.jpg` shows installer tools (squeegee poles, cloths) and a dark glass, so it may have been taken during the job.
-- [ ] Walkthrough videos: check for patients, readable screens, signage/names and audio (names, conversations). Strip audio if needed. They never autoplay.
+- [ ] **Review both videos** (not yet reviewed by Claude — no ffmpeg here to inspect frames/audio): patients, readable screens, signage/names, spoken names. If anything must be cut, re-export and replace the CDN file. They never autoplay.
+- [ ] Videos are portrait 1080×1920 and large (76 MB / 45 MB). Consider compressing to ~10–15 MB each and adding poster images; the page loads them on demand (`preload=metadata`).
+- [ ] Videos load from `assets.cdn.filesafe.space` (the client CDN). If those files are moved or deleted, the page videos break.
+- [ ] If the narration is in French, the EN page plays French audio — consider captions or a translated cut.
 - [ ] Clinic approval to be described publicly (still unnamed). Copy says « rideaux »; the photos show roller shades — consider « rideaux et stores ».
 - [ ] « Locaux récents » (new premises) is stated in the challenge intro — confirm.
 - [ ] Captions and alt texts in `src/data/projects.ts` describe only what is visible; adjust if you want more detail.

@@ -17,9 +17,9 @@ const indexHref = isEn ? '/en/projects/' : '/projets/';
 const phoneLabel = isEn ? `Call ${site.phone}` : `Appeler ${site.phone}`;
 const videos = project.media.videos.map((v) => ({
   ...v,
-  src: `${dir}/${v.file}`,
+  src: /^https?:\/\//.test(v.file) ? v.file : `${dir}/${v.file}`,
   posterSrc: v.poster && mediaExists(`${dir}/${v.poster}`) ? `${dir}/${v.poster}` : undefined,
-  exists: mediaExists(`${dir}/${v.file}`),
+  exists: /^https?:\/\//.test(v.file) || mediaExists(`${dir}/${v.file}`),
 }));
 if (import.meta.env.PROD) videos.filter((v) => !v.exists).forEach((v) => console.warn(`[projects] missing media: public${v.src}`));
 ---
@@ -135,11 +135,11 @@ if (import.meta.env.PROD) videos.filter((v) => !v.exists).forEach((v) => console
   <div class="max-w-[1100px] mx-auto">
     <h2 class="font-heading text-[24px] sm:text-[32px] font-bold tracking-tight mb-3 reveal">{copy.videos.title}</h2>
     <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px] reveal reveal-d1">{copy.videos.intro}</p>
-    <div class="grid md:grid-cols-2 gap-6">
+    <div class="grid md:grid-cols-2 gap-8 justify-items-center">
       {videos.map((v) => (
-        <figure class="reveal">
+        <figure class="reveal w-full max-w-[360px]">
           {v.exists ? (
-            <video controls preload="metadata" playsinline poster={v.posterSrc} class="w-full aspect-video rounded-2xl border border-border bg-black">
+            <video controls preload="metadata" playsinline poster={v.posterSrc} class="w-full aspect-[9/16] rounded-2xl border border-border bg-black">
               <source src={v.src} type="video/mp4" />
               {isEn ? 'Your browser cannot play this video.' : 'Votre navigateur ne peut pas lire cette vidéo.'}
             </video>

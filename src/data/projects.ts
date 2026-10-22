@@ -16,6 +16,7 @@ export interface ProjectImage {
   caption: L;
 }
 export interface ProjectVideo {
+  /** File name inside the project's mediaDir, or a full https:// URL for externally hosted video. */
   file: string;
   /** Optional poster image file name (same folder). */
   poster?: string;
@@ -120,16 +121,14 @@ export const projects: Project[] = [
       ],
       videos: [
         {
-          file: 'visite-avant.mp4',
-          poster: 'visite-avant-poster.jpg',
-          title: { fr: "Avant l'installation", en: 'Before installation' },
-          description: { fr: 'Visite des lieux avant la pose de la pellicule.', en: 'Walkthrough of the space before the film was installed.' },
+          file: 'https://assets.cdn.filesafe.space/Ca6Eop6IEwpdDw9Nce2y/media/6ada407d4a3f84ab597d9bad.mp4',
+          title: { fr: 'Le choix de la pellicule', en: 'Choosing the film' },
+          description: { fr: 'Explication du choix de la pellicule installée sur ce projet.', en: 'An explanation of the choice of film installed on this project.' },
         },
         {
-          file: 'visite-apres.mp4',
-          poster: 'visite-apres-poster.jpg',
-          title: { fr: "Après l'installation", en: 'After installation' },
-          description: { fr: 'Visite des lieux après la pose de la pellicule.', en: 'Walkthrough of the space after the film was installed.' },
+          file: 'https://assets.cdn.filesafe.space/Ca6Eop6IEwpdDw9Nce2y/media/6ada405b4a6b87d2790a565f.mp4',
+          title: { fr: 'Visite avant et après', en: 'Before-and-after walkthrough' },
+          description: { fr: "Visite des lieux avant et après l'installation de la pellicule.", en: 'Walkthrough of the space before and after the film was installed.' },
         },
       ],
     },
@@ -207,7 +206,7 @@ export const projects: Project[] = [
       },
       videos: {
         title: 'Le projet en vidéo',
-        intro: "Visite des lieux avant et après l'installation. Le son ne démarre jamais automatiquement : lancez la lecture quand vous le souhaitez.",
+        intro: "Deux vidéos : le choix de la pellicule, puis une visite des lieux avant et après l'installation. Le son ne démarre jamais automatiquement : lancez la lecture quand vous le souhaitez.",
       },
       cta: {
         title: 'De grandes fenêtres, ça devrait être un avantage.',
@@ -289,7 +288,7 @@ export const projects: Project[] = [
       },
       videos: {
         title: 'The project on video',
-        intro: 'A walkthrough before and after installation. Sound never starts automatically: press play when you are ready.',
+        intro: 'Two videos: the choice of film, then a walkthrough of the space before and after installation. Sound never starts automatically: press play when you are ready.',
       },
       cta: {
         title: 'Large windows should be an advantage.',

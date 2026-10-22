@@ -38,3 +38,29 @@ Web copies are 1800px JPGs (~250–400 KB). Originals are not stored in the repo
 ## Copy guardrails (already applied, FR + EN)
 
 Results are worded as **reported experience**, not measurements. No temperatures, savings, dates, areas, prices, quotes, warranties or product names. The privacy caveat (works when brighter outside than inside; no night-time guarantee; no confidentiality/compliance guarantee) is on both language versions.
+
+---
+
+# Projet « Maison de coin de rue » (residential)
+
+Media: `public/projets/maison-coin-de-rue/` (web copies, 1800px JPG; originals not in the repo).
+
+| File | Used for | Source photo | Blurred |
+|---|---|---|---|
+| `hero.jpg` | Hero + card | sunset exterior | house number, neighbour's number |
+| `avant-exterieur.jpg` / `apres-exterieur.jpg` | Pair 1 | overcast day vs next day, same viewpoint | house number (+ neighbour's in « avant ») |
+| `avant-salon.jpg` / `apres-salon.jpg` | Pair 2 | living-room corner | nothing needed |
+| `avant-triangle.jpg` / `apres-triangle.jpg` | Featured triangular window | kitchen window, inside | neighbour's number, a licence plate |
+| `triangle-exterieur.jpg` | Featured window, exterior | side of the house | reflected bus lettering, propane tank lettering and phone number |
+
+## Left out on purpose
+
+Near-duplicates (other angles of the same shots), the TV-on shot (sports graphic), the front shot with licence plates, and the close-up of film being peeled (installer reflected in the glass).
+
+## To confirm before publishing
+
+- [ ] **Before/after labels are inferred, not supplied.** No photo shows the old curtains. « Avant » photos are the overcast/rainy-day set (windows dark, drop cloths on the floor); « après » are the later dry-weather, evening and sunset sets. Confirm each « avant » really is pre-film.
+- [ ] Homeowner approval to be shown (private home), including the corner-lot, bike-path and school description in the copy.
+- [ ] « Région de Montréal » location is generic; change it if you prefer a municipality.
+- [ ] Triangular-window claim (« beaucoup de soleil, maison très chaude » → problem solved) is as reported by the owners; no measurements are claimed.
+- [ ] Film product is not named; interior vs exterior installation is not stated.

@@ -35,13 +35,17 @@ export interface ProjectCopy {
   metaTitle: string;
   metaDescription: string;
   overview: { label: string; value: string }[];
-  challenge: { intro: string; points: Point[] };
-  intervention: { intro: string; points: string[]; howItWorksTitle: string; howItWorks: string };
-  results: { intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
-  beforeAfter: { title: string; intro: string; beforeTitle: string; afterTitle: string; beforeTag: string; afterTag: string };
-  insideOut: { title: string; intro: string; insideTag: string; outsideTag: string };
-  sideBySide: { title: string; intro: string; tag: string };
-  videos: { title: string; intro: string };
+  challenge: { title: string; intro: string; points: Point[] };
+  intervention: { title: string; intro: string; points: string[]; howItWorksTitle: string; howItWorks: string };
+  results: { title: string; intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
+  /** Matched before/after pairs shown side by side. */
+  pairs?: { title: string; intro: string; beforeTag: string; afterTag: string };
+  /** One featured window: before/after plus an optional exterior view. */
+  highlight?: { eyebrow: string; title: string; intro: string; bullets: string[]; beforeTag: string; afterTag: string; exteriorTag: string };
+  beforeAfter?: { title: string; intro: string; beforeTitle: string; afterTitle: string; beforeTag: string; afterTag: string };
+  insideOut?: { title: string; intro: string; insideTag: string; outsideTag: string };
+  sideBySide?: { title: string; intro: string; tag: string };
+  videos?: { title: string; intro: string };
   cta: { title: string; text: string; button: string };
 }
 export interface Project {
@@ -49,7 +53,16 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
-  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; insideOut: { inside: ProjectImage; outside: ProjectImage }; sideBySide: ProjectImage[]; videos: ProjectVideo[] };
+  media: {
+    hero: ProjectImage;
+    pairs?: { before: ProjectImage; after: ProjectImage }[];
+    highlight?: { before: ProjectImage; after: ProjectImage; exterior?: ProjectImage };
+    before?: ProjectImage[];
+    after?: ProjectImage[];
+    insideOut?: { inside: ProjectImage; outside: ProjectImage };
+    sideBySide?: ProjectImage[];
+    videos?: ProjectVideo[];
+  };
   fr: ProjectCopy;
   en: ProjectCopy;
 }
@@ -187,6 +200,7 @@ export const projects: Project[] = [
         { label: 'Solution', value: 'Pellicule réfléchissante pour fenêtres' },
       ],
       challenge: {
+        title: 'Des locaux lumineux, mais trop exposés et trop chauds',
         intro: 'Les locaux de la clinique sont récents et lumineux, avec de grandes fenêtres. Ces mêmes fenêtres créaient pourtant trois problèmes au quotidien.',
         points: [
           {
@@ -204,6 +218,7 @@ export const projects: Project[] = [
         ],
       },
       intervention: {
+        title: 'Une pellicule réfléchissante, à l’intérieur ou à l’extérieur du verre',
         intro: "Vida Vitres a installé une pellicule réfléchissante sur les fenêtres du projet. Selon les vitres, la pellicule a été posée à l'intérieur ou à l'extérieur du verre.",
         points: [
           'Pellicule réfléchissante sur les fenêtres du projet',
@@ -215,6 +230,7 @@ export const projects: Project[] = [
           "Le jour, la pellicule réfléchit la lumière comme un miroir discret. Quand il fait plus clair dehors que dedans, il devient difficile de voir à l'intérieur, alors que la vue vers l'extérieur reste dégagée.",
       },
       results: {
+        title: 'Ce que la clinique constate au quotidien',
         intro: "Observations rapportées par la clinique après l'installation. Ce sont des constats d'usage, pas des mesures prises avec des instruments.",
         points: [
           {
@@ -280,6 +296,7 @@ export const projects: Project[] = [
         { label: 'Solution', value: 'Reflective window film' },
       ],
       challenge: {
+        title: 'Bright premises, but too exposed and too warm',
         intro: 'The clinic’s premises are new and bright, with large windows. Those same windows created three everyday problems.',
         points: [
           {
@@ -297,6 +314,7 @@ export const projects: Project[] = [
         ],
       },
       intervention: {
+        title: 'Reflective film, inside or outside the glass',
         intro: 'Vida Vitres installed reflective window film across the project’s windows. Depending on the pane, the film went on the inside or the outside of the glass.',
         points: [
           'Reflective film across the project’s windows',
@@ -308,6 +326,7 @@ export const projects: Project[] = [
           'In daylight, the film reflects light like a discreet mirror. When it is brighter outside than inside, it becomes hard to see in, while the view out stays clear.',
       },
       results: {
+        title: 'What the clinic notices every day',
         intro: 'Observations reported by the clinic after installation. These are everyday experiences, not instrument-measured results.',
         points: [
           {
@@ -349,6 +368,272 @@ export const projects: Project[] = [
       videos: {
         title: 'The project on video',
         intro: 'Two videos: the choice of film, then a walkthrough of the space before and after installation. Sound never starts automatically: press play when you are ready.',
+      },
+      cta: {
+        title: 'Large windows should be an advantage.',
+        text: 'Let’s talk about your project.',
+        button: 'Request an estimate',
+      },
+    },
+  },
+  {
+    id: 'maison-coin-de-rue',
+    mediaDir: '/projets/maison-coin-de-rue',
+    type: 'residential',
+    published: true,
+    media: {
+      hero: {
+        file: 'hero.jpg',
+        alt: {
+          fr: 'Façade de la maison au coucher du soleil : la pellicule réfléchissante renvoie le ciel dans les grandes fenêtres',
+          en: 'Front of the house at sunset: the reflective film mirrors the sky in the large windows',
+        },
+        caption: { fr: 'La maison après l’installation, au coucher du soleil', en: 'The house after installation, at sunset' },
+      },
+      pairs: [
+        {
+          before: {
+            file: 'avant-exterieur.jpg',
+            alt: {
+              fr: 'Façade de la maison vue de l’extérieur avant la pellicule, avec les grandes fenêtres d’angle',
+              en: 'Front of the house seen from outside before the film, with the large corner windows',
+            },
+            caption: { fr: 'Façade vue de l’extérieur, avant', en: 'Front of the house from outside, before' },
+          },
+          after: {
+            file: 'apres-exterieur.jpg',
+            alt: {
+              fr: 'Façade de la maison vue de l’extérieur après la pellicule : les vitres renvoient la haie et la rue',
+              en: 'Front of the house seen from outside after the film: the glass mirrors the hedge and the street',
+            },
+            caption: { fr: 'Façade vue de l’extérieur, après', en: 'Front of the house from outside, after' },
+          },
+        },
+        {
+          before: {
+            file: 'avant-salon.jpg',
+            alt: {
+              fr: 'Coin salon vu de l’intérieur avant la pellicule : grandes fenêtres donnant sur la rue et le passage piéton',
+              en: 'Living-room corner seen from inside before the film: large windows facing the street and the crosswalk',
+            },
+            caption: { fr: 'Salon vu de l’intérieur, avant', en: 'Living room from inside, before' },
+          },
+          after: {
+            file: 'apres-salon.jpg',
+            alt: {
+              fr: 'Coin salon vu de l’intérieur après la pellicule : la vue sur la rue reste dégagée, rideau ouvert',
+              en: 'Living-room corner seen from inside after the film: the view of the street stays clear, curtain open',
+            },
+            caption: { fr: 'Salon vu de l’intérieur, après : rideau ouvert, vue dégagée', en: 'Living room from inside, after: curtain open, clear view' },
+          },
+        },
+      ],
+      highlight: {
+        before: {
+          file: 'avant-triangle.jpg',
+          alt: {
+            fr: 'Grande fenêtre à sommet triangulaire de la cuisine, vue de l’intérieur, avant la pellicule',
+            en: 'Tall triangular-topped kitchen window seen from inside, before the film',
+          },
+          caption: { fr: 'De l’intérieur, avant', en: 'From inside, before' },
+        },
+        after: {
+          file: 'apres-triangle.jpg',
+          alt: {
+            fr: 'La même fenêtre à sommet triangulaire vue de l’intérieur après la pellicule, avec une vue dégagée sur la rue',
+            en: 'The same triangular-topped window seen from inside after the film, with a clear view of the street',
+          },
+          caption: { fr: 'De l’intérieur, après : la vue reste dégagée', en: 'From inside, after: the view stays clear' },
+        },
+        exterior: {
+          file: 'triangle-exterieur.jpg',
+          alt: {
+            fr: 'La fenêtre à sommet triangulaire vue de l’extérieur : la vitre renvoie le ciel et la rue',
+            en: 'The triangular-topped window seen from outside: the glass mirrors the sky and the street',
+          },
+          caption: { fr: 'De l’extérieur, après : la vitre renvoie le ciel', en: 'From outside, after: the glass mirrors the sky' },
+        },
+      },
+    },
+    fr: {
+      slug: 'maison-coin-de-rue',
+      title: 'Maison de coin de rue : de grandes fenêtres, enfin libérées des rideaux',
+      intro:
+        "Des fenêtres neuves, cachées derrière de grands rideaux parce que la maison est au coin d'une rue passante. Une pellicule réfléchissante a redonné à la famille la lumière, la vue et plus d'intimité le jour.",
+      cardSummary:
+        "Sur un terrain de coin très exposé, de grands rideaux bloquaient des fenêtres neuves. Avec la pellicule réfléchissante, la lumière et la vue sont revenues, avec plus d'intimité le jour.",
+      metaTitle: 'Maison de coin de rue : pellicule réfléchissante pour plus d’intimité et de confort | Vida Vitres',
+      metaDescription:
+        "Comment une pellicule réfléchissante a redonné intimité, lumière et confort à une maison de coin de rue de la région de Montréal, sans rideaux pour bloquer les fenêtres. Photos avant et après.",
+      overview: [
+        { label: 'Type de projet', value: 'Résidentiel' },
+        { label: 'Secteur', value: 'Maison' },
+        { label: 'Lieu', value: 'Région de Montréal' },
+        { label: 'Solution', value: 'Pellicule réfléchissante pour fenêtres' },
+      ],
+      challenge: {
+        title: 'De belles fenêtres neuves, cachées derrière de grands rideaux',
+        intro: 'Ces propriétaires avaient de grandes fenêtres toutes neuves. Mais leur maison est située à un coin de rue très fréquenté.',
+        points: [
+          {
+            title: 'Une maison vue de partout',
+            text: "Le terrain est au coin d'une rue passante, près d'une piste cyclable et d'une école : de l'extérieur, tout le monde pouvait voir à l'intérieur.",
+          },
+          {
+            title: 'De grands rideaux en permanence',
+            text: "Pour retrouver de l'intimité, la famille utilisait de grands rideaux, qui bloquaient leurs nouvelles fenêtres.",
+          },
+          {
+            title: 'Une fenêtre qui surchauffait la maison',
+            text: 'La grande fenêtre à sommet triangulaire laissait passer beaucoup de soleil, ce qui rendait la maison très chaude.',
+          },
+        ],
+      },
+      intervention: {
+        title: 'Une pellicule réfléchissante sur les fenêtres exposées',
+        intro: 'Vida Vitres a installé une pellicule réfléchissante sur les fenêtres exposées de la maison, sans rien remplacer.',
+        points: [
+          'Pellicule réfléchissante sur les fenêtres exposées de la maison',
+          'Fenêtre à sommet triangulaire incluse',
+          'Installation sur place par nos techniciens',
+        ],
+        howItWorksTitle: 'En termes simples',
+        howItWorks:
+          "Le jour, la pellicule réfléchit la lumière comme un miroir discret. Quand il fait plus clair dehors que dedans, il devient difficile de voir à l'intérieur, alors que la vue vers l'extérieur reste dégagée.",
+      },
+      results: {
+        title: 'Ce que la famille constate',
+        intro: "Observations rapportées après l'installation. Ce sont des constats d'usage, pas des mesures prises avec des instruments.",
+        points: [
+          {
+            title: 'Des fenêtres enfin dégagées',
+            text: 'Les rideaux restent ouverts : la lumière et la vue sur l’extérieur sont revenues.',
+          },
+          {
+            title: 'Plus d’intimité le jour',
+            text: "De l'extérieur, les vitres renvoient la rue et le ciel : en plein jour, on ne voit plus à l'intérieur.",
+          },
+          {
+            title: 'Une fenêtre qu’on peut enfin apprécier',
+            text: "Le soleil qui surchauffait la maison par la fenêtre à sommet triangulaire n'est plus un problème : les propriétaires en profitent maintenant.",
+          },
+        ],
+        privacyTitle: "À savoir sur l'intimité",
+        privacyNote:
+          "L'effet réfléchissant dépend de l'éclairage : il fonctionne lorsqu'il fait plus clair à l'extérieur qu'à l'intérieur et ne garantit pas l'intimité en soirée ou la nuit, lorsque l'intérieur est éclairé.",
+      },
+      pairs: {
+        title: 'Avant et après, côte à côte',
+        intro: "Des vues similaires de la maison, avant et après la pellicule. Les angles de prise de vue ne sont pas toujours identiques.",
+        beforeTag: 'Avant',
+        afterTag: 'Après',
+      },
+      highlight: {
+        eyebrow: 'La fenêtre à sommet triangulaire',
+        title: 'Une magnifique fenêtre, enfin agréable à vivre',
+        intro:
+          "Cette grande fenêtre laissait passer beaucoup de soleil et rendait la maison très chaude. Avec la pellicule, le problème est réglé et les propriétaires peuvent maintenant profiter de leur fenêtre et de la vue.",
+        bullets: [
+          'Avant : beaucoup de soleil direct et une maison très chaude',
+          'Après : le problème est réglé, selon les propriétaires',
+          "De l'extérieur, la vitre renvoie le ciel et la rue en plein jour",
+        ],
+        beforeTag: 'Avant',
+        afterTag: 'Après',
+        exteriorTag: 'Extérieur',
+      },
+      cta: {
+        title: 'De grandes fenêtres, ça devrait être un avantage.',
+        text: 'Parlons de votre projet.',
+        button: 'Demander une estimation',
+      },
+    },
+    en: {
+      slug: 'corner-lot-home',
+      title: 'Corner-lot home: large windows, finally free of curtains',
+      intro:
+        'New windows hidden behind big curtains because the house sits on a busy street corner. Reflective window film gave the family their light, their view and more daytime privacy back.',
+      cardSummary:
+        'On a very exposed corner lot, big curtains were blocking brand-new windows. With reflective film, the light and the view are back, with more privacy during the day.',
+      metaTitle: 'Corner-Lot Home: Reflective Window Film for Privacy & Comfort | Vida Vitres',
+      metaDescription:
+        'How reflective window film restored privacy, light and comfort to a corner-lot home in the Montreal area, without curtains blocking the windows. Before-and-after photos.',
+      overview: [
+        { label: 'Project type', value: 'Residential' },
+        { label: 'Sector', value: 'Home' },
+        { label: 'Location', value: 'Montreal area' },
+        { label: 'Solution', value: 'Reflective window film' },
+      ],
+      challenge: {
+        title: 'Beautiful new windows, hidden behind big curtains',
+        intro: 'These homeowners had large, brand-new windows. But their house sits on a very busy street corner.',
+        points: [
+          {
+            title: 'A house seen from everywhere',
+            text: 'The lot is on a busy street corner, near a bike path and a school: from outside, everyone could see inside.',
+          },
+          {
+            title: 'Big curtains, all the time',
+            text: 'To get their privacy back, the family used big curtains, which blocked their new windows.',
+          },
+          {
+            title: 'A window that overheated the house',
+            text: 'The large triangular-topped window let in a lot of sun, which made the house very hot.',
+          },
+        ],
+      },
+      intervention: {
+        title: 'Reflective film on the exposed windows',
+        intro: 'Vida Vitres installed reflective window film on the home’s exposed windows, without replacing anything.',
+        points: [
+          'Reflective film on the home’s exposed windows',
+          'Triangular-topped window included',
+          'Installed on site by our technicians',
+        ],
+        howItWorksTitle: 'In plain terms',
+        howItWorks:
+          'In daylight, the film reflects light like a discreet mirror. When it is brighter outside than inside, it becomes hard to see in, while the view out stays clear.',
+      },
+      results: {
+        title: 'What the family notices',
+        intro: 'Observations reported after installation. These are everyday experiences, not instrument-measured results.',
+        points: [
+          {
+            title: 'Windows finally uncovered',
+            text: 'The curtains stay open: the light and the view of the outdoors are back.',
+          },
+          {
+            title: 'More privacy in daylight',
+            text: 'From outside, the glass mirrors the street and the sky: in full daylight, you can no longer see in.',
+          },
+          {
+            title: 'A window they can finally enjoy',
+            text: 'The sun that used to overheat the house through the triangular-topped window is no longer a problem: the owners now enjoy it.',
+          },
+        ],
+        privacyTitle: 'Good to know about privacy',
+        privacyNote:
+          'The reflective effect depends on lighting: it works when it is brighter outside than inside, and it does not guarantee privacy in the evening or at night, when the interior is lit.',
+      },
+      pairs: {
+        title: 'Before and after, side by side',
+        intro: 'Similar views of the house before and after the film. Camera angles are not always identical.',
+        beforeTag: 'Before',
+        afterTag: 'After',
+      },
+      highlight: {
+        eyebrow: 'The triangular-topped window',
+        title: 'A beautiful window, finally comfortable to live with',
+        intro:
+          'This large window let in a lot of sun and made the house very hot. With the film, the problem is solved and the owners can now enjoy their window and the view.',
+        bullets: [
+          'Before: a lot of direct sun and a very hot house',
+          'After: the problem is solved, according to the owners',
+          'From outside, the glass mirrors the sky and the street in daylight',
+        ],
+        beforeTag: 'Before',
+        afterTag: 'After',
+        exteriorTag: 'Outside',
       },
       cta: {
         title: 'Large windows should be an advantage.',

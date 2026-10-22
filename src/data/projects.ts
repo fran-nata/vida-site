@@ -12,11 +12,8 @@ export interface ProjectImage {
   /** File name inside the project's mediaDir. */
   file: string;
   alt: L;
-}
-export interface ProjectPair {
+  /** Short visible label shown under the image. */
   caption: L;
-  before: ProjectImage;
-  after: ProjectImage;
 }
 export interface ProjectVideo {
   file: string;
@@ -40,8 +37,7 @@ export interface ProjectCopy {
   challenge: { intro: string; points: Point[] };
   intervention: { intro: string; points: string[]; howItWorksTitle: string; howItWorks: string };
   results: { intro: string; points: Point[]; privacyTitle: string; privacyNote: string };
-  gallery: { title: string; intro: string };
-  beforeAfter: { title: string; intro: string; before: string; after: string };
+  beforeAfter: { title: string; intro: string; beforeTitle: string; afterTitle: string; beforeTag: string; afterTag: string };
   videos: { title: string; intro: string };
   cta: { title: string; text: string; button: string };
 }
@@ -50,7 +46,7 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
-  media: { hero: ProjectImage; gallery: ProjectImage[]; pairs: ProjectPair[]; videos: ProjectVideo[] };
+  media: { hero: ProjectImage; before: ProjectImage[]; after: ProjectImage[]; videos: ProjectVideo[] };
   fr: ProjectCopy;
   en: ProjectCopy;
 }
@@ -68,14 +64,42 @@ export const projects: Project[] = [
           fr: "Vitrage d'angle de la clinique vu de l'extérieur : la pellicule réfléchissante renvoie le ciel, les arbres et les immeubles voisins",
           en: 'Corner glazing of the clinic seen from outside: the reflective film mirrors the sky, trees and neighbouring buildings',
         },
+        caption: { fr: "Vitrage d'angle de la clinique, après l'installation", en: 'Corner glazing of the clinic, after installation' },
       },
-      gallery: [
+      before: [
+        {
+          file: 'avant-1.jpg',
+          alt: {
+            fr: "Vitrage d'angle de la clinique vu de l'extérieur avant la pellicule, avec des stores qui masquent les vitres du bas",
+            en: 'Corner glazing of the clinic seen from outside before the film, with shades covering the lower panes',
+          },
+          caption: { fr: "Vitrage d'angle vu de l'extérieur, avant la pellicule", en: 'Corner glazing seen from outside, before the film' },
+        },
+        {
+          file: 'avant-2.jpg',
+          alt: {
+            fr: "Salle de traitement vue depuis la porte : stores enroulables baissés devant de grandes fenêtres d'angle, fauteuil dentaire vide",
+            en: 'Treatment room seen from the doorway: roller shades pulled down over large corner windows, empty dental chair',
+          },
+          caption: { fr: 'Salle de traitement, avant : stores baissés devant les grandes fenêtres', en: 'Treatment room, before: shades down over the large windows' },
+        },
+        {
+          file: 'avant-3.jpg',
+          alt: {
+            fr: "Grande fenêtre d'un espace de travail de la clinique, vue de l'intérieur, avec store partiellement relevé",
+            en: 'Large window in a work area of the clinic, seen from inside, with the shade partly raised',
+          },
+          caption: { fr: "Fenêtre d'un espace de travail, avant la pellicule", en: 'Window in a work area, before the film' },
+        },
+      ],
+      after: [
         {
           file: 'resultat-1.jpg',
           alt: {
             fr: "Vitrage d'angle de la clinique vu du trottoir, avec reflets des arbres et du ciel dans les vitres",
             en: 'Corner glazing of the clinic seen from the sidewalk, with trees and sky reflected in the glass',
           },
+          caption: { fr: "Vitrage d'angle vu du trottoir, après", en: 'Corner glazing seen from the sidewalk, after' },
         },
         {
           file: 'resultat-2.jpg',
@@ -83,6 +107,7 @@ export const projects: Project[] = [
             fr: "Vue en contre-plongée du vitrage d'angle : bande de vitres plus claire en haut, vitres réfléchissantes en bas",
             en: 'Upward view of the corner glazing: a lighter band of glass above and mirror-like glass below',
           },
+          caption: { fr: "Vue en contre-plongée du vitrage d'angle, après", en: 'Upward view of the corner glazing, after' },
         },
         {
           file: 'resultat-3.jpg',
@@ -90,23 +115,7 @@ export const projects: Project[] = [
             fr: 'Vitrage de la clinique vu de côté, avec reflets du terrain, des arbres et de la rue',
             en: 'Side view of the clinic glazing, reflecting the lawn, trees and street',
           },
-        },
-      ],
-      pairs: [
-        {
-          caption: { fr: 'Vue 1', en: 'View 1' },
-          before: { file: 'avant-1.jpg', alt: { fr: 'Avant la pellicule : vue 1 des fenêtres de la clinique', en: 'Before the film: view 1 of the clinic windows' } },
-          after: { file: 'apres-1.jpg', alt: { fr: 'Après la pellicule : vue 1 des fenêtres de la clinique', en: 'After the film: view 1 of the clinic windows' } },
-        },
-        {
-          caption: { fr: 'Vue 2', en: 'View 2' },
-          before: { file: 'avant-2.jpg', alt: { fr: 'Avant la pellicule : vue 2 des fenêtres de la clinique', en: 'Before the film: view 2 of the clinic windows' } },
-          after: { file: 'apres-2.jpg', alt: { fr: 'Après la pellicule : vue 2 des fenêtres de la clinique', en: 'After the film: view 2 of the clinic windows' } },
-        },
-        {
-          caption: { fr: 'Vue 3', en: 'View 3' },
-          before: { file: 'avant-3.jpg', alt: { fr: 'Avant la pellicule : vue 3 des fenêtres de la clinique', en: 'Before the film: view 3 of the clinic windows' } },
-          after: { file: 'apres-3.jpg', alt: { fr: 'Après la pellicule : vue 3 des fenêtres de la clinique', en: 'After the film: view 3 of the clinic windows' } },
+          caption: { fr: 'Vitrage vu de côté, après', en: 'Glazing seen from the side, after' },
         },
       ],
       videos: [
@@ -188,15 +197,13 @@ export const projects: Project[] = [
         privacyNote:
           "L'effet réfléchissant dépend de l'éclairage : il fonctionne lorsqu'il fait plus clair à l'extérieur qu'à l'intérieur et ne garantit pas l'intimité en soirée ou la nuit. Une pellicule seule ne garantit pas non plus la confidentialité des renseignements des patients ni la conformité à la réglementation : elle s'ajoute aux autres mesures de la clinique.",
       },
-      gallery: {
-        title: 'Le résultat en images',
-        intro: "Vues extérieures du vitrage après l'installation. En plein jour, la pellicule renvoie le ciel, les arbres et la rue.",
-      },
       beforeAfter: {
         title: 'Avant et après',
-        intro: 'Photos du projet, présentées côte à côte.',
-        before: 'Avant',
-        after: 'Après',
+        intro: "Photos du projet. Les angles de prise de vue diffèrent d'une image à l'autre : chaque photo est présentée séparément, avec son étiquette.",
+        beforeTitle: "Avant l'installation",
+        afterTitle: "Après l'installation",
+        beforeTag: 'Avant',
+        afterTag: 'Après',
       },
       videos: {
         title: 'Le projet en vidéo',
@@ -272,15 +279,13 @@ export const projects: Project[] = [
         privacyNote:
           'The reflective effect depends on lighting: it works when it is brighter outside than inside, and it does not guarantee privacy in the evening or at night. Film alone also does not guarantee the confidentiality of patient information or regulatory compliance: it complements the clinic’s other measures.',
       },
-      gallery: {
-        title: 'The result in pictures',
-        intro: 'Exterior views of the glazing after installation. In daylight, the film mirrors the sky, the trees and the street.',
-      },
       beforeAfter: {
         title: 'Before and after',
-        intro: 'Photos from the project, shown side by side.',
-        before: 'Before',
-        after: 'After',
+        intro: 'Photos from the project. Camera angles differ from one image to the next, so each photo is shown on its own with its label.',
+        beforeTitle: 'Before installation',
+        afterTitle: 'After installation',
+        beforeTag: 'Before',
+        afterTag: 'After',
       },
       videos: {
         title: 'The project on video',

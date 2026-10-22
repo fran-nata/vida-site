@@ -15,7 +15,6 @@ const hero = project.media.hero;
 const estimateHref = isEn ? '/en/#estimate' : '/#estimateur';
 const indexHref = isEn ? '/en/projects/' : '/projets/';
 const phoneLabel = isEn ? `Call ${site.phone}` : `Appeler ${site.phone}`;
-const pairs = project.media.pairs.filter((p) => mediaExists(`${dir}/${p.before.file}`) && mediaExists(`${dir}/${p.after.file}`));
 const videos = project.media.videos.map((v) => ({
   ...v,
   src: `${dir}/${v.file}`,
@@ -106,43 +105,30 @@ if (import.meta.env.PROD) videos.filter((v) => !v.exists).forEach((v) => console
   </div>
 </section>
 
-<!-- Results gallery -->
+<!-- Before / after -->
 <section class="max-w-[1100px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
-  <h2 class="font-heading text-[24px] sm:text-[32px] font-bold tracking-tight mb-3 reveal">{copy.gallery.title}</h2>
-  <p class="text-base leading-relaxed text-muted mb-8 max-w-[720px] reveal reveal-d1">{copy.gallery.intro}</p>
-  <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5">
-    {project.media.gallery.map((img) => (
-      <figure class="mb-4 sm:mb-5 break-inside-avoid rounded-2xl overflow-hidden border border-border reveal">
-        <ProjectImage src={`${dir}/${img.file}`} alt={img.alt[lang]} lang={lang} aspect="" />
-      </figure>
-    ))}
-  </div>
-</section>
-
-<!-- Before / after photos (shown only once both files of a pair exist) -->
-{pairs.length > 0 && (
-<section class="max-w-[1100px] mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
   <h2 class="font-heading text-[24px] sm:text-[32px] font-bold tracking-tight mb-3 reveal">{copy.beforeAfter.title}</h2>
-  <p class="text-base leading-relaxed text-muted mb-8 reveal reveal-d1">{copy.beforeAfter.intro}</p>
-  <div class="space-y-8 sm:space-y-10">
-    {pairs.map((pair) => (
-      <figure class="reveal">
-        <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
-          <div class="relative rounded-2xl overflow-hidden border border-border">
-            <ProjectImage src={`${dir}/${pair.before.file}`} alt={pair.before.alt[lang]} lang={lang} aspect="aspect-[4/3]" />
-            <span class="absolute top-3 left-3 bg-navy text-white text-[12px] font-bold px-3 py-1 rounded-full">{copy.beforeAfter.before}</span>
-          </div>
-          <div class="relative rounded-2xl overflow-hidden border border-border">
-            <ProjectImage src={`${dir}/${pair.after.file}`} alt={pair.after.alt[lang]} lang={lang} aspect="aspect-[4/3]" />
-            <span class="absolute top-3 left-3 bg-accent text-white text-[12px] font-bold px-3 py-1 rounded-full">{copy.beforeAfter.after}</span>
-          </div>
-        </div>
-        <figcaption class="text-[13px] text-muted-2 mt-2.5">{pair.caption[lang]}</figcaption>
-      </figure>
-    ))}
-  </div>
+  <p class="text-base leading-relaxed text-muted mb-10 max-w-[720px] reveal reveal-d1">{copy.beforeAfter.intro}</p>
+  {[
+    { title: copy.beforeAfter.beforeTitle, tag: copy.beforeAfter.beforeTag, tagClass: 'bg-navy', items: project.media.before },
+    { title: copy.beforeAfter.afterTitle, tag: copy.beforeAfter.afterTag, tagClass: 'bg-accent', items: project.media.after },
+  ].map((group) => (
+    <div class="mb-12 last:mb-0">
+      <h3 class="font-heading text-[19px] sm:text-[22px] font-bold mb-5 reveal">{group.title}</h3>
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5">
+        {group.items.map((img) => (
+          <figure class="mb-4 sm:mb-5 break-inside-avoid reveal">
+            <div class="relative rounded-2xl overflow-hidden border border-border">
+              <ProjectImage src={`${dir}/${img.file}`} alt={img.alt[lang]} lang={lang} aspect="" />
+              <span class={`absolute top-3 left-3 ${group.tagClass} text-white text-[12px] font-bold px-3 py-1 rounded-full`}>{group.tag}</span>
+            </div>
+            <figcaption class="text-[13px] text-muted-2 mt-2.5">{img.caption[lang]}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  ))}
 </section>
-)}
 
 <!-- Videos -->
 <section class="bg-bg-light px-5 sm:px-8 py-12 sm:py-16">

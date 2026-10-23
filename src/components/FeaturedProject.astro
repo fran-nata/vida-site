@@ -14,8 +14,8 @@ const indexHref = isEn ? '/en/projects/' : '/projets/';
 {project && (
   <section class="bg-bg-light px-5 sm:px-8 py-14 sm:py-22">
     <div class="max-w-[1240px] mx-auto">
-      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center reveal">{isEn ? 'Projects & results' : 'Projets et résultats'}</p>
-      <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 text-center reveal reveal-d1">{isEn ? 'Featured project' : 'Projet à la une'}</h2>
+      <p class="text-[13px] font-bold tracking-wide uppercase text-accent mb-3 text-center reveal">{isEn ? 'Our Work' : 'Réalisations'}</p>
+      <h2 class="font-heading text-[26px] sm:text-[32px] font-bold tracking-tight mb-4 text-center reveal reveal-d1">{isEn ? 'See one of our projects' : 'Découvrez une de nos réalisations'}</h2>
       <p class="text-base leading-relaxed text-muted mb-10 text-center max-w-[560px] mx-auto reveal reveal-d2">{isEn ? 'A real project, told simply: the problem, what we installed and what the client noticed.' : "Un projet réel, raconté simplement : le problème, ce que nous avons posé et ce que le client constate."}</p>
       <article class="group grid lg:grid-cols-[1.1fr_1fr] bg-white border border-border rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-xl reveal reveal-d3">
         <a href={href} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
@@ -35,8 +35,8 @@ const indexHref = isEn ? '/en/projects/' : '/projets/';
             {copy.results.points.map((p) => <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> {p.title}</li>)}
           </ul>
           <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a href={href} class="btn-glow inline-block px-6 py-3 rounded-[10px] text-[15px] font-bold text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'See the project →' : 'Voir le projet →'}</a>
-            <a href={indexHref} class="text-[14px] font-semibold text-navy hover:text-accent transition-colors duration-200">{isEn ? 'All projects' : 'Tous les projets'}</a>
+            <a href={href} class="btn-glow inline-block px-6 py-3 rounded-[10px] text-[15px] font-bold text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">{isEn ? 'See the project →' : 'Voir la réalisation →'}</a>
+            <a href={indexHref} class="text-[14px] font-semibold text-navy hover:text-accent transition-colors duration-200">{isEn ? 'All our work' : 'Toutes nos réalisations'}</a>
           </div>
         </div>
       </article>

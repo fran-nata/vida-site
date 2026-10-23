@@ -51,7 +51,7 @@ Media: `public/projets/maison-coin-de-rue/` (web copies, 1800px JPG; originals n
 | `avant-exterieur.jpg` / `apres-exterieur.jpg` | Pair 1 | overcast day vs next day, same viewpoint | house number (+ neighbour's in « avant ») |
 | `avant-salon.jpg` / `apres-salon.jpg` | Pair 2 | living-room corner | nothing needed |
 | `avant-triangle.jpg` / `apres-triangle.jpg` | Featured triangular window | kitchen window, inside | neighbour's number, a licence plate |
-| `triangle-exterieur.jpg` | Featured window, exterior | side of the house | reflected bus lettering, propane tank lettering and phone number |
+| `triangle-exterieur.jpg` | Featured window, exterior | side of the house | propane tank lettering and phone number (bus reflection left visible on purpose) |
 
 ## Left out on purpose
 

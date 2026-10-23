@@ -53,6 +53,8 @@ export interface Project {
   mediaDir: string;
   type: 'commercial' | 'residential';
   published: boolean;
+  /** Shown in the homepage "featured project" card. First published project wins if none is flagged. */
+  featured?: boolean;
   media: {
     hero: ProjectImage;
     pairs?: { before: ProjectImage; after: ProjectImage }[];
@@ -381,6 +383,7 @@ export const projects: Project[] = [
     mediaDir: '/projets/maison-coin-de-rue',
     type: 'residential',
     published: true,
+    featured: true,
     media: {
       hero: {
         file: 'hero.jpg',

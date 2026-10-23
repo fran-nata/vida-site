@@ -6,7 +6,7 @@ interface Props {
 }
 const { lang = 'fr' } = Astro.props;
 const isEn = lang === 'en';
-const project = publishedProjects[0];
+const project = publishedProjects.find((p) => p.featured) ?? publishedProjects[0];
 const copy = project?.[lang];
 const href = project ? (isEn ? `/en/projects/${copy.slug}/` : `/projets/${copy.slug}/`) : '';
 const indexHref = isEn ? '/en/projects/' : '/projets/';

@@ -448,10 +448,13 @@ export const projects: Project[] = [
         exterior: {
           file: 'triangle-exterieur.jpg',
           alt: {
-            fr: 'La fenêtre à sommet triangulaire vue de l’extérieur : la vitre renvoie le ciel et la rue',
-            en: 'The triangular-topped window seen from outside: the glass mirrors the sky and the street',
+            fr: 'La fenêtre à sommet triangulaire vue de l’extérieur : la vitre renvoie le ciel et un autobus scolaire',
+            en: 'The triangular-topped window seen from outside: the glass mirrors the sky and a school bus',
           },
-          caption: { fr: 'De l’extérieur, après : la vitre renvoie le ciel', en: 'From outside, after: the glass mirrors the sky' },
+          caption: {
+            fr: 'De l’extérieur, après : la vitre renvoie le ciel et même un autobus scolaire. En plein jour, la circulation de la rue, école comprise, ne voit plus à l’intérieur.',
+            en: 'From outside, after: the glass mirrors the sky and even a school bus. In daylight, street traffic, school included, can no longer see inside.',
+          },
         },
       },
     },
